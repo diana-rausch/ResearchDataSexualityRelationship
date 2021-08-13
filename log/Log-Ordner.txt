@@ -1,0 +1,1 @@
+In diesem Ordner wird die Ausgabe der do-files von Stata abgelegt.
