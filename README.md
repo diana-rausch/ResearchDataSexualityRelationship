@@ -1,6 +1,6 @@
 # README!
 
-Die hier bereitgestellten Datensatz- und Syntax-Dateien können genutzt werden, um die von Diana Rausch im Rahmen ihrer Dissertation "Einflussfaktoren auf die sexuelle Zufriedenheit von Frauen in fester Partnerschaft" im Jahr 2021 veröffentlichten Forschungsergebnisse nachzuvollziehen.
+Die hier bereitgestellten Datensatz- und Syntax-Dateien können genutzt werden, um die von Diana Rausch im Rahmen ihrer Dissertation "Einflussfaktoren auf die sexuelle Zufriedenheit von Frauen in fester Partnerschaft" im Jahr 2022 veröffentlichten Forschungsergebnisse nachzuvollziehen. 
 
 Mithilfe eines umfassenden Fragebogens wurden zahlreiche Einstellungen und Verhaltensweisen erhoben, die in Zusammenhang mit Sexualität und Partnerschaft stehen. Daher stellen die Daten auch eine gute Grundlage für zukünftige Forschungsprojekte zum Thema Sexualität und Partnerschaft dar.
 
@@ -10,7 +10,7 @@ Als erster Zugang zum Datensatz eignet sich die Datei mit dem vollständigen Fra
 
 Im Ordner "data.zip" steht der Datensatz unbearbeitet (_raw) und mit einer bereits durchgeführten grundlegenden Aufbereitung (_clean) im Stata- (.dta) und im SPSS-Format (.sav) bereit. Die aufbereitete Version unterscheidet sich vom unbearbeiteten Datensatz insbesondere darin, dass Variablen, die aufgrund verschiedener Geschlechterformulierungen durch separate Items erhoben worden sind, zusammengefasst wurden und fehlende Angaben im Fragebogen einer einheitlichen Missing-Codierung zugeordnet wurden. Die gesamte Aufbereitung kann mithilfe des Stata-Skripts und der zugehörigen Kommentare in der Datei "00_BASIC_RECODING.do" nachvollzogen werden.
 
-Die Syntax-Dateien im Ordner "do-files" können genutzt werden, um alle Ergebnisse der zuvor erwähnten Dissertation auf Basis des unbearbeiteten Datensatzes in Stata nachzuvollziehen (do-Files 00−13 und A1−A5). Dafür ist es am einfachsten, die im Hauptverzeichnis befindliche Syntax mit dem Namen "!!_MASTER_CODE.do" in Stata auszuführen, durch die alle do-Files nacheinander ausgeführt werden.
+Die Syntax-Dateien im Ordner "do-files" können genutzt werden, um alle Ergebnisse der zuvor erwähnten Dissertation auf Basis des unbearbeiteten Datensatzes in Stata nachzuvollziehen (do-Files 00−13 und A1−A5). Dafür ist es am einfachsten, die im Hauptverzeichnis befindliche Syntax mit dem Namen "!!_MASTER_CODE.do" in Stata auszuführen, durch die alle do-Files nacheinander ausgeführt werden. Zudem ist im Unterordner "log" der gesamte Output der mit Stata durchgeführten Datenbearbeitung und -auswertung hinterlegt, der dieser Forschungsarbeit und allen darin dargelegten Ergebnissen zugrunde lag.
 
 Durch die Syntax in der Datei "B1_ANHANG_WEITEREVARIABLEN.do" wurden einige im Fragebogen erhobenen Items in Variablen zusammengefasst, die nicht Teil des Dissertationsprojektes waren, aber interessante Ansatzpunkte für weitere Forschungsarbeiten darstellen.
 
@@ -42,7 +42,7 @@ As a starting point to work with the data the file describing the complete quest
 
 In the zip archive "data.zip" the dataset is available unmodified (_raw) and cleaned (_clean) both in Stata (.dta) and in SPSS (.sav) format. The main difference of the clean version is that variables which belonged together but were separate in the survey platform because of gender specific wording have already been summarized. Furthermore, missing values have been recoded to be correctly recognized by Stata and custom responses to specific items have been sorted to the standardized value options if possible. The entire cleanup process can be reviewed and applied to the unmodified dataset with the Stata syntax file "00_BASIC_RECODING.do".
 
-The other syntax files (do-Files 00−13 and A1−A5) in the folder "do-files" can be used to replicate all results of the PhD thesis mentioned above based on the unmodified version of the Stata dataset. The easiest way to do this is to open and run the syntax file "!!_MASTER_CODE.do" which executes all other files in the correct order and can be found in the root directory of the project.
+The other syntax files (do-Files 00−13 and A1−A5) in the folder "do-files" can be used to replicate all results of the PhD thesis mentioned above based on the unmodified version of the Stata dataset. The easiest way to do this is to open and run the syntax file "!!_MASTER_CODE.do" which executes all other files in the correct order and can be found in the root directory of the project. Additionally, the folder "log" contains the entire Stata output covering the edits, analyses, and all results which were used for this research project.
 
 The syntax in file "B1_ANHANG_WEITEREVARIABLEN.do" adds further variables to the dataset which were not used in the PhD thesis but could be interesting for future research projects.
 
