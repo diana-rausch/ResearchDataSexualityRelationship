@@ -1,0 +1,2971 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\00_BASIC_RECODING.log
+  log type:  text
+ opened on:  25 May 2022, 15:36:16
+
+. 
+. /********** BASIC RECODINGS ************
+> Grundlegende Aufarbeitung der Variablen im Datensatz
+> Korrektur von Tippfehlern in den Variablen bei der Fragebogenerstellung
+> Entfernen unnötiger Variablen, die Unipark zusätzlich erhoben hat
+> Missing-Werte (-999, -99, 0) werden mit entsprechenden Missings recodiert
+> Zusammenführen der _m, _f und _misc Werte für die erhobenen Variablen, entfernen der einzelnen Variablen
+> Umcodieren von Variablen mit freier Texteingabe
+> */
+. 
+. 
+. //************ Fehlerhafte Variablenbenennung korrigieren ************
+. rename coupetrust01_f coupletrust01_f
+
+. rename coupleduration_m coupleduration_month
+
+. rename coupleduration_y coupleduration_year
+
+. rename sexselfconf2 sexselfconf02
+
+. rename hhincome_orig_f hhincomeorig
+
+. rename contraceptsatis01 contraceptsat
+
+. 
+. 
+. //************ Entfernen unnötiger Variablen ************
+. drop lfdn 
+
+. drop external_lfdn 
+
+. drop tester 
+
+. drop lastpage 
+
+. drop quality 
+
+. 
+. drop browser 
+
+. drop referer 
+
+. drop device_type 
+
+. drop participant_browser 
+
+. drop participant_browser_version 
+
+. drop participant_os 
+
+. drop participant_device 
+
+. drop participant_brand 
+
+. drop participant_model 
+
+. drop participant_isbot 
+
+. drop participant_continent 
+
+. drop participant_country 
+
+. drop participant_region 
+
+. drop participant_city 
+
+. //drop participant_*                            //<------------ entfernt alle participant_* Variablen von Unipark
+. drop quota 
+
+. drop quota_assignment 
+
+. drop page_history 
+
+. 
+. drop output_mode 
+
+. drop javascript 
+
+. drop flash 
+
+. drop session_id 
+
+. drop language 
+
+. drop cleaned 
+
+. drop ats 
+
+. drop date_of_last_access 
+
+. drop date_of_first_mail 
+
+. drop hflip
+
+. drop vflip
+
+. 
+. //drop rts*                                                     //<------------ entfernt alle rts* Variablen von Unipark
+. drop rts4262553 
+
+. drop rts4262751
+
+. drop rts4264167 
+
+. drop rts4264168 
+
+. drop rts4264281 
+
+. drop rts4264413 
+
+. drop rts4264495 
+
+. drop rts4264519 
+
+. drop rts4264530 
+
+. drop rts4268049 
+
+. drop rts4277661 
+
+. drop rts4277675 
+
+. drop rts4277682 
+
+. drop rts4277877 
+
+. drop rts4277880 
+
+. drop rts4277884 
+
+. drop rts4296344 
+
+. drop rts4296358 
+
+. drop rts4296697 
+
+. drop rts4296698 
+
+. drop rts4296700 
+
+. drop rts4296701
+
+. 
+. 
+. //************ Missings umcodieren ************
+. //Schleife codiert alle Missings -999 und -99 um, für Zahl- und Textvariablen 
+. 
+. foreach var of varlist * {                                                                                              //schaut sich alle Variablen des Datensatzes an
+  2.    capture confirm string variable `var'                                                                //prüft und speichert in !_rc das Ergebnis, ob angeschaute Variable `var' vom Typ Text ist
+  3.    if !_rc {                                                                                                                    //wenn !_rc "true" (d.h. Text Variable)
+  4.                 replace `var' = ".z" if `var' == "-99"                                                  //führe Text-Recodierung für Missings durch
+  5.                 replace `var' = ".n" if `var' == "-999"
+  6.    }
+  7.    else {                                                                                                                               //für alle anderen Variablen (Zahlen, Datum etc.)
+  8.                 replace `var' = .n if `var' == -999                                                             //führe Zahlen-Recodierung für Missings durch
+  9.                 replace `var' = .m if `var' == 0
+ 10.                 replace `var' = .k if `var' == 99       
+ 11.    }
+ 12. }
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(364 real changes made, 364 to missing)
+(4 real changes made, 4 to missing)
+(393 real changes made, 393 to missing)
+(86 real changes made, 86 to missing)
+(0 real changes made)
+(4,063 real changes made)
+(393 real changes made)
+(393 real changes made, 393 to missing)
+(119 real changes made, 119 to missing)
+(0 real changes made)
+(393 real changes made, 393 to missing)
+(119 real changes made, 119 to missing)
+(0 real changes made)
+(3,972 real changes made)
+(393 real changes made)
+(393 real changes made, 393 to missing)
+(119 real changes made, 119 to missing)
+(0 real changes made)
+(3,993 real changes made)
+(393 real changes made)
+(393 real changes made, 393 to missing)
+(242 real changes made, 242 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(38 real changes made, 38 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(30 real changes made, 30 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(32 real changes made, 32 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(35 real changes made, 35 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(31 real changes made, 31 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(35 real changes made, 35 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(30 real changes made, 30 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(42 real changes made, 42 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(30 real changes made, 30 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(31 real changes made, 31 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(32 real changes made, 32 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(34 real changes made, 34 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(34 real changes made, 34 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(35 real changes made, 35 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(40 real changes made, 40 to missing)
+(0 real changes made)
+(1,013 real changes made, 1,013 to missing)
+(41 real changes made, 41 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(16 real changes made, 16 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(13 real changes made, 13 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(234 real changes made, 234 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(20 real changes made, 20 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(19 real changes made, 19 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(33 real changes made, 33 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(45 real changes made, 45 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(25 real changes made, 25 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(30 real changes made, 30 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(34 real changes made, 34 to missing)
+(0 real changes made)
+(1,297 real changes made, 1,297 to missing)
+(17 real changes made, 17 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(13 real changes made, 13 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(9 real changes made, 9 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(14 real changes made, 14 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,424 real changes made, 1,424 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(2,172 real changes made, 2,172 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(2,172 real changes made, 2,172 to missing)
+(477 real changes made, 477 to missing)
+(0 real changes made)
+(2,172 real changes made, 2,172 to missing)
+(361 real changes made, 361 to missing)
+(0 real changes made)
+(2,184 real changes made, 2,184 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(4,471 real changes made, 4,471 to missing)
+(0 real changes made)
+(0 real changes made)
+(2,986 real changes made, 2,986 to missing)
+(4 real changes made, 4 to missing)
+(24 real changes made, 24 to missing)
+(2,986 real changes made, 2,986 to missing)
+(6 real changes made, 6 to missing)
+(34 real changes made, 34 to missing)
+(2,986 real changes made, 2,986 to missing)
+(10 real changes made, 10 to missing)
+(49 real changes made, 49 to missing)
+(2,986 real changes made, 2,986 to missing)
+(6 real changes made, 6 to missing)
+(52 real changes made, 52 to missing)
+(2,986 real changes made, 2,986 to missing)
+(9 real changes made, 9 to missing)
+(45 real changes made, 45 to missing)
+(2,986 real changes made, 2,986 to missing)
+(7 real changes made, 7 to missing)
+(755 real changes made, 755 to missing)
+(2,986 real changes made, 2,986 to missing)
+(6 real changes made, 6 to missing)
+(387 real changes made, 387 to missing)
+(2,986 real changes made, 2,986 to missing)
+(8 real changes made, 8 to missing)
+(745 real changes made, 745 to missing)
+(2,986 real changes made, 2,986 to missing)
+(5 real changes made, 5 to missing)
+(458 real changes made, 458 to missing)
+(2,986 real changes made, 2,986 to missing)
+(4 real changes made, 4 to missing)
+(816 real changes made, 816 to missing)
+(2,986 real changes made, 2,986 to missing)
+(5 real changes made, 5 to missing)
+(728 real changes made, 728 to missing)
+(2,986 real changes made, 2,986 to missing)
+(5 real changes made, 5 to missing)
+(109 real changes made, 109 to missing)
+(2,986 real changes made, 2,986 to missing)
+(9 real changes made, 9 to missing)
+(183 real changes made, 183 to missing)
+(2,986 real changes made, 2,986 to missing)
+(5 real changes made, 5 to missing)
+(419 real changes made, 419 to missing)
+(2,986 real changes made, 2,986 to missing)
+(3 real changes made, 3 to missing)
+(166 real changes made, 166 to missing)
+(3,035 real changes made, 3,035 to missing)
+(3 real changes made, 3 to missing)
+(197 real changes made, 197 to missing)
+(3,035 real changes made, 3,035 to missing)
+(2 real changes made, 2 to missing)
+(202 real changes made, 202 to missing)
+(3,035 real changes made, 3,035 to missing)
+(6 real changes made, 6 to missing)
+(174 real changes made, 174 to missing)
+(3,035 real changes made, 3,035 to missing)
+(2 real changes made, 2 to missing)
+(156 real changes made, 156 to missing)
+(3,035 real changes made, 3,035 to missing)
+(2 real changes made, 2 to missing)
+(195 real changes made, 195 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(198 real changes made, 198 to missing)
+(3,035 real changes made, 3,035 to missing)
+(3 real changes made, 3 to missing)
+(172 real changes made, 172 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(198 real changes made, 198 to missing)
+(3,035 real changes made, 3,035 to missing)
+(6 real changes made, 6 to missing)
+(116 real changes made, 116 to missing)
+(3,035 real changes made, 3,035 to missing)
+(7 real changes made, 7 to missing)
+(132 real changes made, 132 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(128 real changes made, 128 to missing)
+(3,035 real changes made, 3,035 to missing)
+(9 real changes made, 9 to missing)
+(135 real changes made, 135 to missing)
+(3,035 real changes made, 3,035 to missing)
+(5 real changes made, 5 to missing)
+(155 real changes made, 155 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(189 real changes made, 189 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(141 real changes made, 141 to missing)
+(3,035 real changes made, 3,035 to missing)
+(4 real changes made, 4 to missing)
+(164 real changes made, 164 to missing)
+(3,064 real changes made, 3,064 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(1 real change made, 1 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(9 real changes made, 9 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(1,192 real changes made, 1,192 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(365 real changes made, 365 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(188 real changes made, 188 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(210 real changes made, 210 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(133 real changes made, 133 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(120 real changes made, 120 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(111 real changes made, 111 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(1,320 real changes made, 1,320 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(1,361 real changes made, 1,361 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(999 real changes made, 999 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(793 real changes made, 793 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(633 real changes made, 633 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(456 real changes made, 456 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(422 real changes made, 422 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(401 real changes made, 401 to missing)
+(0 real changes made)
+(3,064 real changes made, 3,064 to missing)
+(1,032 real changes made, 1,032 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,087 real changes made, 3,087 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,900 real changes made, 3,900 to missing)
+(1 real change made, 1 to missing)
+(9 real changes made, 9 to missing)
+(3,900 real changes made, 3,900 to missing)
+(1 real change made, 1 to missing)
+(12 real changes made, 12 to missing)
+(3,900 real changes made, 3,900 to missing)
+(2 real changes made, 2 to missing)
+(10 real changes made, 10 to missing)
+(3,900 real changes made, 3,900 to missing)
+(1 real change made, 1 to missing)
+(19 real changes made, 19 to missing)
+(3,900 real changes made, 3,900 to missing)
+(5 real changes made, 5 to missing)
+(17 real changes made, 17 to missing)
+(3,900 real changes made, 3,900 to missing)
+(3 real changes made, 3 to missing)
+(169 real changes made, 169 to missing)
+(3,900 real changes made, 3,900 to missing)
+(5 real changes made, 5 to missing)
+(225 real changes made, 225 to missing)
+(3,900 real changes made, 3,900 to missing)
+(2 real changes made, 2 to missing)
+(214 real changes made, 214 to missing)
+(3,900 real changes made, 3,900 to missing)
+(1 real change made, 1 to missing)
+(138 real changes made, 138 to missing)
+(3,900 real changes made, 3,900 to missing)
+(2 real changes made, 2 to missing)
+(298 real changes made, 298 to missing)
+(3,900 real changes made, 3,900 to missing)
+(1 real change made, 1 to missing)
+(257 real changes made, 257 to missing)
+(3,900 real changes made, 3,900 to missing)
+(3 real changes made, 3 to missing)
+(53 real changes made, 53 to missing)
+(3,900 real changes made, 3,900 to missing)
+(4 real changes made, 4 to missing)
+(71 real changes made, 71 to missing)
+(3,900 real changes made, 3,900 to missing)
+(2 real changes made, 2 to missing)
+(158 real changes made, 158 to missing)
+(3,900 real changes made, 3,900 to missing)
+(2 real changes made, 2 to missing)
+(117 real changes made, 117 to missing)
+(3,918 real changes made, 3,918 to missing)
+(1 real change made, 1 to missing)
+(59 real changes made, 59 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(57 real changes made, 57 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(46 real changes made, 46 to missing)
+(3,918 real changes made, 3,918 to missing)
+(5 real changes made, 5 to missing)
+(52 real changes made, 52 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(60 real changes made, 60 to missing)
+(3,918 real changes made, 3,918 to missing)
+(3 real changes made, 3 to missing)
+(65 real changes made, 65 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(57 real changes made, 57 to missing)
+(3,918 real changes made, 3,918 to missing)
+(4 real changes made, 4 to missing)
+(64 real changes made, 64 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(62 real changes made, 62 to missing)
+(3,918 real changes made, 3,918 to missing)
+(5 real changes made, 5 to missing)
+(64 real changes made, 64 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(52 real changes made, 52 to missing)
+(3,918 real changes made, 3,918 to missing)
+(3 real changes made, 3 to missing)
+(63 real changes made, 63 to missing)
+(3,918 real changes made, 3,918 to missing)
+(3 real changes made, 3 to missing)
+(71 real changes made, 71 to missing)
+(3,918 real changes made, 3,918 to missing)
+(3 real changes made, 3 to missing)
+(68 real changes made, 68 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(71 real changes made, 71 to missing)
+(3,918 real changes made, 3,918 to missing)
+(2 real changes made, 2 to missing)
+(81 real changes made, 81 to missing)
+(3,932 real changes made, 3,932 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(497 real changes made, 497 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(229 real changes made, 229 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(120 real changes made, 120 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(134 real changes made, 134 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(90 real changes made, 90 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(82 real changes made, 82 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(77 real changes made, 77 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(480 real changes made, 480 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(530 real changes made, 530 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(452 real changes made, 452 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(370 real changes made, 370 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(314 real changes made, 314 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(246 real changes made, 246 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(215 real changes made, 215 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(215 real changes made, 215 to missing)
+(0 real changes made)
+(3,932 real changes made, 3,932 to missing)
+(355 real changes made, 355 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(1 real change made, 1 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(1 real change made, 1 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(1 real change made, 1 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,944 real changes made, 3,944 to missing)
+(1 real change made, 1 to missing)
+(0 real changes made)
+(3,621 real changes made, 3,621 to missing)
+(4 real changes made, 4 to missing)
+(27 real changes made, 27 to missing)
+(3,621 real changes made, 3,621 to missing)
+(4 real changes made, 4 to missing)
+(21 real changes made, 21 to missing)
+(3,621 real changes made, 3,621 to missing)
+(6 real changes made, 6 to missing)
+(27 real changes made, 27 to missing)
+(3,621 real changes made, 3,621 to missing)
+(4 real changes made, 4 to missing)
+(32 real changes made, 32 to missing)
+(3,621 real changes made, 3,621 to missing)
+(5 real changes made, 5 to missing)
+(38 real changes made, 38 to missing)
+(3,621 real changes made, 3,621 to missing)
+(5 real changes made, 5 to missing)
+(360 real changes made, 360 to missing)
+(3,621 real changes made, 3,621 to missing)
+(8 real changes made, 8 to missing)
+(246 real changes made, 246 to missing)
+(3,621 real changes made, 3,621 to missing)
+(7 real changes made, 7 to missing)
+(320 real changes made, 320 to missing)
+(3,621 real changes made, 3,621 to missing)
+(6 real changes made, 6 to missing)
+(225 real changes made, 225 to missing)
+(3,621 real changes made, 3,621 to missing)
+(5 real changes made, 5 to missing)
+(432 real changes made, 432 to missing)
+(3,621 real changes made, 3,621 to missing)
+(5 real changes made, 5 to missing)
+(360 real changes made, 360 to missing)
+(3,621 real changes made, 3,621 to missing)
+(6 real changes made, 6 to missing)
+(62 real changes made, 62 to missing)
+(3,621 real changes made, 3,621 to missing)
+(8 real changes made, 8 to missing)
+(120 real changes made, 120 to missing)
+(3,621 real changes made, 3,621 to missing)
+(5 real changes made, 5 to missing)
+(203 real changes made, 203 to missing)
+(3,621 real changes made, 3,621 to missing)
+(3 real changes made, 3 to missing)
+(92 real changes made, 92 to missing)
+(3,644 real changes made, 3,644 to missing)
+(11 real changes made, 11 to missing)
+(104 real changes made, 104 to missing)
+(3,644 real changes made, 3,644 to missing)
+(8 real changes made, 8 to missing)
+(107 real changes made, 107 to missing)
+(3,644 real changes made, 3,644 to missing)
+(9 real changes made, 9 to missing)
+(83 real changes made, 83 to missing)
+(3,644 real changes made, 3,644 to missing)
+(10 real changes made, 10 to missing)
+(87 real changes made, 87 to missing)
+(3,644 real changes made, 3,644 to missing)
+(9 real changes made, 9 to missing)
+(113 real changes made, 113 to missing)
+(3,644 real changes made, 3,644 to missing)
+(8 real changes made, 8 to missing)
+(127 real changes made, 127 to missing)
+(3,644 real changes made, 3,644 to missing)
+(10 real changes made, 10 to missing)
+(103 real changes made, 103 to missing)
+(3,644 real changes made, 3,644 to missing)
+(10 real changes made, 10 to missing)
+(116 real changes made, 116 to missing)
+(3,644 real changes made, 3,644 to missing)
+(9 real changes made, 9 to missing)
+(78 real changes made, 78 to missing)
+(3,644 real changes made, 3,644 to missing)
+(9 real changes made, 9 to missing)
+(74 real changes made, 74 to missing)
+(3,644 real changes made, 3,644 to missing)
+(9 real changes made, 9 to missing)
+(60 real changes made, 60 to missing)
+(3,644 real changes made, 3,644 to missing)
+(14 real changes made, 14 to missing)
+(74 real changes made, 74 to missing)
+(3,644 real changes made, 3,644 to missing)
+(11 real changes made, 11 to missing)
+(93 real changes made, 93 to missing)
+(3,644 real changes made, 3,644 to missing)
+(10 real changes made, 10 to missing)
+(119 real changes made, 119 to missing)
+(3,644 real changes made, 3,644 to missing)
+(8 real changes made, 8 to missing)
+(87 real changes made, 87 to missing)
+(3,644 real changes made, 3,644 to missing)
+(8 real changes made, 8 to missing)
+(105 real changes made, 105 to missing)
+(3,672 real changes made, 3,672 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(9 real changes made, 9 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(714 real changes made, 714 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(329 real changes made, 329 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(168 real changes made, 168 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(208 real changes made, 208 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(143 real changes made, 143 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(134 real changes made, 134 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(126 real changes made, 126 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(698 real changes made, 698 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(775 real changes made, 775 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(657 real changes made, 657 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(554 real changes made, 554 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(455 real changes made, 455 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(347 real changes made, 347 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(317 real changes made, 317 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(310 real changes made, 310 to missing)
+(0 real changes made)
+(3,672 real changes made, 3,672 to missing)
+(526 real changes made, 526 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(2 real changes made, 2 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(3 real changes made, 3 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(4,344 real changes made, 4,344 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(12 real changes made, 12 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,292 real changes made, 2,292 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(1,385 real changes made, 1,385 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(1,763 real changes made, 1,763 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,569 real changes made, 2,569 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,595 real changes made, 2,595 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,616 real changes made, 2,616 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,585 real changes made, 2,585 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,499 real changes made, 2,499 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,636 real changes made, 2,636 to missing)
+(0 real changes made)
+(1,773 real changes made, 1,773 to missing)
+(2,627 real changes made, 2,627 to missing)
+(0 real changes made)
+(2,627 real changes made)
+(1,773 real changes made)
+(2,201 real changes made, 2,201 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(1,785 real changes made, 1,785 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,785 real changes made, 1,785 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(1,785 real changes made, 1,785 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,785 real changes made, 1,785 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(2,580 real changes made, 2,580 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(3,688 real changes made, 3,688 to missing)
+(9 real changes made, 9 to missing)
+(0 real changes made)
+(1,878 real changes made)
+(1,785 real changes made)
+(1,174 real changes made)
+(1,821 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(18 real changes made, 18 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(9 real changes made, 9 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(7 real changes made, 7 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(14 real changes made, 14 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(14 real changes made, 14 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(11 real changes made, 11 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(8 real changes made, 8 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(12 real changes made, 12 to missing)
+(0 real changes made)
+(1,821 real changes made, 1,821 to missing)
+(10 real changes made, 10 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(5 real changes made, 5 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(22 real changes made, 22 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(4 real changes made, 4 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(44 real changes made, 44 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(2,160 real changes made, 2,160 to missing)
+(0 real changes made)
+(1,834 real changes made, 1,834 to missing)
+(6 real changes made, 6 to missing)
+(0 real changes made)
+(1,875 real changes made, 1,875 to missing)
+(49 real changes made, 49 to missing)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+
+. //
+. /*missings bekommen verschiendene Ausprägungen für spätere Nachvollziehbarkeit über tab var, missing
+> -999=.n         - Frage nie gesehen (vorher abgebrochen oder anderer Weg)
+> 0=.m            - Frage gesehen, aber nicht beantwortet (oder bei freien Antworten - Antwort nicht verwertbar)
+> -99=.z          - Frage gesehen, aber nicht zutreffend (keine freie Antwort notwendig, da bereits vorgegebene Antwort gewählt)
+> 99=.k           - bei Praktiken Einstellungen 99 = "kann ich nicht beurteilen"
+> 
+> */
+. 
+. 
+. //************ Zusammenführen von _m, _f, _misc ************
+. 
+. foreach var of varlist * {                                                                                              //schaut sich alle Variablen des Datensatzes an
+  2.         if substr("`var'",-2,2) == "_f" | substr("`var'",-2,2) == "_m" | substr("`var'",-5,5) == "_misc"{               //prüft, ob substring (Text im Text) _f oder _m oder _misc, startet dabei -n Zei
+> chen vor dem Ende, für n Zeichen
+  3.                 local newvar = substr("`var'",1,strpos("`var'","_")-1)                  //erstellt neue Systemvariable newvar, die den zukünftigen Namen der Einzelvariablen enthält, d.h. ohne _f etc. 
+> (strpos ist Position des Texts im Text, geht von Anfang bis 1 vor Unterstrich)
+  4.                 capture confirm variable `newvar'                                                               //prüft, ob Variable mit Namen existiert (um beim zweiten/dritten Durchlauf, d.h. bei _m
+>  oder _misc nicht noch einmal die gleiche Variable zu erstellen)
+  5.                 if !_rc {                                                                                                               //falls Name schon existiert
+  6.                         di in red "`newvar' exists"                                                                     //rot schreiben, dass es sie schon gibt
+  7.                         } 
+  8.                 else {                                                                                                                  //andernfalls                                                   
+>                 
+  9.                         //di in red "create `newvar'"                                                                   //rot schreiben, dass neue Variable mit entsprechendem Namen generiert wird
+.                         egen `newvar' = rowmax(`newvar'_*)                                                      //erzeugt neue Variable aus rowmax der bestehenden Einzelvariablen mit gleichem Namen
+ 10.                         label values `newvar' `: value label `var''                                     //überträgt die Antwort-Label der Einzelvariablen auf neue Gesamtvariable
+ 11.                         _crcslbl `newvar' `var'                                                                         //überträgt das Frage-Label der Einzelvariablen auf neue Gesamtvariable
+ 12.                         }
+ 13.                 drop `var'                                                                                                              //entfernt Einzelvariable
+ 14.         }
+ 15. }
+(2180 missing values generated)
+couplequan01 exists
+(1612 missing values generated)
+(1621 missing values generated)
+(1647 missing values generated)
+(1657 missing values generated)
+(1662 missing values generated)
+(2842 missing values generated)
+(2420 missing values generated)
+(2838 missing values generated)
+(2376 missing values generated)
+(3099 missing values generated)
+(2898 missing values generated)
+(1781 missing values generated)
+(1938 missing values generated)
+(2334 missing values generated)
+(1925 missing values generated)
+(2008 missing values generated)
+(2010 missing values generated)
+(1953 missing values generated)
+(1945 missing values generated)
+(2014 missing values generated)
+(2038 missing values generated)
+(1980 missing values generated)
+(2029 missing values generated)
+(1906 missing values generated)
+(1924 missing values generated)
+(1888 missing values generated)
+(1931 missing values generated)
+(1971 missing values generated)
+(2026 missing values generated)
+(1946 missing values generated)
+(1997 missing values generated)
+(1717 missing values generated)
+(1719 missing values generated)
+(1715 missing values generated)
+(1718 missing values generated)
+(1716 missing values generated)
+(1723 missing values generated)
+(1717 missing values generated)
+(1717 missing values generated)
+(1713 missing values generated)
+(1715 missing values generated)
+(4105 missing values generated)
+(2625 missing values generated)
+(2179 missing values generated)
+(2255 missing values generated)
+(2069 missing values generated)
+(2039 missing values generated)
+(2017 missing values generated)
+(4200 missing values generated)
+(4368 missing values generated)
+(3810 missing values generated)
+(3419 missing values generated)
+(3105 missing values generated)
+(2752 missing values generated)
+(2657 missing values generated)
+(2629 missing values generated)
+(3615 missing values generated)
+(2422 missing values generated)
+(2418 missing values generated)
+(2417 missing values generated)
+(2419 missing values generated)
+(2423 missing values generated)
+(2418 missing values generated)
+(2419 missing values generated)
+(2419 missing values generated)
+(2420 missing values generated)
+(2420 missing values generated)
+(2422 missing values generated)
+(2418 missing values generated)
+(2425 missing values generated)
+(2423 missing values generated)
+(2418 missing values generated)
+sexactA01 exists
+sexactA02 exists
+sexactA03 exists
+sexactA04 exists
+sexactA05 exists
+sexactA06 exists
+sexactA07 exists
+sexactA08 exists
+sexactA09 exists
+sexactA10 exists
+sexactA11 exists
+sexactA12 exists
+sexactA13 exists
+sexactA14 exists
+sexactA15 exists
+sexactA16 exists
+sexactA17 exists
+sexactA18 exists
+sexactA19 exists
+sexactA20 exists
+sexactA21 exists
+sexactA22 exists
+sexactA23 exists
+sexactA24 exists
+sexactA25 exists
+sexactA26 exists
+sexactA27 exists
+sexactA28 exists
+sexactA29 exists
+sexactA30 exists
+sexactA31 exists
+sexorgasm02 exists
+sexpornB02 exists
+sexdes02 exists
+sexmastA02 exists
+sexcomm01 exists
+sexcomm02 exists
+perfpartner01 exists
+perfpartner02 exists
+sexnet01 exists
+sexpermA01 exists
+faith01 exists
+faith02 exists
+faith03 exists
+faith04 exists
+faith05 exists
+faith06 exists
+faith07 exists
+faith08 exists
+faithlimit01 exists
+faithlimit02 exists
+faithlimit03 exists
+faithlimit04 exists
+faithlimit05 exists
+faithlimit06 exists
+faithlimit07 exists
+faithlimit08 exists
+couplequal01 exists
+couplequan02 exists
+partnerattr02 exists
+coupleint02 exists
+couplebond01 exists
+coupletrust01 exists
+gencomm01 exists
+sexcomp01 exists
+couplequal02 exists
+partnerattr01 exists
+coupleint01 exists
+coupleint03 exists
+couplebond02 exists
+coupletrust02 exists
+gencomm02 exists
+sexactA01 exists
+sexactA02 exists
+sexactA03 exists
+sexactA04 exists
+sexactA05 exists
+sexactA06 exists
+sexactA07 exists
+sexactA08 exists
+sexactA09 exists
+sexactA10 exists
+sexactA11 exists
+sexactA12 exists
+sexactA13 exists
+sexactA14 exists
+sexactA15 exists
+sexactA16 exists
+sexactA17 exists
+sexactA18 exists
+sexactA19 exists
+sexactA20 exists
+sexactA21 exists
+sexactA22 exists
+sexactA23 exists
+sexactA24 exists
+sexactA25 exists
+sexactA26 exists
+sexactA27 exists
+sexactA28 exists
+sexactA29 exists
+sexactA30 exists
+sexactA31 exists
+sexorgasm02 exists
+sexpornB02 exists
+sexdes02 exists
+sexmastA02 exists
+sexcomm01 exists
+sexcomm02 exists
+perfpartner01 exists
+perfpartner02 exists
+sexnet01 exists
+sexpermA01 exists
+faith01 exists
+faith02 exists
+faith03 exists
+faith04 exists
+faith05 exists
+faith06 exists
+faith07 exists
+faith08 exists
+faithlimit01 exists
+faithlimit02 exists
+faithlimit03 exists
+faithlimit04 exists
+faithlimit05 exists
+faithlimit06 exists
+faithlimit07 exists
+faithlimit08 exists
+couplequal01 exists
+couplequan02 exists
+partnerattr02 exists
+coupleint02 exists
+couplebond01 exists
+coupletrust01 exists
+gencomm01 exists
+sexcomp01 exists
+couplequal02 exists
+partnerattr01 exists
+coupleint01 exists
+coupleint03 exists
+couplebond02 exists
+coupletrust02 exists
+gencomm02 exists
+(1798 missing values generated)
+sexnet03 exists
+
+. 
+. 
+. //************ Umcodieren der invers formulierten Variablen ************
+. //notwendig, damit diese mit den anderen Variablen zusammengeführt und verglichen werden können
+. 
+. label define inv_label 1 "trifft voll und ganz zu" 7 "trifft überhaupt nicht zu"       //erstellt umgekehrte Label-Bezeichnung
+
+. foreach var of varlist sexquan03 sexdes02 sexselfconf01 sexmastA02 seximp02 sexsat04 couplequan02 partnerattr02 sexcomm01 healthment01 healthment02 healthphys01{       //schaut alle Variablen aus der Lis
+> te an (negativ codierte)
+  2.         local newvar = "`var'" + "_tmp"                                                                                                 //erzeugt Systemvariable newvar mit dem Namen der aktuell angesc
+> hauten Variablen_tmp
+  3.         local oldvar = "`var'" + "_inv"                                                                                                 //erzeugt Systemvariable oldvar mit dem Namen der aktuell angesc
+> hauten Variablen_inv 
+  4.         gen `newvar' = 8 - `var'                                                                                                                //erzeugt neue Variable mit dem namen von newvar (d.h. V
+> ariable_tmp) und als Inhalt den Wert 8-Variable (inverse Codierung)
+  5.         replace `newvar' = .m if `var' == .m 
+  6.         replace `newvar' = .n if `var' == .n
+  7.         order `newvar', before(`var')                                                                                                   //sortiert neue Variable vor der alten Variable ein
+  8.         _crcslbl `newvar' `var'                                                                                                                 //überträgt Frage-Label der alten Variable auf die neue
+  9.         label values `newvar' inv_label                                                                                                 //überträgt Antwort-Label der erzeugten inversen Label auf die n
+> eue Variable
+ 10.         rename `var' `oldvar'                                                                                                                   //benennt die angeschaute Variable mit _inv
+ 11.         rename `newvar' `var'                                                                                                                   //benennt die neue Variable (die eben umcodierte) mit de
+> m alten Namen
+ 12. }       
+(1,307 missing values generated)
+(10 real changes made, 10 to missing)
+(1,297 real changes made, 1,297 to missing)
+(1,715 missing values generated)
+(9 real changes made, 9 to missing)
+(1,706 real changes made, 1,706 to missing)
+(1,055 missing values generated)
+(42 real changes made, 42 to missing)
+(1,013 real changes made, 1,013 to missing)
+(1,718 missing values generated)
+(6 real changes made, 6 to missing)
+(1,712 real changes made, 1,712 to missing)
+(1,435 missing values generated)
+(11 real changes made, 11 to missing)
+(1,424 real changes made, 1,424 to missing)
+(1,434 missing values generated)
+(10 real changes made, 10 to missing)
+(1,424 real changes made, 1,424 to missing)
+(2,418 missing values generated)
+(3 real changes made, 3 to missing)
+(2,415 real changes made, 2,415 to missing)
+(2,417 missing values generated)
+(2 real changes made, 2 to missing)
+(2,415 real changes made, 2,415 to missing)
+(1,716 missing values generated)
+(5 real changes made, 5 to missing)
+(1,711 real changes made, 1,711 to missing)
+(1,785 missing values generated)
+(12 real changes made, 12 to missing)
+(1,773 real changes made, 1,773 to missing)
+(1,780 missing values generated)
+(7 real changes made, 7 to missing)
+(1,773 real changes made, 1,773 to missing)
+(1,796 missing values generated)
+(11 real changes made, 11 to missing)
+(1,785 real changes made, 1,785 to missing)
+
+. //
+.                                                                                                                                 
+.                                                                                                                                 
+.                                                                                                                                         
+. //************ Umcodieren freier Texteingaben ************
+. 
+. 
+. //----------- Alter -----------
+. tab age 
+
+      Alter |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          3        0.08        0.08
+          8 |          1        0.03        0.10
+         20 |          2        0.05        0.15
+         21 |          1        0.03        0.18
+         23 |          1        0.03        0.20
+         25 |          3        0.08        0.28
+         29 |          1        0.03        0.30
+         31 |          1        0.03        0.33
+         47 |          1        0.03        0.35
+         73 |          1        0.03        0.38
+         75 |          1        0.03        0.40
+         82 |          1        0.03        0.43
+         83 |          1        0.03        0.45
+         85 |          2        0.05        0.50
+         86 |          1        0.03        0.53
+         87 |          1        0.03        0.55
+         89 |          2        0.05        0.60
+         90 |          1        0.03        0.63
+         91 |          1        0.03        0.65
+         94 |          1        0.03        0.68
+        184 |          1        0.03        0.71
+        189 |          1        0.03        0.73
+        191 |          3        0.08        0.81
+        193 |          1        0.03        0.83
+        195 |          1        0.03        0.86
+        196 |          1        0.03        0.88
+        197 |          2        0.05        0.93
+        198 |          3        0.08        1.01
+        199 |          2        0.05        1.06
+        965 |          1        0.03        1.08
+        966 |          1        0.03        1.11
+        976 |          1        0.03        1.13
+        978 |          1        0.03        1.16
+        984 |          1        0.03        1.18
+        986 |          1        0.03        1.21
+        988 |          1        0.03        1.23
+        990 |          1        0.03        1.26
+        991 |          1        0.03        1.28
+       1071 |          1        0.03        1.31
+       1076 |          1        0.03        1.33
+       1079 |          1        0.03        1.36
+       1082 |          1        0.03        1.39
+       1111 |          1        0.03        1.41
+       1119 |          2        0.05        1.46
+       1194 |          2        0.05        1.51
+       1195 |          1        0.03        1.54
+       1196 |          1        0.03        1.56
+       1197 |          3        0.08        1.64
+       1198 |          6        0.15        1.79
+       1199 |          4        0.10        1.89
+       1219 |          1        0.03        1.91
+       1234 |          1        0.03        1.94
+       1384 |          1        0.03        1.96
+       1719 |          1        0.03        1.99
+       1791 |          1        0.03        2.01
+       1884 |          1        0.03        2.04
+       1885 |          1        0.03        2.06
+       1889 |          1        0.03        2.09
+       1900 |          1        0.03        2.12
+       1904 |          1        0.03        2.14
+       1917 |          1        0.03        2.17
+       1919 |          2        0.05        2.22
+       1922 |          1        0.03        2.24
+       1938 |          1        0.03        2.27
+       1944 |          2        0.05        2.32
+       1945 |          1        0.03        2.34
+       1947 |          1        0.03        2.37
+       1949 |          2        0.05        2.42
+       1952 |          2        0.05        2.47
+       1953 |          4        0.10        2.57
+       1955 |          1        0.03        2.59
+       1956 |          5        0.13        2.72
+       1957 |          4        0.10        2.82
+       1958 |          8        0.20        3.02
+       1959 |          5        0.13        3.15
+       1960 |         12        0.30        3.45
+       1961 |          8        0.20        3.65
+       1962 |          7        0.18        3.83
+       1963 |         12        0.30        4.13
+       1964 |         17        0.43        4.56
+       1965 |         14        0.35        4.91
+       1966 |         21        0.53        5.44
+       1967 |         17        0.43        5.87
+       1968 |         21        0.53        6.40
+       1969 |         34        0.86        7.25
+       1970 |         25        0.63        7.88
+       1971 |         33        0.83        8.71
+       1972 |         30        0.76        9.47
+       1973 |         17        0.43        9.90
+       1974 |         34        0.86       10.75
+       1975 |         36        0.91       11.66
+       1976 |         39        0.98       12.64
+       1977 |         50        1.26       13.90
+       1978 |         54        1.36       15.26
+       1979 |         67        1.69       16.95
+       1980 |         82        2.06       19.01
+       1981 |         82        2.06       21.08
+       1982 |         90        2.27       23.34
+       1983 |        103        2.59       25.94
+       1984 |        113        2.85       28.78
+       1985 |        136        3.42       32.21
+       1986 |        176        4.43       36.64
+       1987 |        188        4.73       41.37
+       1988 |        252        6.35       47.72
+       1989 |        298        7.50       55.23
+       1990 |        325        8.18       63.41
+       1991 |        275        6.93       70.33
+       1992 |        299        7.53       77.86
+       1993 |        287        7.23       85.09
+       1994 |        263        6.62       91.71
+       1995 |        171        4.31       96.02
+       1996 |         76        1.91       97.94
+       1997 |         35        0.88       98.82
+       1998 |         12        0.30       99.12
+       1999 |          8        0.20       99.32
+       2000 |          2        0.05       99.37
+       2005 |          1        0.03       99.40
+       2990 |          1        0.03       99.42
+       3199 |          1        0.03       99.45
+       4192 |          1        0.03       99.47
+       4196 |          1        0.03       99.50
+       7198 |          1        0.03       99.52
+       7984 |          1        0.03       99.55
+       9019 |          1        0.03       99.57
+      19822 |          1        0.03       99.60
+      19922 |          1        0.03       99.62
+     197917 |          1        0.03       99.65
+     198111 |          1        0.03       99.67
+     198282 |          1        0.03       99.70
+     199191 |          1        0.03       99.72
+     986986 |          1        0.03       99.75
+    1197911 |          1        0.03       99.77
+    1197970 |          1        0.03       99.80
+    1948948 |          1        0.03       99.82
+    1977977 |          1        0.03       99.85
+    1978978 |          2        0.05       99.90
+    1979979 |          1        0.03       99.92
+    1985198 |          1        0.03       99.95
+    1994911 |          1        0.03       99.97
+    1995199 |          1        0.03      100.00
+------------+-----------------------------------
+      Total |      3,971      100.00
+
+.                                                                                                         //in der Umfrage wurde Geburtsjahr erhoben - daraus wird nun Alter generiert 
+. gen birthyear = age                                                                     //erhobene Daten (var age) werden in Variable Geburtsjahr (var birthyear) geschrieben 
+(512 missing values generated)
+
+. replace age = .                                                                         //Variable Alter aus Umfrage wird geleert
+(4,483 real changes made, 4,483 to missing)
+
+. 
+. replace birthyear = 1942 if birthyear == 4192           //Umkodieren der Tippfehler bei den Geburtjahren
+(1 real change made)
+
+. replace birthyear = 1948 if birthyear == 1948948        
+(1 real change made)
+
+. replace birthyear = 1964 if birthyear == 4196
+(1 real change made)
+
+. replace birthyear = 1965 if birthyear == 965
+(1 real change made)
+
+. replace birthyear = 1966 if birthyear == 966
+(1 real change made)
+
+. replace birthyear = 1971 if birthyear == 1071
+(1 real change made)
+
+. replace birthyear = 1973 if birthyear == 73
+(1 real change made)
+
+. replace birthyear = 1975 if birthyear == 75
+(1 real change made)
+
+. replace birthyear = 1976 if birthyear == 976 | birthyear == 1076
+(2 real changes made)
+
+. replace birthyear = 1977 if birthyear == 1977977
+(1 real change made)
+
+. replace birthyear = 1978 if birthyear == 978 | birthyear == 1978978
+(3 real changes made)
+
+. replace birthyear = 1979 if birthyear == 197917 | birthyear == 1197970 | birthyear == 1079 | birthyear == 1979979 | birthyear == 1197911
+(5 real changes made)
+
+. replace birthyear = 1981 if birthyear == 198111
+(1 real change made)
+
+. replace birthyear = 1982 if birthyear == 19822 | birthyear == 198282 | birthyear == 82 | birthyear == 1082
+(4 real changes made)
+
+. replace birthyear = 1983 if birthyear == 83
+(1 real change made)
+
+. replace birthyear = 1984 if birthyear == 984 | birthyear == 184 | birthyear == 1384 | birthyear == 1884
+(4 real changes made)
+
+. replace birthyear = 1985 if birthyear == 85 | birthyear == 1985198 | birthyear == 1885
+(4 real changes made)
+
+. replace birthyear = 1986 if birthyear == 986 | birthyear == 86 | birthyear == 986986
+(3 real changes made)
+
+. replace birthyear = 1987 if birthyear == 87 | birthyear == 7198
+(2 real changes made)
+
+. replace birthyear = 1988 if birthyear == 988
+(1 real change made)
+
+. replace birthyear = 1989 if birthyear == 189 | birthyear == 89 | birthyear == 1889
+(4 real changes made)
+
+. replace birthyear = 1990 if birthyear == 9019 | birthyear == 2990 | birthyear == 990 | birthyear == 90
+(4 real changes made)
+
+. replace birthyear = 1991 if birthyear == 91 | birthyear == 191 | birthyear == 991 | birthyear == 1791 | birthyear == 1919 | birthyear == 199191
+(9 real changes made)
+
+. replace birthyear = 1992 if birthyear == 19922
+(1 real change made)
+
+. replace birthyear = 1993 if birthyear == 193 | birthyear == 3199
+(2 real changes made)
+
+. replace birthyear = 1994 if birthyear == 94 | birthyear == 1194 | birthyear == 1994911
+(4 real changes made)
+
+. replace birthyear = 1995 if birthyear == 195 | birthyear == 1995199 | birthyear == 1195
+(3 real changes made)
+
+. replace birthyear = 1996 if birthyear == 196 | birthyear == 1196
+(2 real changes made)
+
+. replace birthyear = 1997 if birthyear == 197 | birthyear == 1197
+(5 real changes made)
+
+. replace birthyear = 1998 if birthyear == 198 | birthyear == 1198
+(9 real changes made)
+
+. replace birthyear = 1999 if birthyear == 199 | birthyear == 1199
+(6 real changes made)
+
+. 
+. replace birthyear = 2015 - 23 if birthyear == 20        //Umkodieren bei angegebenem Alter in Geburtsjahr
+(2 real changes made)
+
+. replace birthyear = 2015 - 21 if birthyear == 21
+(1 real change made)
+
+. replace birthyear = 2015 - 23 if birthyear == 23
+(1 real change made)
+
+. replace birthyear = 2015 - 25 if birthyear == 25
+(3 real changes made)
+
+. replace birthyear = 2015 - 29 if birthyear == 29
+(1 real change made)
+
+. replace birthyear = 2015 - 31 if birthyear == 31
+(1 real change made)
+
+. replace birthyear = 2015 - 47 if birthyear == 47
+(1 real change made)
+
+. 
+. replace birthyear = .m if birthyear == 1                        //nicht verwertbare Antworten als missing kennzeichnen
+(3 real changes made, 3 to missing)
+
+. replace birthyear = .m if birthyear == 8        
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1111
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1119
+(2 real changes made, 2 to missing)
+
+. replace birthyear = .m if birthyear == 1219
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1234
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1719
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1900
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1904
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1917
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 1922
+(1 real change made, 1 to missing)
+
+. replace birthyear = .m if birthyear == 7984
+(1 real change made, 1 to missing)
+
+. 
+. replace age = 2015 - birthyear                                          //aus dem erhobenen Geburtsjahr wird nun Alter gemacht 
+(3,956 real changes made)
+
+. replace age = .m if birthyear == .m
+(134 real changes made, 134 to missing)
+
+. replace age = .n if birthyear == .n
+(393 real changes made, 393 to missing)
+
+. order age, before(birthyear)
+
+. tab age                                                                                         //zeigt noch einmal neu erzeugte Altersvariable
+
+      Alter |      Freq.     Percent        Cum.
+------------+-----------------------------------
+         10 |          1        0.03        0.03
+         15 |          2        0.05        0.08
+         16 |         14        0.35        0.43
+         17 |         21        0.53        0.96
+         18 |         40        1.01        1.97
+         19 |         78        1.97        3.94
+         20 |        174        4.40        8.34
+         21 |        268        6.77       15.12
+         22 |        289        7.31       22.42
+         23 |        303        7.66       30.08
+         24 |        284        7.18       37.26
+         25 |        332        8.39       45.65
+         26 |        302        7.63       53.29
+         27 |        253        6.40       59.68
+         28 |        190        4.80       64.48
+         29 |        180        4.55       69.03
+         30 |        140        3.54       72.57
+         31 |        118        2.98       75.56
+         32 |        104        2.63       78.19
+         33 |         94        2.38       80.56
+         34 |         83        2.10       82.66
+         35 |         82        2.07       84.73
+         36 |         72        1.82       86.55
+         37 |         57        1.44       87.99
+         38 |         51        1.29       89.28
+         39 |         41        1.04       90.32
+         40 |         37        0.94       91.25
+         41 |         34        0.86       92.11
+         42 |         18        0.46       92.57
+         43 |         30        0.76       93.33
+         44 |         34        0.86       94.19
+         45 |         25        0.63       94.82
+         46 |         34        0.86       95.68
+         47 |         22        0.56       96.23
+         48 |         17        0.43       96.66
+         49 |         22        0.56       97.22
+         50 |         15        0.38       97.60
+         51 |         18        0.46       98.05
+         52 |         12        0.30       98.36
+         53 |          7        0.18       98.53
+         54 |          8        0.20       98.74
+         55 |         12        0.30       99.04
+         56 |          5        0.13       99.17
+         57 |          8        0.20       99.37
+         58 |          4        0.10       99.47
+         59 |          5        0.13       99.60
+         60 |          1        0.03       99.62
+         62 |          4        0.10       99.72
+         63 |          2        0.05       99.77
+         66 |          2        0.05       99.82
+         67 |          1        0.03       99.85
+         68 |          1        0.03       99.87
+         70 |          1        0.03       99.90
+         71 |          2        0.05       99.95
+         73 |          1        0.03       99.97
+         77 |          1        0.03      100.00
+------------+-----------------------------------
+      Total |      3,956      100.00
+
+. 
+. 
+. //----------- Bildung -----------                                       
+. tab education 
+
+                                Bildung |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                    Kein Schulabschluss |         11        0.28        0.28
+                    Hauptschulabschluss |         99        2.49        2.77
+            Realschule (Mittlere Reife) |        586       14.76       17.53
+                     Gymnasium (Abitur) |      1,632       41.10       58.63
+                  Hochschule (Bachelor) |        801       20.17       78.80
+Hochschule (Master, Magister, Diplom, S |        666       16.77       95.57
+                 Hochschule (Promotion) |         57        1.44       97.00
+                       Anderer, n�mlich |        119        3.00      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      3,971      100.00
+
+. tab education, nolabel
+
+    Bildung |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         11        0.28        0.28
+          2 |         99        2.49        2.77
+          3 |        586       14.76       17.53
+          4 |      1,632       41.10       58.63
+          5 |        801       20.17       78.80
+          6 |        666       16.77       95.57
+          7 |         57        1.44       97.00
+          8 |        119        3.00      100.00
+------------+-----------------------------------
+      Total |      3,971      100.00
+
+. 
+. tab education_text 
+
+                       Anderer, nämlich |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                                     .n |        393        8.77        8.77
+                                     .z |      3,972       88.60       97.37
+                  10 klassen oberschule |          1        0.02       97.39
+    2 abgeschlossene Berufsausbildungen |          1        0.02       97.41
+       Abgebrochenes Studium/ Vordiplom |          1        0.02       97.43
+                      Abi, Meisterbrief |          1        0.02       97.46
+Abitur und abgeschlossene Berufsausbi.. |          1        0.02       97.48
+          Allgemeine Fachhochschulreife |          2        0.04       97.52
+                             Ausbildung |          1        0.02       97.55
+  Ausbildung abgeschlossen (Informatik) |          1        0.02       97.57
+Beenden der Schulpflicht (9 Jahre, Sc.. |          1        0.02       97.59
+                       Berufsausbildung |          2        0.04       97.64
+           Berufsbildende H�here Schule |          1        0.02       97.66
+                       Berufsfachschule |          1        0.02       97.68
+                  Berufslehre (Schweiz) |          1        0.02       97.70
+                           Berufsschule |          1        0.02       97.72
+       Berufsschule + IHK Weiterbildung |          1        0.02       97.75
+                                 Examen |          1        0.02       97.77
+                             Fachabitur |         17        0.38       98.15
+                             Fachabitut |          1        0.02       98.17
+                    Fachhochschul Reife |          1        0.02       98.19
+                 Fachhochschulabschluss |          1        0.02       98.22
+                         Fachhochschule |          4        0.09       98.30
+       Fachhochschule (Sozialp�dagogik) |          1        0.02       98.33
+                     Fachhochschulreife |         22        0.49       98.82
+          Fachhochschulreife (Fach Abi) |          1        0.02       98.84
+                    Fachhochschulsreife |          1        0.02       98.86
+Fachoberschule (Fachabitur f�r Wirtsc.. |          1        0.02       98.88
+            Fachoberschule (Fachabitur) |          2        0.04       98.93
+                     Fachoberschulreife |          1        0.02       98.95
+                     Fachschulabschluss |          1        0.02       98.97
+                      Fachschulabschlu� |          1        0.02       99.00
+         Fachschulabschlu� Staatsexamen |          1        0.02       99.02
+                             Fachschule |          4        0.09       99.11
+                               Fachwirt |          2        0.04       99.15
+                  Gesamtschule (Abitur) |          1        0.02       99.17
+                       Handwerksmeister |          2        0.04       99.22
+                          IHK-abschluss |          1        0.02       99.24
+                      Industriefachwirt |          1        0.02       99.26
+                    Industriefachwirtin |          1        0.02       99.29
+                               Kauffrau |          1        0.02       99.31
+                               Konditor |          1        0.02       99.33
+                                  Lehre |          1        0.02       99.35
+                                Meister |          1        0.02       99.38
+                         Meisterpr�fung |          1        0.02       99.40
+                          Meisterschule |          1        0.02       99.42
+              Polytechnische Oberschule |          1        0.02       99.44
+               P�dagogin (aus D�nemark) |          1        0.02       99.46
+                              Sch�lerin |          1        0.02       99.49
+             Sch�lerin eines Gymnasiums |          1        0.02       99.51
+                   Sonderschulabschluss |          1        0.02       99.53
+                Staatl. Gepr. Techniker |          1        0.02       99.55
+                                    VWA |          1        0.02       99.58
+                              Vordiplom |          1        0.02       99.60
+                                    Zfa |          1        0.02       99.62
+        abgeschlossene Berufsausbildung |          1        0.02       99.64
+          allgemeine Fachhochschulreife |          1        0.02       99.67
+           berufsbildende h�here Schule |          1        0.02       99.69
+                         bos fachabitur |          1        0.02       99.71
+                             fachabitur |          2        0.04       99.75
+       fachgebundene Fachhochschulreife |          1        0.02       99.78
+           fachgebundene Hochschulreife |          1        0.02       99.80
+                     fachhochschulreife |          3        0.07       99.87
+fachschulabschluss der DDR als GS-Leh.. |          1        0.02       99.89
+                               fachwirt |          1        0.02       99.91
+                                  habil |          1        0.02       99.93
+                                  quali |          1        0.02       99.96
+            sekabschluss sek A, schweiz |          1        0.02       99.98
+was ist *h�her*? abi oder ausbildung .. |          1        0.02      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      4,483      100.00
+
+. 
+. replace education = 3 if strpos(education_text, "10 klassen oberschule")                                //Umkodieren der freien Textangaben
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "Berufsausbildung")
+(5 real changes made)
+
+. replace education = 4 if strpos(education_text, "Abgebrochenes Studium/ Vordiplom")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "Abi")
+(4 real changes made)
+
+. replace education = 4 if strpos(education_text, "Allgemeine Fachhochschulreife")
+(2 real changes made)
+
+. replace education = 3 if strpos(education_text, "Ausbildung")
+(2 real changes made)
+
+. replace education = 2 if strpos(education_text, "Beenden der Schulpflicht (9 Jahre, Schw")
+(1 real change made)
+
+. 
+. replace education = 4 if strpos(education_text, "Berufsbildende H")
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "Berufsfachschule")
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "Berufslehre (Schweiz)")
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "Berufsschule")
+(2 real changes made)
+
+. replace education = 6 if strpos(education_text, "Examen")
+(1 real change made)
+
+. 
+. replace education = 4 if strpos(education_text, "Fachabit")
+(21 real changes made)
+
+. replace education = 4 if strpos(education_text, "Fachhochschul Reife")
+(1 real change made)
+
+. replace education = 6 if strpos(education_text, "Fachhochschulabschluss")
+(1 real change made)
+
+. replace education = 6 if strpos(education_text, "Fachhochschulsreife")
+(1 real change made)
+
+. replace education = 6 if strpos(education_text, "Fachhochschule")
+(5 real changes made)
+
+. replace education = 6 if strpos(education_text, "Fachhochschule (Sozial")
+(0 real changes made)
+
+. replace education = 4 if strpos(education_text, "Fachhochschulreife")
+(24 real changes made)
+
+. replace education = 4 if strpos(education_text, "Fachoberschulreife")
+(1 real change made)
+
+. 
+. replace education = 4 if strpos(education_text, "Fachschul")
+(7 real changes made)
+
+. replace education = 4 if strpos(education_text, "Fachwirt")
+(2 real changes made)
+
+. replace education = 4 if strpos(education_text, "Handwerksmeister")
+(2 real changes made)
+
+. replace education = 3 if strpos(education_text, "IHK")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "Industriefachwirt")
+(2 real changes made)
+
+. replace education = 3 if strpos(education_text, "Kauffrau")
+(1 real change made)
+
+. 
+. replace education = 3 if strpos(education_text, "Konditor")             
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "Lehre")
+(2 real changes made)
+
+. replace education = 4 if strpos(education_text, "Meister")
+(3 real changes made)
+
+. replace education = 4 if strpos(education_text, "Polytechnische Oberschule")
+(1 real change made)
+
+. replace education = 6 if strpos(education_text, "gogin (aus D")
+(1 real change made)
+
+. replace education = 1 if strpos(education_text, "lerin")                
+(2 real changes made)
+
+. replace education = 2 if strpos(education_text, "Sonderschulabschluss")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "Techniker")
+(1 real change made)
+
+. replace education = 6 if strpos(education_text, "VWA")
+(1 real change made)
+
+. replace education = 5 if strpos(education_text, "Vordiplom")
+(2 real changes made)
+
+. replace education = 3 if strpos(education_text, "Zfa")          
+(1 real change made)
+
+. 
+. replace education = 3 if strpos(education_text, "abgeschlossene Berufsausbildung")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text , "berufsbildende h") 
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "fachabitur")
+(3 real changes made)
+
+. replace education = 4 if strpos(education_text, "fachgebundene")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "fachhochschulreife")
+(3 real changes made)
+
+. replace education = 4 if strpos(education_text , "DDR als GS-Lehre")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text, "fachwirt")
+(1 real change made)
+
+. replace education = 7 if strpos(education_text, "habil")
+(1 real change made)
+
+. replace education = 2 if strpos(education_text, "quali")
+(1 real change made)
+
+. replace education = 3 if strpos(education_text, "sekabschluss")
+(1 real change made)
+
+. replace education = 4 if strpos(education_text , "was ist")
+(1 real change made)
+
+. 
+. tab education                                                                                                                                   //hier dürfte es Kategorie 8 (anderes) nicht mehr geben
+
+                                Bildung |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                    Kein Schulabschluss |         13        0.33        0.33
+                    Hauptschulabschluss |        102        2.57        2.90
+            Realschule (Mittlere Reife) |        604       15.21       18.11
+                     Gymnasium (Abitur) |      1,714       43.16       61.27
+                  Hochschule (Bachelor) |        803       20.22       81.49
+Hochschule (Master, Magister, Diplom, S |        676       17.02       98.51
+                 Hochschule (Promotion) |         58        1.46       99.97
+                       Anderer, n�mlich |          1        0.03      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      3,971      100.00
+
+. replace education = .m if education_text == ".z" & education == 8                               //entfernen des Einzelfalls, dass "anderes" angekreuzt wurde, aber dann nicht angegeben wurde
+(1 real change made, 1 to missing)
+
+. 
+. //----------- Beziehungstyp -----------
+. tab coupletype
+
+                          Beziehungstyp |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+          Derzeit keine feste Beziehung |      1,084       27.30       27.30
+Monogame Beziehung mit einem festen Par |      2,482       62.50       89.80
+Offene Beziehung mit einem festen Partn |        204        5.14       94.94
+Beziehung mit mehreren Partnern, die si |         30        0.76       95.69
+Beziehungen mit mehreren Partnern, die  |         72        1.81       97.51
+                        Anders, n�mlich |         99        2.49      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      3,971      100.00
+
+. tab coupletype, nolabel
+
+Beziehungst |
+         yp |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |      1,084       27.30       27.30
+          2 |      2,482       62.50       89.80
+          3 |        204        5.14       94.94
+          4 |         30        0.76       95.69
+          5 |         72        1.81       97.51
+          6 |         99        2.49      100.00
+------------+-----------------------------------
+      Total |      3,971      100.00
+
+. 
+. tab coupletype_text
+
+                        Anders, nämlich |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+      Derzeit noch in der Kennlernphase |          1        0.02        0.02
+                                     .n |        393        8.77        8.79
+                                     .z |      3,993       89.07       97.86
+                  1 Mann, ein Geliebter |          1        0.02       97.88
+1 Prim�r- + 1 Fernbeziehung, wissen j.. |          1        0.02       97.90
+                 2,5 Kuschelbeziehungen |          1        0.02       97.93
+                                Affaire |          1        0.02       97.95
+                                 Aff�re |          1        0.02       97.97
+Aff�re auf dem Weg zur Beziehung, mon.. |          1        0.02       97.99
+          Aff�re mit einem guten Freund |          1        0.02       98.01
+Anfang vom kennen lernen/ l�uft auf e.. |          1        0.02       98.04
+                                Auszeit |          1        0.02       98.06
+          Beginn einer festen Beziehung |          1        0.02       98.08
+                      Beziehung beendet |          1        0.02       98.10
+                  Beziehung in Trennung |          1        0.02       98.13
+Beziehung mit 1 Partner, der in offen.. |          1        0.02       98.15
+       Beziehung mit verheirateter Frau |          1        0.02       98.17
+                   Dates hier, Dates da |          1        0.02       98.19
+Explizit polyamor, allerdings aktuell.. |          1        0.02       98.22
+                             Fachschule |          1        0.02       98.24
+                          Fernbeziehung |          1        0.02       98.26
+    Fernbeziehung mit befreundetem Mann |          1        0.02       98.28
+Fest liiert, aber auch Sex mit einem .. |          1        0.02       98.30
+                           Feste Aff�re |          1        0.02       98.33
+ Feste Beziehung und wechselnde Partner |          1        0.02       98.35
+          Feste Beziehung. Aber swinger |          1        0.02       98.37
+               Feste geheime Liebschaft |          1        0.02       98.39
+Fester Partner mit geleg. Partnertaus.. |          1        0.02       98.42
+Fester Partner, eine gemeinsame Sexpa.. |          1        0.02       98.44
+Freies Dating mit mometan derselben P.. |          1        0.02       98.46
+    Freundschaft + ohne Verpflichtungen |          1        0.02       98.48
+                      Freundschaft Plus |          2        0.04       98.53
+Freundschaft mit Extras mit 2 festen .. |          1        0.02       98.55
+                      Freundschaft plus |          1        0.02       98.57
+Frisch getrennt plus Affaire mit verh.. |          1        0.02       98.59
+Gerade frisch getrennt, aber immer no.. |          1        0.02       98.62
+                        Getrennt lebend |          1        0.02       98.64
+              Im Moment beziehungspause |          1        0.02       98.66
+                             Liebschaft |          1        0.02       98.68
+        Monogame Beziehung ohne  Status |          1        0.02       98.71
+Monogame Beziehung, aber nicht fest z.. |          1        0.02       98.73
+                              Schwierig |          1        0.02       98.75
+Sexfreunde mit mehreren Partnern, die.. |          1        0.02       98.77
+                                 Single |          1        0.02       98.80
+Single aber 2-3 Freundschaft+  -Bezie.. |          1        0.02       98.82
+               Single in fester Affaire |          1        0.02       98.84
+   Single, mit ein paar Fuckbody M�dels |          1        0.02       98.86
+         Stetig wechselnde Partnerinnen |          1        0.02       98.88
+Teiloffene Beziehung mit festen Partner |          1        0.02       98.91
+                            Verheiratet |          2        0.04       98.95
+                Verheiratet, mit Aff�re |          1        0.02       98.97
+Verheiratet, sexueller Kontakt zu ein.. |          1        0.02       99.00
+                                Verlobt |          2        0.04       99.04
+                    Verwitwet Liebhaber |          1        0.02       99.06
+               beziehung mit ex-partner |          1        0.02       99.09
+                derzeit keine Beziehung |          1        0.02       99.11
+            eher Freundschaft, ohne Sex |          1        0.02       99.13
+       eingetragene Lebenspartnerschaft |          1        0.02       99.15
+       es wird hoffentlich ne Beziehung |          1        0.02       99.17
+feste Beziehung (Ehe) mit polygamen E.. |          1        0.02       99.20
+       feste Beziehung mit einer Aff�re |          1        0.02       99.22
+feste Beziehung, gemeinsam sex mit an.. |          1        0.02       99.24
+feste beziehung mit gemeinsamen dritt.. |          1        0.02       99.26
+fester Partner, nicht monogam, nicht .. |          1        0.02       99.29
+                         freundschaft + |          1        0.02       99.31
+freundschaft plus mit mehreren partnern |          1        0.02       99.33
+gl�ckliche Beziehung mit einem festen.. |          1        0.02       99.35
+     ich lehne diese kategorisierung ab |          1        0.02       99.38
+in einer festen Beziehung  mit gemein.. |          1        0.02       99.40
+jemanden kennen gelernt, Status noch .. |          1        0.02       99.42
+                        keine Beziehung |          1        0.02       99.44
+  keine Beziehung, fester Sexualpartner |          1        0.02       99.46
+keine feste Beziehung, sehr selten Se.. |          1        0.02       99.49
+                     langj�hrige Aff�re |          1        0.02       99.51
+            lose, offenne fernbeziehung |          1        0.02       99.53
+       mein fester Partner betr�gt mich |          1        0.02       99.55
+                  monogam mit Partnerin |          1        0.02       99.58
+monogam mit festem partner, ohne bezi.. |          1        0.02       99.60
+nicht monogame Beziehung mit einem fe.. |          1        0.02       99.62
+                noch nie eine Beziehung |          1        0.02       99.64
+             platonische Dauerbeziehung |          1        0.02       99.67
+qualvolle feste beziehung in der ich .. |          1        0.02       99.69
+                                 single |          1        0.02       99.71
+                                   solo |          1        0.02       99.73
+                 unfreiwilliges Z�libat |          1        0.02       99.75
+ungewiss. er lebt in einem anderen Land |          1        0.02       99.78
+                            verheiratet |          5        0.11       99.89
+        verheiratet und einen geliebten |          1        0.02       99.91
+                  verheiratet und offen |          1        0.02       99.93
+     verheiratet, aber wir sind Swinger |          1        0.02       99.96
+verheiratet, mit neuer anderer Liebes.. |          1        0.02       99.98
+                              verwitwet |          1        0.02      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      4,483      100.00
+
+. list coupletype_text if coupletype_text != ".z" & coupletype_text != ".n"               //ermöglicht Lesen der gesamten Antwort
+
+      +----------------------------------------------------+
+      |                                    coupletype_text |
+      |----------------------------------------------------|
+ 115. |                   eingetragene Lebenspartnerschaft |
+ 200. |                                         Fachschule |
+ 248. |            ungewiss. er lebt in einem anderen Land |
+ 263. |                          Im Moment beziehungspause |
+ 267. |    in einer festen Beziehung  mit gemeinsamen kind |
+      |----------------------------------------------------|
+ 269. |                                               solo |
+ 400. |                   mein fester Partner betr�gt mich |
+ 411. |                                        verheiratet |
+ 493. |                              monogam mit Partnerin |
+ 506. |       Fest liiert, aber auch Sex mit einem anderen |
+      |----------------------------------------------------|
+ 510. |                                      Fernbeziehung |
+ 513. |                                         Liebschaft |
+ 534. |                           beziehung mit ex-partner |
+ 576. |                 verheiratet, aber wir sind Swinger |
+ 635. |      gl�ckliche Beziehung mit einem festen Partner |
+      |----------------------------------------------------|
+ 637. |       Fester Partner, eine gemeinsame Sexpartnerin |
+ 776. |        feste Beziehung, gemeinsam sex mit anderen. |
+ 818. |                                    keine Beziehung |
+ 867. |                                       Feste Aff�re |
+ 904. |                              1 Mann, ein Geliebter |
+      |----------------------------------------------------|
+1051. |                     Stetig wechselnde Partnerinnen |
+1083. |                                  Freundschaft plus |
+1087. |                      Aff�re mit einem guten Freund |
+1113. |         monogam mit festem partner, ohne beziehung |
+1119. |                                  Freundschaft Plus |
+      |----------------------------------------------------|
+1144. |                        lose, offenne fernbeziehung |
+1170. |                      Beginn einer festen Beziehung |
+1196. |                             unfreiwilliges Z�libat |
+1286. | Frisch getrennt plus Affaire mit verheiratetem Man |
+1288. |                             2,5 Kuschelbeziehungen |
+      |----------------------------------------------------|
+1306. |                                          verwitwet |
+1401. |  Beziehung mit 1 Partner, der in offener Bez. lebt |
+1464. |     feste Beziehung (Ehe) mit polygamen Einfl�ssen |
+1473. |  nicht monogame Beziehung mit einem festen Partner |
+1521. |                           Feste geheime Liebschaft |
+      |----------------------------------------------------|
+1629. |                         platonische Dauerbeziehung |
+1639. |                    verheiratet und einen geliebten |
+1640. |                                        verheiratet |
+1649. |  Sexfreunde mit mehreren Partnern, die sich untere |
+1738. | Explizit polyamor, allerdings aktuell nur ein Part |
+      |----------------------------------------------------|
+1761. | Verheiratet, sexueller Kontakt zu einem anderen Ma |
+1788. |                        eher Freundschaft, ohne Sex |
+1805. |                                            Auszeit |
+1823. | feste beziehung mit gemeinsamen dritten sexpartner |
+1837. |                              Beziehung in Trennung |
+      |----------------------------------------------------|
+1866. |                                 langj�hrige Aff�re |
+1886. |                                             single |
+1902. |                  Derzeit noch in der Kennlernphase |
+1998. |       Monogame Beziehung, aber nicht fest zusammen |
+2107. |                            noch nie eine Beziehung |
+      |----------------------------------------------------|
+2143. |                      Feste Beziehung. Aber swinger |
+2172. |     Fester Partner mit geleg. Partnertausch/Dreier |
+2200. |                            derzeit keine Beziehung |
+2210. |          Aff�re auf dem Weg zur Beziehung, monogam |
+2283. |                                        Verheiratet |
+      |----------------------------------------------------|
+2327. |                            Verheiratet, mit Aff�re |
+2343. |                   feste Beziehung mit einer Aff�re |
+2349. |  Anfang vom kennen lernen/ l�uft auf eine Beziehun |
+2403. |                                  Beziehung beendet |
+2465. |                 ich lehne diese kategorisierung ab |
+      |----------------------------------------------------|
+2520. |                                    Getrennt lebend |
+2533. |                                        verheiratet |
+2691. |  Gerade frisch getrennt, aber immer noch Intimit�t |
+2774. |                                            Affaire |
+2780. |     verheiratet, mit neuer anderer Liebesbeziehung |
+      |----------------------------------------------------|
+2790. |              keine Beziehung, fester Sexualpartner |
+2922. |               Single, mit ein paar Fuckbody M�dels |
+2991. |                                             Single |
+3023. |        jemanden kennen gelernt, Status noch unklar |
+3122. |                                        verheiratet |
+      |----------------------------------------------------|
+3363. |        Single aber 2-3 Freundschaft+  -Beziehungen |
+3365. |                              verheiratet und offen |
+3439. |                                     freundschaft + |
+3448. | 1 Prim�r- + 1 Fernbeziehung, wissen ja, kennen nei |
+3516. |                   Beziehung mit verheirateter Frau |
+      |----------------------------------------------------|
+3556. |                   es wird hoffentlich ne Beziehung |
+3583. |                    Monogame Beziehung ohne  Status |
+3594. |                                        verheiratet |
+3606. |                                            Verlobt |
+3618. |            Teiloffene Beziehung mit festen Partner |
+      |----------------------------------------------------|
+3643. |                                             Aff�re |
+3645. |                Freundschaft + ohne Verpflichtungen |
+3685. |                                Verwitwet Liebhaber |
+3767. |                           Single in fester Affaire |
+3828. |                               Dates hier, Dates da |
+      |----------------------------------------------------|
+3842. |  keine feste Beziehung, sehr selten Sex mit dem Ex |
+3899. |                                        Verheiratet |
+3920. |                                  Freundschaft Plus |
+3935. |                                          Schwierig |
+4061. |                                            Verlobt |
+      |----------------------------------------------------|
+4076. |         Freies Dating mit mometan derselben Person |
+4112. |      qualvolle feste beziehung in der ich verrotte |
+4193. |      Freundschaft mit Extras mit 2 festen partnern |
+4196. |            freundschaft plus mit mehreren partnern |
+4202. |             Feste Beziehung und wechselnde Partner |
+      |----------------------------------------------------|
+4336. |         fester Partner, nicht monogam, nicht offen |
+4423. |                Fernbeziehung mit befreundetem Mann |
+      +----------------------------------------------------+
+
+. 
+. replace coupletype = 1 if strpos(coupletype_text, "Derzeit noch")                               //Umkodieren der freien Textangaben
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "1 Mann, ein")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "1 Prim")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "2,5 Kuschelbeziehungen")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Aff") 
+(10 real changes made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Anfang vom kennen lernen")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Auszeit")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Beginn einer festen Beziehung")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Beziehung beendet")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Beziehung in Trennung")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Beziehung mit 1 Partner")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Beziehung mit verheirateter Frau")
+(1 real change made)
+
+. 
+. replace coupletype = 1 if strpos(coupletype_text, "Dates hier, Dates da")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Explizit polyamor")  
+(1 real change made)
+
+. replace coupletype = .m if strpos(coupletype_text, "Fachschule")                                                        //missing
+(1 real change made, 1 to missing)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Fernbeziehung")
+(3 real changes made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Fernbeziehung mit befreundetem Mann")
+(0 real changes made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Fest liiert, aber auch Sex mit einem an")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Feste Beziehung und wechselnde")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Feste Beziehung. Aber swinger")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Feste geheime Liebschaft")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Fester Partner mit geleg. Partnertausch")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Fester Partner, eine gemeinsame Sexpart")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Freies Dating")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Freundschaft + ohne Verpflichtungen")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Freundschaft Plus")
+(2 real changes made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Freundschaft mit Extras mit 2 festen")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "Freundschaft plus")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Frisch getrennt plus")                               
+(1 real change made)
+
+. 
+. replace coupletype = 1 if strpos(coupletype_text, "Gerade frisch getrennt, aber immer noch")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Getrennt lebend")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Im Moment beziehungspause")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Liebschaft")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Monogame Beziehung")
+(2 real changes made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Monogame Beziehung, aber nicht fest")
+(0 real changes made)
+
+. replace coupletype = .m if strpos(coupletype_text, "Schwierig")                                                         //missing
+(1 real change made, 1 to missing)
+
+. replace coupletype = 4 if strpos(coupletype_text, "Sexfreunde mit mehreren Partnern, die s")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Single")
+(4 real changes made)
+
+. replace coupletype = 4 if strpos(coupletype_text, "Single aber 2-3 Freundschaft+ -Beziehu")
+(0 real changes made)
+
+. replace coupletype = 4 if strpos(coupletype_text, "Single, mit ein paar Fuckbody M")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "Stetig wechselnde Partnerinnen")
+(1 real change made)
+
+. 
+. replace coupletype = 3 if strpos(coupletype_text, "Teiloffene Beziehung mit festen Partner")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Verheiratet")
+(4 real changes made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Verheiratet, mit Aff") 
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "Verheiratet, sexueller Kontakt zu einem")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Verlobt")
+(2 real changes made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "Verwitwet Liebhaber")
+(1 real change made)
+
+. 
+. replace coupletype = 2 if strpos(coupletype_text, "beziehung mit ex-partner")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "derzeit keine Beziehung")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "eher Freundschaft, ohne Sex")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "eingetragene Lebenspartnerschaft")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "es wird hoffentlich ne Beziehung")
+(1 real change made)
+
+. replace coupletype = 4 if strpos(coupletype_text, "feste Beziehung (Ehe) mit polygamen Ein")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "feste Beziehung mit einer Aff") 
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "feste Beziehung, gemeinsam sex mit ande")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "feste beziehung mit gemeinsamen dritten")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "fester Partner, nicht monogam, nicht offen")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "freundschaft +")
+(1 real change made)
+
+. replace coupletype = 4 if strpos(coupletype_text, "freundschaft plus mit mehreren partnern")
+(1 real change made)
+
+. 
+. replace coupletype = 2 if strpos(coupletype_text, "ckliche Beziehung mit einem")
+(1 real change made)
+
+. replace coupletype = .m if strpos(coupletype_text, "ich lehne diese kategorisierung ab")        //missing
+(1 real change made, 1 to missing)
+
+. replace coupletype = 2 if strpos(coupletype_text, "in einer festen Beziehung")  
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "jemanden kennen gelernt, Status noch")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "keine Beziehung")
+(2 real changes made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "keine Beziehung, fester Sexualpartner")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "keine feste Beziehung, ")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "langjährige Aff")                   
+(0 real changes made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "lose, offenne fernbeziehung")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "mein fester Partner betr")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "monogam mit Partnerin")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "monogam mit festem partner, ohne beziehung")
+(1 real change made)
+
+. 
+. replace coupletype = 3 if strpos(coupletype_text, "nicht monogame Beziehung mit einem fest")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "noch nie eine Beziehung")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "platonische Dauerbeziehung")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "qualvolle feste beziehung in der ich")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "single")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "solo")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "unfreiwilliges Z")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "ungewiss. er lebt")
+(1 real change made)
+
+. replace coupletype = 2 if strpos(coupletype_text, "verheiratet")
+(11 real changes made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "verheiratet und einen geliebten")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "verheiratet und offen")
+(1 real change made)
+
+. replace coupletype = 3 if strpos(coupletype_text, "verheiratet, aber wir sind Swinger")
+(1 real change made)
+
+. replace coupletype = 5 if strpos(coupletype_text, "verheiratet, mit neuer anderer Liebesbeziehung")
+(1 real change made)
+
+. replace coupletype = 1 if strpos(coupletype_text, "verwitwet")
+(1 real change made)
+
+. 
+. tab coupletype                                                                                                                                          //hier dürfte es Kategorie 6 (anderes) nicht mehr g
+> eben
+
+                          Beziehungstyp |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+          Derzeit keine feste Beziehung |      1,108       27.92       27.92
+Monogame Beziehung mit einem festen Par |      2,514       63.36       91.28
+Offene Beziehung mit einem festen Partn |        229        5.77       97.05
+Beziehung mit mehreren Partnern, die si |         34        0.86       97.91
+Beziehungen mit mehreren Partnern, die  |         81        2.04       99.95
+                        Anders, n�mlich |          2        0.05      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      3,968      100.00
+
+. replace coupletype = .m if coupletype_text == ".z" & coupletype == 6                            //entfernen der zwei Fälle, dass "anderes" angekreuzt wurde, aber dann nicht angegeben wurde
+(2 real changes made, 2 to missing)
+
+. 
+. 
+. //----------- Verhütung -----------
+. tab contracept10_text
+
+                        Andere, nämlich |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                              Aufpassen |          1        0.02        0.02
+                                     .n |      1,773       39.55       39.57
+                                     .z |      2,627       58.60       98.17
+                       3 Monats Spritze |          1        0.02       98.19
+                        3 Monatsspritze |          1        0.02       98.22
+                       3-Monats-Spritze |          1        0.02       98.24
+                        3-Monatsspritze |          1        0.02       98.26
+Als Mann unpassende Antwortm�glichkei.. |          1        0.02       98.28
+                                     CI |          1        0.02       98.30
+                     Coitus interruptus |          2        0.04       98.35
+                     Drei Monatsspritze |          2        0.04       98.39
+                      Dreimonatsspritze |          2        0.04       98.44
+                     Ehemann Vasektomie |          1        0.02       98.46
+                         Enthaltsamkeit |          1        0.02       98.48
+                     Fertilit�tsmonitor |          1        0.02       98.51
+           Fertilit�tsmonitor (Persona) |          1        0.02       98.53
+             Gestagen 3 Jahres St�bchen |          1        0.02       98.55
+                      Hormon- Implantat |          1        0.02       98.57
+                             Hormonring |          1        0.02       98.59
+                    IUB (Kugelb�llchen) |          1        0.02       98.62
+                    Ich bin unfruchtbar |          1        0.02       98.64
+                               Implanol |          1        0.02       98.66
+                               Implanon |          1        0.02       98.68
+       In einer Partnerschaft die Pille |          1        0.02       98.71
+  Kein Sex ist wohl die beste Verh�tung |          1        0.02       98.73
+                                 Kondom |          1        0.02       98.75
+                                Kondome |          2        0.04       98.80
+                   Kupferperlenball IUB |          1        0.02       98.82
+                      Langzeitverh�tung |          1        0.02       98.84
+      Latexhandschuhe zur STI-Verh�tung |          1        0.02       98.86
+                      Mann sterilisiert |          1        0.02       98.88
+        Meine Partnerin nimmt die Pille |          1        0.02       98.91
+                             Nuova Ring |          1        0.02       98.93
+                  Nuva Ring (hormonell) |          1        0.02       98.95
+                               NuvaRing |          1        0.02       98.97
+                               Nuvaring |          1        0.02       99.00
+               Partner ist sterilisiert |          1        0.02       99.02
+                                Persona |          2        0.04       99.06
+                              Schlucken |          1        0.02       99.09
+                        Schwangerschaft |          1        0.02       99.11
+                     Schwangerschaft :) |          1        0.02       99.13
+    Spirale liegt erst seit einer Woche |          1        0.02       99.15
+                Sterilisation beim Mann |          1        0.02       99.17
+                               St�bchen |          1        0.02       99.20
+                        Unfruchtbarkeit |          1        0.02       99.22
+                     Vasektomie bei ihm |          1        0.02       99.24
+                         Verh�tungsring |          1        0.02       99.26
+                     Verh�tungsst�bchen |          1        0.02       99.29
+                      Wunsch-Vasektomie |          1        0.02       99.31
+                            analverkehr |          1        0.02       99.33
+            bei anderen Personen kondom |          1        0.02       99.35
+bei eigenem Partner: Pille - bei ande.. |          1        0.02       99.38
+beim  fremdsex  zus�tzlich kondom/lec.. |          1        0.02       99.40
+                coitus interuptus, anal |          1        0.02       99.42
+                              das Alter |          1        0.02       99.44
+                      dreimonatsspritze |          1        0.02       99.46
+durch Geburt eines Kindes Verlust der.. |          1        0.02       99.49
+                         freundin pille |          1        0.02       99.51
+                         homosexualit�t |          1        0.02       99.53
+                        hormonimplantat |          1        0.02       99.55
+                          hormonspritze |          1        0.02       99.58
+                    ich bin unfruchtbar |          1        0.02       99.60
+ich stelle grade von Minipille auf Sp.. |          1        0.02       99.62
+                               implanon |          2        0.04       99.67
+                      implantat st�bche |          1        0.02       99.69
+                                    iub |          1        0.02       99.71
+je nach Partner Kombinationen aus gen.. |          1        0.02       99.73
+kein Sex, der Schwangerschaft erm�gli.. |          1        0.02       99.75
+                               ladycomp |          1        0.02       99.78
+                         lesbischer Sex |          1        0.02       99.80
+meine Frau ist z.Z. schwanger, danach.. |          1        0.02       99.82
+                            morea sanol |          1        0.02       99.84
+                          normale Pille |          1        0.02       99.87
+                              nuva Ring |          1        0.02       99.89
+                              nuva-ring |          1        0.02       99.91
+                  sterilisation partner |          1        0.02       99.93
+                             vasektomie |          1        0.02       99.96
+wir sind zu alt und brauchen keine mehr |          1        0.02       99.98
+      �berlege aber wegen Sterilisation |          1        0.02      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      4,483      100.00
+
+. list contracept10_text if contracept10_text != ".z" & contracept10_text != ".n"
+
+      +---------------------------------------------------+
+      |                                 contracept10_text |
+      |---------------------------------------------------|
+ 202. |                 �berlege aber wegen Sterilisation |
+ 252. |                                Drei Monatsspritze |
+ 344. |                                  3 Monats Spritze |
+ 430. |                                          implanon |
+ 539. |                             Nuva Ring (hormonell) |
+      |---------------------------------------------------|
+ 581. |          Als Mann unpassende Antwortm�glichkeiten |
+ 607. |                                   3 Monatsspritze |
+ 645. |                                   hormonimplantat |
+ 838. |             Kein Sex ist wohl die beste Verh�tung |
+ 867. |                                        Nuova Ring |
+      |---------------------------------------------------|
+ 913. |                                   3-Monatsspritze |
+ 952. |                             sterilisation partner |
+ 968. |                                    lesbischer Sex |
+ 975. |                                          implanon |
+ 989. |                                          Implanon |
+      |---------------------------------------------------|
+1031. |                                         nuva Ring |
+1072. |                                Fertilit�tsmonitor |
+1116. |                                        Hormonring |
+1137. |                               Ich bin unfruchtbar |
+1253. |                                    homosexualit�t |
+      |---------------------------------------------------|
+1270. |                                       morea sanol |
+1272. |          kein Sex, der Schwangerschaft erm�glicht |
+1286. |                                                CI |
+1312. |                 Latexhandschuhe zur STI-Verh�tung |
+1345. |                                 implantat st�bche |
+      |---------------------------------------------------|
+1426. |                                         nuva-ring |
+1431. |                      Fertilit�tsmonitor (Persona) |
+1495. |                          Partner ist sterilisiert |
+1504. |                                 Langzeitverh�tung |
+1556. |                                           Persona |
+      |---------------------------------------------------|
+1590. |                                 Mann sterilisiert |
+1634. |                   Meine Partnerin nimmt die Pille |
+1645. |           wir sind zu alt und brauchen keine mehr |
+1680. |                                          St�bchen |
+1708. |                                         Schlucken |
+      |---------------------------------------------------|
+1750. | durch Geburt eines Kindes Verlust der Geb�rmutte. |
+1795. |        beim  fremdsex  zus�tzlich kondom/lecktuch |
+1801. |                                 dreimonatsspritze |
+1823. |                                     hormonspritze |
+1869. |                                           Kondome |
+      |---------------------------------------------------|
+2018. |                                     normale Pille |
+2104. |                                Verh�tungsst�bchen |
+2127. |                                          Implanol |
+2150. |                                          NuvaRing |
+2158. | meine Frau ist z.Z. schwanger, danach: Vasektomie |
+      |---------------------------------------------------|
+2195. |                        Gestagen 3 Jahres St�bchen |
+2206. |                                 Hormon- Implantat |
+2232. |     ich stelle grade von Minipille auf Spirale um |
+2233. |                               IUB (Kugelb�llchen) |
+2261. |                                       analverkehr |
+      |---------------------------------------------------|
+2273. |                                   Schwangerschaft |
+2279. |  bei eigenem Partner: Pille - bei anderen: Kondom |
+2282. |       je nach Partner Kombinationen aus genannten |
+2292. |                                Schwangerschaft :) |
+2304. |               Spirale liegt erst seit einer Woche |
+      |---------------------------------------------------|
+2327. |                           Sterilisation beim Mann |
+2394. |                                          ladycomp |
+2651. |                                   Unfruchtbarkeit |
+2701. |                                 Dreimonatsspritze |
+2817. |                                           Kondome |
+      |---------------------------------------------------|
+2819. |                               ich bin unfruchtbar |
+2909. |                                 Wunsch-Vasektomie |
+2949. |                                Ehemann Vasektomie |
+3088. |                                         das Alter |
+3283. |                                Vasektomie bei ihm |
+      |---------------------------------------------------|
+3285. |                                Coitus interruptus |
+3416. |                                    Verh�tungsring |
+3431. |                                    freundin pille |
+3511. |                              Kupferperlenball IUB |
+3654. |                                        vasektomie |
+      |---------------------------------------------------|
+3696. |                                         Aufpassen |
+3761. |                           coitus interuptus, anal |
+3900. |                  In einer Partnerschaft die Pille |
+3937. |                       bei anderen Personen kondom |
+3945. |                                  3-Monats-Spritze |
+      |---------------------------------------------------|
+4016. |                                 Dreimonatsspritze |
+4079. |                                          Nuvaring |
+4129. |                                            Kondom |
+4230. |                                Drei Monatsspritze |
+4246. |                                           Persona |
+      |---------------------------------------------------|
+4384. |                                Coitus interruptus |
+4405. |                                    Enthaltsamkeit |
+4463. |                                               iub |
+      +---------------------------------------------------+
+
+. 
+. //Verhütung - freie Textangaben zuordnen
+. replace contracept01 = 1 if strpos(contracept10_text, "Aufpassen")
+(1 real change made)
+
+. replace contracept04 = 1 if strpos(contracept10_text, "Spritze")
+(2 real changes made)
+
+. replace contracept04 = 1 if strpos(contracept10_text, "spritze")
+(8 real changes made)
+
+. replace contracept04 = .m if strpos(contracept10_text, "Als Mann")
+(0 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "CI")
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Coitus")                         
+(1 real change made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "Vasektomie")
+(3 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Enthaltsamkeit")
+(1 real change made)
+
+. replace contracept08 = 1 if strpos(contracept10_text, "tsmonitor")                      
+(1 real change made)
+
+. replace contracept08 = 1 if strpos(contracept10_text, "Persona")                        
+(1 real change made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "bchen")
+(3 real changes made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "Implantat")
+(1 real change made)
+
+. replace contracept05 = 1 if strpos(contracept10_text, "ring")
+(4 real changes made)
+
+. replace contracept07 = 1 if strpos(contracept10_text, "IUB")
+(2 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "unfruchtbar")            
+(1 real change made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "Implano")
+(2 real changes made)
+
+. replace contracept03 = 1 if strpos(contracept10_text, "Pille")
+(3 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Kein Sex")
+(1 real change made)
+
+. replace contracept02 = 1 if strpos(contracept10_text, "Kondom")                         
+(3 real changes made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "Langzeit")                                               //nimmt an, dass die Langzeitverhütung hormonell ist
+(1 real change made)
+
+. 
+. replace contracept02 = 1 if strpos(contracept10_text, "Latexhandschuhe zur STI")
+(1 real change made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "sterilisiert")
+(2 real changes made)
+
+. replace contracept05 = 1 if strpos(contracept10_text, "Ring")
+(4 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Schlucken")                              
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Schwangerschaft")
+(2 real changes made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "Spirale liegt")          
+(0 real changes made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "Sterilisation beim")
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "Unfruchtbar")
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "anal")
+(2 real changes made)
+
+. replace contracept02 = 1 if strpos(contracept10_text, "kondom")                         
+(2 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "das Alter")
+(0 real changes made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "Verlust der")
+(1 real change made)
+
+. replace contracept03 = 1 if strpos(contracept10_text, "freundin pille")
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "homosex")
+(1 real change made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "implantat")
+(2 real changes made)
+
+. 
+. replace contracept06 = 1 if strpos(contracept10_text, "ich stelle grade von Minipille auf")
+(1 real change made)
+
+. replace contracept06 = 1 if strpos(contracept10_text, "implanon")
+(2 real changes made)
+
+. replace contracept07 = 1 if strpos(contracept10_text, "iub")
+(1 real change made)
+
+. replace contracept02 = 1 if strpos(contracept10_text, "je nach Partner Kombination")    //Kondom + Kupferspirale
+(0 real changes made)
+
+. replace contracept08 = 1 if strpos(contracept10_text, "ladycomp")
+(0 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "lesbischer Sex")
+(1 real change made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "schwanger, danach")
+(1 real change made)
+
+. replace contracept03 = 1 if strpos(contracept10_text, "morea")
+(1 real change made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "sterilisation")
+(1 real change made)
+
+. replace contracept09 = 1 if strpos(contracept10_text, "vasektomie")                                             
+(0 real changes made)
+
+. replace contracept01 = 1 if strpos(contracept10_text, "zu alt")
+(0 real changes made)
+
+. replace contracept03 = 1 if strpos(contracept10_text, "wegen Sterilisation")                    //nur Zusatzinfo, verhütet aber mit Pille
+(0 real changes made)
+
+. 
+. //teilweise ändert Zuordnung der Textangaban nichts, da bereits vorher die richtigen Kategorien angekreuzt wurden 
+. //und das Feld nur als spezifische Zusatzinformation genutzt wurde
+. //teilweise auch mehrere Angaben (Kondom, Pille etc.), sind dann alle in der untersch. Variablen erhoben
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\00_BASIC_RECODING.log
+  log type:  text
+ closed on:  25 May 2022, 15:36:30
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,161 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\12_Messmodell_Check.log
+  log type:  text
+ opened on:  15 May 2022, 18:21:31
+
+. 
+. //###############################################################
+. 
+. //************ Messmodell Check ************
+. //Schätzen des Messmodells alleine, um Kriterien für Güte des Modells zu  überprüfen (dafür sind Kovarianzen etc. notwendig)
+. //wird noch vor SEM full ausgewertet, da es notwendig für die Konstruktuion eines guten SEM ist
+.  
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+>         //Messmodell Zufriedenheit
+> (sexsatlat -> sexsat01)
+> (sexsatlat -> sexsat02)
+> (sexsatlat -> sexsat03)
+> 
+>         //Messmodell Beziehung
+> (couple -> couplebond01)
+> (couple -> couplebond02)
+> (couple -> coupleint01)
+> 
+>         //Messmodell ablenkende Gedanken
+> (distract -> sexnet01)                          
+> (distract -> sexnet02)  
+> 
+> , 
+> 
+> latent (sexsatlat distract couple) 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> cov()
+> ;
+(29 observations with missing values excluded)
+
+Endogenous variables
+
+Measurement:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02
+
+Exogenous variables
+
+Latent:       sexsatlat couple distract
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  6.3755286  
+Iteration 1:   discrepancy =  .82696732  
+Iteration 2:   discrepancy =  .82696732  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =  .01477522  
+Iteration 1:   discrepancy =  .01299518  
+Iteration 2:   discrepancy =  .01299342  
+Iteration 3:   discrepancy =  .01299342  
+
+Structural equation model                       Number of obs     =      1,265
+Estimation method  = adf
+Discrepancy        =  .01299342
+
+----------------------------------------------------------------------------------------
+          Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-----------------------+----------------------------------------------------------------
+Measurement            |
+  sexsat01 <-          |
+             sexsatlat |   .8574593    .013046    65.73   0.000     .8318897    .8830289
+                 _cons |    3.04095   .0779479    39.01   0.000     2.888175    3.193725
+  ---------------------+----------------------------------------------------------------
+  sexsat02 <-          |
+             sexsatlat |    .906092   .0121734    74.43   0.000     .8822327    .9299514
+                 _cons |   3.102711    .078325    39.61   0.000     2.949197    3.256225
+  ---------------------+----------------------------------------------------------------
+  sexsat03 <-          |
+             sexsatlat |   .7980322   .0148605    53.70   0.000     .7689062    .8271582
+                 _cons |   2.374937   .0453874    52.33   0.000     2.285979    2.463894
+  ---------------------+----------------------------------------------------------------
+  couplebond01 <-      |
+                couple |   .8747089   .0154779    56.51   0.000     .8443727     .905045
+                 _cons |   5.228873   .1857413    28.15   0.000     4.864827    5.592919
+  ---------------------+----------------------------------------------------------------
+  couplebond02 <-      |
+                couple |   .7339968   .0231521    31.70   0.000     .6886196     .779374
+                 _cons |   4.046799   .1410577    28.69   0.000     3.770331    4.323267
+  ---------------------+----------------------------------------------------------------
+  coupleint01 <-       |
+                couple |   .8646862   .0186121    46.46   0.000     .8282071    .9011653
+                 _cons |   4.684897   .1557871    30.07   0.000      4.37956    4.990235
+  ---------------------+----------------------------------------------------------------
+  sexnet01 <-          |
+              distract |   .7308533   .0526978    13.87   0.000     .6275675     .834139
+                 _cons |   1.644543   .0276549    59.47   0.000      1.59034    1.698746
+  ---------------------+----------------------------------------------------------------
+  sexnet02 <-          |
+              distract |   .6265097   .0496679    12.61   0.000     .5291624     .723857
+                 _cons |   2.056753   .0386149    53.26   0.000      1.98107    2.132437
+-----------------------+----------------------------------------------------------------
+        var(e.sexsat01)|   .2647635   .0223728                      .2243525    .3124536
+        var(e.sexsat02)|   .1789973   .0220604                      .1405856     .227904
+        var(e.sexsat03)|   .3631446   .0237183                        .31951    .4127382
+    var(e.couplebond01)|   .2348844   .0270773                      .1873821    .2944288
+    var(e.couplebond02)|   .4612487   .0339871                      .3992219    .5329125
+     var(e.coupleint01)|   .2523178   .0321873                      .1965002    .3239908
+        var(e.sexnet01)|   .4658535   .0770287                       .336902    .6441622
+        var(e.sexnet02)|   .6074856   .0622348                      .4969735    .7425722
+         var(sexsatlat)|          1          .                             .           .
+            var(couple)|          1          .                             .           .
+          var(distract)|          1          .                             .           .
+-----------------------+----------------------------------------------------------------
+  cov(sexsatlat,couple)|   .4206488   .0281352    14.95   0.000     .3655048    .4757927
+cov(sexsatlat,distract)|  -.3351902   .0375708    -8.92   0.000    -.4088275   -.2615528
+   cov(couple,distract)|  -.1448269   .0361375    -4.01   0.000    -.2156551   -.0739986
+----------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(17)  =    16.44, Prob > chi2 = 0.4931
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+         chi2_ms(17) |     16.437   model vs. saturated
+            p > chi2 |      0.493
+         chi2_bs(28) |   1046.114   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.000   Root mean squared error of approximation
+ 90% CI, lower bound |      0.000
+         upper bound |      0.025
+              pclose |      1.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      1.000   Comparative fit index
+                 TLI |      1.001   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.025   Standardized root mean squared residual
+                  CD |      0.995   Coefficient of determination
+----------------------------------------------------------------------------
+
+. 
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\12_Messmodell_Check.log
+  log type:  text
+ closed on:  15 May 2022, 18:21:31
+------------------------------------------------------------------------------------------------------------------------------------------------------------

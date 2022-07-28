@@ -1,0 +1,419 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\04_SEM_Kontroll_MLSB_stan
+> dardized.log
+  log type:  text
+ opened on:  15 May 2022, 18:19:51
+
+. 
+. //######## SEM global Variable für Kontrollvariablenpfade #######
+. 
+. #delimit ;
+delimiter now ;
+. global kontrollVariablenPfade = "
+> 
+> (age -> sexsatlat)
+> (age -> distract)
+> (age -> sexfan02)
+> (age -> sexactBalance)
+> (age -> sexquan)
+> (age -> sexorgasm01)
+> 
+> (education -> sexsatlat)
+> (education -> distract)
+> (education -> sexfan02)
+> (education -> sexactBalance)
+> (education -> sexquan)
+> (education -> sexorgasm01)
+> 
+> (stress01 -> sexsatlat)
+> (stress01 -> distract)
+> (stress01 -> sexfan02)
+> (stress01 -> sexactBalance)
+> (stress01 -> sexquan)
+> (stress01 -> sexorgasm01)                       
+> 
+> (healthphys01 -> sexsatlat)
+> (healthphys01 -> distract)
+> (healthphys01 -> sexfan02)
+> (healthphys01 -> sexactBalance)
+> (healthphys01 -> sexquan)
+> (healthphys01 -> sexorgasm01)                   
+> 
+> (bigfiveO -> sexsatlat)
+> (bigfiveO -> distract)
+> (bigfiveO -> sexfan02)
+> (bigfiveO -> sexactBalance)
+> (bigfiveO -> sexquan)
+> (bigfiveO -> sexorgasm01)
+> 
+> (coupleduration -> sexsatlat)
+> (coupleduration -> distract)
+> (coupleduration -> sexfan02)
+> (coupleduration -> sexactBalance)
+> (coupleduration -> sexquan)
+> (coupleduration -> sexorgasm01)
+> 
+> ";
+
+. global kontrollVariablenKovarianzen = "
+> 
+> sexmastB01*sexpornB01 
+> sexmastB01*couple
+> sexmastB01*sexcomm01 
+> sexpornB01*couple
+> sexpornB01*sexcomm01 
+> sexcomm01*couple
+> 
+> age*couple
+> age*sexcomm01
+> age*sexmastB01
+> age*sexpornB01
+> education*couple
+> education*sexcomm01
+> education*sexmastB01
+> education*sexpornB01
+> stress01*couple
+> stress01*sexcomm01
+> stress01*sexmastB01
+> stress01*sexpornB01
+> healthphys01*couple
+> healthphys01*sexcomm01
+> healthphys01*sexmastB01
+> healthphys01*sexpornB01
+> bigfiveO*couple
+> bigfiveO*sexcomm01
+> bigfiveO*sexmastB01
+> bigfiveO*sexpornB01
+> coupleduration*couple
+> coupleduration*sexcomm01
+> coupleduration*sexmastB01
+> coupleduration*sexpornB01
+> 
+> age*education
+> age*stress01
+> age*healthphys01
+> age*bigfiveO
+> age*coupleduration
+> 
+> education*stress01
+> education*healthphys01
+> education*bigfiveO
+> education*coupleduration
+> 
+> stress01*healthphys01
+> stress01*bigfiveO
+> stress01*coupleduration
+> 
+> healthphys01*bigfiveO
+> healthphys01*coupleduration
+> 
+> bigfiveO*coupleduration
+> 
+> ";
+
+. #delimit cr
+delimiter now cr
+. 
+. //######## SEM final MLSB standardisiert ########
+. //mit Kontrollvariablen
+. //alle Kovarianzen frei
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> ${gesamtModellPfade}
+> ${kontrollVariablenPfade}
+> , 
+> latent (sexsatlat distract couple) 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> cov(
+> ${kontrollVariablenKovarianzen}
+> )
+> ;
+(48 observations with missing values excluded)
+
+Endogenous variables
+
+Observed:     sexquan sexactBalance sexorgasm01 sexfan02
+Measurement:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02
+Latent:       sexsatlat distract
+
+Exogenous variables
+
+Observed:     sexpornB01 sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+Latent:       couple
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -56963.734  (not concave)
+Iteration 1:   log pseudolikelihood = -54984.321  (not concave)
+Iteration 2:   log pseudolikelihood =  -51355.17  (not concave)
+Iteration 3:   log pseudolikelihood = -50322.885  (not concave)
+Iteration 4:   log pseudolikelihood = -49679.479  (not concave)
+Iteration 5:   log pseudolikelihood = -49549.929  
+Iteration 6:   log pseudolikelihood = -49490.206  (not concave)
+Iteration 7:   log pseudolikelihood =  -49475.53  
+Iteration 8:   log pseudolikelihood = -49446.956  (not concave)
+Iteration 9:   log pseudolikelihood = -49440.567  
+Iteration 10:  log pseudolikelihood = -49439.295  
+Iteration 11:  log pseudolikelihood = -49439.275  
+Iteration 12:  log pseudolikelihood = -49439.275  
+
+Structural equation model                       Number of obs     =      1,246
+Estimation method  = ml
+Log pseudolikelihood= -49439.275
+
+-------------------------------------------------------------------------------------------------
+                                |           Satorra-Bentler
+                   Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+Structural                      |
+  sexquan <-                    |
+                  sexactBalance |   .2043654   .0287184     7.12   0.000     .1480782    .2606525
+                       sexfan02 |   .0890122   .0273243     3.26   0.001     .0354576    .1425668
+                            age |  -.0048161   .0319992    -0.15   0.880    -.0675334    .0579012
+                      education |  -.0604119   .0258381    -2.34   0.019    -.1110537   -.0097702
+                       stress01 |  -.0703059   .0278792    -2.52   0.012    -.1249481   -.0156637
+                   healthphys01 |   .0630567   .0282064     2.24   0.025     .0077732    .1183402
+                       bigfiveO |   .0342288   .0274798     1.25   0.213    -.0196307    .0880882
+                 coupleduration |  -.2673779   .0341642    -7.83   0.000    -.3343385   -.2004174
+                         couple |   .1227999    .028123     4.37   0.000     .0676798      .17792
+                          _cons |   3.159067   .2478788    12.74   0.000     2.673234    3.644901
+  ------------------------------+----------------------------------------------------------------
+  sexactBalance <-              |
+                       sexfan02 |   .1644502   .0281529     5.84   0.000     .1092715    .2196289
+                       distract |  -.1439379   .0376927    -3.82   0.000    -.2178143   -.0700616
+                     sexpornB01 |   .1544756   .0296816     5.20   0.000     .0963008    .2126505
+                      sexcomm01 |   .0426882   .0265581     1.61   0.108    -.0093648    .0947413
+                            age |   .0388677   .0387884     1.00   0.316    -.0371562    .1148916
+                      education |  -.0013894   .0288537    -0.05   0.962    -.0579416    .0551628
+                       stress01 |  -.0267064   .0298553    -0.89   0.371    -.0852217    .0318089
+                   healthphys01 |   .0255951   .0289713     0.88   0.377    -.0311875    .0823777
+                       bigfiveO |   .1609788   .0292071     5.51   0.000     .1037339    .2182238
+                 coupleduration |  -.0715188   .0308002    -2.32   0.020    -.1318859   -.0111516
+                          _cons |   .3001842   .2675181     1.12   0.262    -.2241415      .82451
+  ------------------------------+----------------------------------------------------------------
+  sexorgasm01 <-                |
+                  sexactBalance |   .1693755   .0277399     6.11   0.000     .1150062    .2237448
+                       distract |   -.233638   .0364799    -6.40   0.000    -.3051373   -.1621388
+                            age |   .0038681   .0321393     0.12   0.904    -.0591237    .0668599
+                      education |   .0314688   .0278696     1.13   0.259    -.0231546    .0860923
+                       stress01 |   .0435998   .0299091     1.46   0.145    -.0150209    .1022205
+                   healthphys01 |  -.0104511   .0296714    -0.35   0.725     -.068606    .0477038
+                       bigfiveO |   .0253537   .0297798     0.85   0.395    -.0330136    .0837211
+                 coupleduration |   .1081411   .0293979     3.68   0.000     .0505222      .16576
+                          _cons |   1.035581   .2489993     4.16   0.000     .5475515    1.523611
+  ------------------------------+----------------------------------------------------------------
+  sexfan02 <-                   |
+                     sexpornB01 |   .2223499   .0290765     7.65   0.000      .165361    .2793388
+                     sexmastB01 |   .2153323   .0296988     7.25   0.000     .1571238    .2735408
+                            age |   .0144388   .0320944     0.45   0.653    -.0484651    .0773427
+                      education |  -.0613544   .0261954    -2.34   0.019    -.1126964   -.0100124
+                       stress01 |   .0822548   .0267912     3.07   0.002     .0297451    .1347645
+                   healthphys01 |   .0111678   .0273721     0.41   0.683    -.0424805    .0648162
+                       bigfiveO |   .1525891   .0251396     6.07   0.000     .1033164    .2018618
+                 coupleduration |  -.0275724   .0310659    -0.89   0.375    -.0884604    .0333156
+                          _cons |   .7224802   .2253922     3.21   0.001     .2807196    1.164241
+  ------------------------------+----------------------------------------------------------------
+  sexsatlat <-                  |
+                        sexquan |   .4532143   .0240253    18.86   0.000     .4061255    .5003032
+                  sexactBalance |   .1319452   .0267271     4.94   0.000     .0795611    .1843294
+                    sexorgasm01 |   .2414965   .0240781    10.03   0.000     .1943044    .2886886
+                       distract |  -.1462113   .0347178    -4.21   0.000     -.214257   -.0781657
+                      sexcomm01 |   .0753413   .0220582     3.42   0.001     .0321079    .1185746
+                            age |  -.0346291   .0266351    -1.30   0.194     -.086833    .0175748
+                      education |  -.0052526   .0227765    -0.23   0.818    -.0498937    .0393885
+                       stress01 |  -.0425321   .0233765    -1.82   0.069    -.0883491    .0032849
+                   healthphys01 |   .0225023   .0236889     0.95   0.342     -.023927    .0689316
+                       bigfiveO |   -.003561   .0244329    -0.15   0.884    -.0514486    .0443266
+                 coupleduration |  -.0647098   .0268657    -2.41   0.016    -.1173656    -.012054
+                         couple |   .2542529   .0251884    10.09   0.000     .2048846    .3036212
+  ------------------------------+----------------------------------------------------------------
+  distract <-                   |
+                     sexpornB01 |   .0895171   .0339233     2.64   0.008     .0230286    .1560055
+                      sexcomm01 |  -.1678458    .034863    -4.81   0.000    -.2361761   -.0995155
+                            age |  -.1404295   .0403769    -3.48   0.001    -.2195668   -.0612922
+                      education |  -.1393396   .0350106    -3.98   0.000    -.2079591   -.0707201
+                       stress01 |   .1377674   .0380835     3.62   0.000     .0631251    .2124097
+                   healthphys01 |  -.1369927   .0381302    -3.59   0.000    -.2117265   -.0622588
+                       bigfiveO |  -.1097546   .0358544    -3.06   0.002    -.1800279   -.0394812
+                 coupleduration |    .040035   .0427601     0.94   0.349    -.0437732    .1238432
+                         couple |  -.0988105   .0353638    -2.79   0.005    -.1681222   -.0294988
+--------------------------------+----------------------------------------------------------------
+Measurement                     |
+  sexsat01 <-                   |
+                      sexsatlat |   .8289201   .0133458    62.11   0.000     .8027628    .8550775
+                          _cons |   .9644467   .1917134     5.03   0.000     .5886954    1.340198
+  ------------------------------+----------------------------------------------------------------
+  sexsat02 <-                   |
+                      sexsatlat |   .9205649   .0093331    98.63   0.000     .9022724    .9388575
+                          _cons |   .7898224   .2050028     3.85   0.000     .3880242    1.191621
+  ------------------------------+----------------------------------------------------------------
+  sexsat03 <-                   |
+                      sexsatlat |   .7719753   .0155358    49.69   0.000     .7415257     .802425
+                          _cons |   .4304803    .170925     2.52   0.012     .0954735     .765487
+  ------------------------------+----------------------------------------------------------------
+  couplebond01 <-               |
+                         couple |   .8700015   .0154362    56.36   0.000     .8397471    .9002558
+                          _cons |   5.172046   .1811298    28.55   0.000     4.817038    5.527053
+  ------------------------------+----------------------------------------------------------------
+  couplebond02 <-               |
+                         couple |   .7474517   .0225104    33.20   0.000     .7033322    .7915712
+                          _cons |   4.009512   .1365055    29.37   0.000     3.741966    4.277058
+  ------------------------------+----------------------------------------------------------------
+  coupleint01 <-                |
+                         couple |   .8610012   .0188713    45.62   0.000     .8240142    .8979882
+                          _cons |    4.59245   .1504593    30.52   0.000     4.297556    4.887345
+  ------------------------------+----------------------------------------------------------------
+  sexnet01 <-                   |
+                       distract |   .7249794   .0359886    20.14   0.000      .654443    .7955157
+                          _cons |   2.972516   .2344981    12.68   0.000     2.512908    3.432124
+  ------------------------------+----------------------------------------------------------------
+  sexnet02 <-                   |
+                       distract |   .6167279   .0343683    17.94   0.000     .5493672    .6840886
+                          _cons |    3.17807   .2068584    15.36   0.000     2.772635    3.583505
+--------------------------------+----------------------------------------------------------------
+                mean(sexpornB01)|   1.636188   .0259911    62.95   0.000     1.585246    1.687129
+                mean(sexmastB01)|   2.172029   .0461577    47.06   0.000     2.081562    2.262497
+                 mean(sexcomm01)|    2.28698   .0538952    42.43   0.000     2.181348    2.392613
+                       mean(age)|    3.81646   .1059727    36.01   0.000     3.608758    4.024163
+                 mean(education)|   4.116709   .0754412    54.57   0.000     3.968847    4.264571
+                  mean(stress01)|   2.766777   .0673609    41.07   0.000     2.634752    2.898802
+              mean(healthphys01)|   2.562877   .0648181    39.54   0.000     2.435835    2.689918
+                  mean(bigfiveO)|   5.048453   .1405715    35.91   0.000     4.772938    5.323968
+            mean(coupleduration)|   .8732148    .030158    28.95   0.000     .8141063    .9323233
+--------------------------------+----------------------------------------------------------------
+                 var(e.sexsat01)|   .3128914   .0221252                      .2723976    .3594049
+                 var(e.sexsat02)|   .1525602   .0171834                      .1223396    .1902459
+                 var(e.sexsat03)|   .4040541   .0239865                      .3596733    .4539111
+             var(e.couplebond01)|   .2430974    .026859                      .1957645    .3018747
+             var(e.couplebond02)|    .441316   .0336508                      .3800534    .5124538
+              var(e.coupleint01)|   .2586769   .0324964                      .2022205     .330895
+                 var(e.sexnet01)|   .4744049    .052182                      .3824033    .5885411
+                 var(e.sexnet02)|   .6196467   .0423918                      .5418898    .7085611
+                  var(e.sexquan)|   .8179506   .0219681                      .7760075    .8621608
+            var(e.sexactBalance)|   .8545107    .019305                      .8174991    .8931981
+              var(e.sexorgasm01)|    .889465   .0187654                      .8534357    .9270154
+                 var(e.sexfan02)|   .7998474   .0206903                      .7603061    .8414452
+                var(e.sexsatlat)|   .4323384   .0222852                      .3907941    .4782992
+                 var(e.distract)|   .8333471   .0259021                      .7840954    .8856925
+                 var(sexpornB01)|          1          .                             .           .
+                 var(sexmastB01)|          1          .                             .           .
+                  var(sexcomm01)|          1          .                             .           .
+                        var(age)|          1          .                             .           .
+                  var(education)|          1          .                             .           .
+                   var(stress01)|          1          .                             .           .
+               var(healthphys01)|          1          .                             .           .
+                   var(bigfiveO)|          1          .                             .           .
+             var(coupleduration)|          1          .                             .           .
+                     var(couple)|          1          .                             .           .
+--------------------------------+----------------------------------------------------------------
+      cov(sexpornB01,sexmastB01)|   .4746986   .0219591    21.62   0.000     .4316595    .5177378
+       cov(sexpornB01,sexcomm01)|   .0146113   .0284612     0.51   0.608    -.0411717    .0703942
+             cov(sexpornB01,age)|   .0500643   .0281389     1.78   0.075     -.005087    .1052155
+       cov(sexpornB01,education)|  -.0931209   .0283191    -3.29   0.001    -.1486253   -.0376164
+        cov(sexpornB01,stress01)|   .0549342   .0286342     1.92   0.055    -.0011878    .1110563
+    cov(sexpornB01,healthphys01)|  -.0524333   .0282125    -1.86   0.063    -.1077287    .0028622
+        cov(sexpornB01,bigfiveO)|   .0981754   .0288104     3.41   0.001     .0417081    .1546426
+  cov(sexpornB01,coupleduration)|    .036794   .0274552     1.34   0.180    -.0170171    .0906051
+          cov(sexpornB01,couple)|  -.0517021   .0303466    -1.70   0.088    -.1111803    .0077761
+       cov(sexmastB01,sexcomm01)|  -.0498012   .0283644    -1.76   0.079    -.1053943     .005792
+             cov(sexmastB01,age)|   .1003586   .0273935     3.66   0.000     .0466684    .1540488
+       cov(sexmastB01,education)|   .0243603   .0270729     0.90   0.368    -.0287016    .0774222
+        cov(sexmastB01,stress01)|   .0600766   .0289817     2.07   0.038     .0032736    .1168796
+    cov(sexmastB01,healthphys01)|  -.0119516   .0279422    -0.43   0.669    -.0667173    .0428141
+        cov(sexmastB01,bigfiveO)|   .1580183   .0289853     5.45   0.000     .1012082    .2148285
+  cov(sexmastB01,coupleduration)|   .0094165   .0258184     0.36   0.715    -.0411866    .0600195
+          cov(sexmastB01,couple)|  -.0422683   .0297977    -1.42   0.156    -.1006707    .0161341
+              cov(sexcomm01,age)|  -.0449707   .0280491    -1.60   0.109     -.099946    .0100046
+        cov(sexcomm01,education)|  -.0526328   .0283376    -1.86   0.063    -.1081734    .0029079
+         cov(sexcomm01,stress01)|  -.0726444   .0282281    -2.57   0.010    -.1279705   -.0173182
+     cov(sexcomm01,healthphys01)|   .0274965   .0289418     0.95   0.342    -.0292283    .0842213
+         cov(sexcomm01,bigfiveO)|    .081298   .0288377     2.82   0.005     .0247771    .1378189
+   cov(sexcomm01,coupleduration)|  -.0657209   .0284803    -2.31   0.021    -.1215413   -.0099005
+           cov(sexcomm01,couple)|   .0715632   .0298885     2.39   0.017     .0129827    .1301436
+              cov(age,education)|   .1020733   .0319519     3.19   0.001     .0394488    .1646978
+               cov(age,stress01)|  -.0326891   .0302858    -1.08   0.280    -.0920482      .02667
+           cov(age,healthphys01)|  -.0636679   .0272029    -2.34   0.019    -.1169846   -.0103512
+               cov(age,bigfiveO)|  -.0024361    .029077    -0.08   0.933     -.059426    .0545539
+         cov(age,coupleduration)|   .5620871   .0315629    17.81   0.000     .5002249    .6239492
+                 cov(age,couple)|  -.0644151   .0295777    -2.18   0.029    -.1223864   -.0064438
+         cov(education,stress01)|  -.0164419   .0284861    -0.58   0.564    -.0722737      .03939
+     cov(education,healthphys01)|   .0884371   .0283408     3.12   0.002     .0328902     .143984
+         cov(education,bigfiveO)|  -.0129973   .0292741    -0.44   0.657    -.0703735    .0443788
+   cov(education,coupleduration)|   .0154093   .0346696     0.44   0.657    -.0525419    .0833604
+           cov(education,couple)|   .0990393    .030974     3.20   0.001     .0383314    .1597473
+      cov(stress01,healthphys01)|  -.3222491   .0230821   -13.96   0.000    -.3674892    -.277009
+          cov(stress01,bigfiveO)|   .0369267   .0290358     1.27   0.203    -.0199824    .0938357
+    cov(stress01,coupleduration)|  -.0608356   .0266771    -2.28   0.023    -.1131218   -.0085493
+            cov(stress01,couple)|  -.1480091   .0283015    -5.23   0.000    -.2034791   -.0925391
+      cov(healthphys01,bigfiveO)|  -.0133025   .0291538    -0.46   0.648    -.0704429    .0438379
+cov(healthphys01,coupleduration)|   -.025358   .0284579    -0.89   0.373    -.0811344    .0304184
+        cov(healthphys01,couple)|   .1259666   .0332382     3.79   0.000      .060821    .1911122
+    cov(bigfiveO,coupleduration)|   -.077533   .0310359    -2.50   0.012    -.1383623   -.0167037
+            cov(bigfiveO,couple)|   .0995708   .0326448     3.05   0.002     .0355881    .1635535
+      cov(coupleduration,couple)|   -.004433   .0290878    -0.15   0.879    -.0614441    .0525781
+-------------------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(101) =    276.85, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(101) =    257.93, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(101) |    276.852   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(174) |   6467.513   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(101) |    257.928   
+            p > chi2 |      0.000
+      chi2sb_bs(174) |   6009.661   
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.037   Root mean squared error of approximation
+ 90% CI, lower bound |      0.032
+         upper bound |      0.043
+              pclose |      1.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.035   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  99180.551   Akaike's information criterion
+                 BIC |  99954.832   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.972   Comparative fit index
+                 TLI |      0.952   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.973   Comparative fit index
+              TLI_SB |      0.954   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.029   Standardized root mean squared residual
+                  CD |      0.934   Coefficient of determination
+----------------------------------------------------------------------------
+
+.         
+. log close
+      name:  <unnamed>
+       log:  \log\04_SEM_Kontroll_MLSB_stan
+> dardized.log
+  log type:  text
+ closed on:  15 May 2022, 18:19:54
+------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,133 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\06_SEM_Gruppe_Beziehungsl
+> änge_Beschreibung.log
+  log type:  text
+ opened on:  15 May 2022, 18:19:58
+
+. 
+. 
+. //######### Gruppen Beschreibung #################
+. 
+. sum sexsat01 sexsat02 sexsat03 sexquan sexorgasm01 sexactBalance sexfan sexmastB01 sexpornB01 sexcomm01 sexnet01 sexnet02 couplebond01 couplebond02 couple
+> int01 coupleduration if coupledurationCat == 1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    sexsat01 |        429    5.596737    1.481376          1          7
+    sexsat02 |        430    5.611628    1.370809          1          7
+    sexsat03 |        430    4.588372    1.591163          1          7
+     sexquan |        431    3.860789    .9068824          1          5
+ sexorgasm01 |        430     4.42093    1.989958          1          7
+-------------+---------------------------------------------------------
+sexactBala~e |        431    3.911833    1.551181         -1          7
+      sexfan |        431    4.345708    1.439872          1          7
+  sexmastB01 |        431    4.508121    2.081883          1          7
+  sexpornB01 |        431    3.013921    1.928921          1          7
+   sexcomm01 |        429    5.058275    2.119967          1          7
+-------------+---------------------------------------------------------
+    sexnet01 |        431    3.417633    1.992326          1          7
+    sexnet02 |        431    4.053364    1.887396          1          7
+couplebond01 |        429    6.158508    1.216343          1          7
+couplebond02 |        428    5.738318    1.664262          1          7
+ coupleint01 |        430    5.990698    1.302645          1          7
+-------------+---------------------------------------------------------
+coupledur~on |        431    .7770688    .4496719   .0833333   1.583333
+
+. sum sexsat01 sexsat02 sexsat03 sexquan sexorgasm01 sexactBalance sexfan sexmastB01 sexpornB01 sexcomm01 sexnet01 sexnet02 couplebond01 couplebond02 couple
+> int01 coupleduration if coupledurationCat == 2
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    sexsat01 |        422    5.123223    1.685196          1          7
+    sexsat02 |        423    5.104019    1.723426          1          7
+    sexsat03 |        421    4.133017    1.811702          1          7
+     sexquan |        423    3.364066    .9158088          1          5
+ sexorgasm01 |        421    4.581948    2.103525          1          7
+-------------+---------------------------------------------------------
+sexactBala~e |        423    3.624113     1.72467         -1          7
+      sexfan |        423    4.033097    1.473331          1          7
+  sexmastB01 |        423    4.378251    2.055786          1          7
+  sexpornB01 |        422    3.203791    1.948551          1          7
+   sexcomm01 |        423    4.903073     2.18408          1          7
+-------------+---------------------------------------------------------
+    sexnet01 |        423    3.397163    2.134837          1          7
+    sexnet02 |        422    3.862559    1.815759          1          7
+couplebond01 |        420    6.283333    1.165621          1          7
+couplebond02 |        422    6.097156    1.459685          1          7
+ coupleint01 |        419    6.097852    1.322413          1          7
+-------------+---------------------------------------------------------
+coupledur~on |        423    2.856186    .7947443   1.666667   4.416667
+
+. sum sexsat01 sexsat02 sexsat03 sexquan sexorgasm01 sexactBalance sexfan sexmastB01 sexpornB01 sexcomm01 sexnet01 sexnet02 couplebond01 couplebond02 couple
+> int01 coupleduration if coupledurationCat == 3
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+    sexsat01 |        439     4.71754    1.831345          1          7
+    sexsat02 |        440    4.715909    1.781638          1          7
+    sexsat03 |        438    3.899543    1.849967          1          7
+     sexquan |        440    3.011364    .9604279          1          5
+ sexorgasm01 |        436    4.880734    1.945108          1          7
+-------------+---------------------------------------------------------
+sexactBala~e |        440    3.552273    1.776073         -3          7
+      sexfan |        440    4.019318    1.577595          1          7
+  sexmastB01 |        438    4.477169    2.027992          1          7
+  sexpornB01 |        440    3.161364     1.84696          1          7
+   sexcomm01 |        439    4.747153    2.118053          1          7
+-------------+---------------------------------------------------------
+    sexnet01 |        438     3.53653    2.158966          1          7
+    sexnet02 |        439    3.644647    1.911611          1          7
+couplebond01 |        437    6.212815     1.25728          1          7
+couplebond02 |        436    6.211009    1.370114          1          7
+ coupleint01 |        438    5.990868    1.384751          1          7
+-------------+---------------------------------------------------------
+coupledur~on |        440    9.539962    5.914898        4.5   45.16667
+
+. 
+. 
+. sum age education stress01 healthphys01 bigfiveO coupleduration if coupledurationCat == 1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |        430     25.3907    5.515049         17         54
+   education |        431    4.257541    .9027258          1          7
+    stress01 |        430    5.062791    1.777419          1          7
+healthphys01 |        430    5.223256    2.067941          1          7
+    bigfiveO |        431    5.824826    1.043278          1          7
+-------------+---------------------------------------------------------
+coupledur~on |        431    .7770688    .4496719   .0833333   1.583333
+
+. sum age education stress01 healthphys01 bigfiveO coupleduration if coupledurationCat == 2
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |        420    26.58333    6.292793         17         60
+   education |        423      4.3026    .9919906          2          7
+    stress01 |        423    5.167849    1.772006          1          7
+healthphys01 |        422    5.281991    2.041984          1          7
+    bigfiveO |        423    5.646572     1.14413        1.5          7
+-------------+---------------------------------------------------------
+coupledur~on |        423    2.856186    .7947443   1.666667   4.416667
+
+. sum age education stress01 healthphys01 bigfiveO coupleduration if coupledurationCat == 3
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+         age |        439    31.74032    8.492059         16         68
+   education |        440    4.397727    1.231143          1          7
+    stress01 |        440         4.9     1.88363          1          7
+healthphys01 |        439    5.232346    2.018352          1          7
+    bigfiveO |        439    5.578588    1.183543          1          7
+-------------+---------------------------------------------------------
+coupledur~on |        440    9.539962    5.914898        4.5   45.16667
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\06_SEM_Gruppe_Beziehungsl
+> änge_Beschreibung.log
+  log type:  text
+ closed on:  15 May 2022, 18:19:58
+------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,1685 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\13_Baseline_CFI-TLI.log
+  log type:  text
+ opened on:  15 May 2022, 18:21:31
+
+. 
+. 
+. //######## SEM final ADF standardisiert - CFI TLI standard Baseline ########
+. //Modell ohne Kontrollvariablen
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> ,
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(39 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  11.216343  
+Iteration 1:   discrepancy =  1.3627524  
+Iteration 2:   discrepancy =  1.3627524  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =  11.216343  
+Iteration 1:   discrepancy =  1.3627524  
+Iteration 2:   discrepancy =  1.3627524  
+
+Structural equation model                       Number of obs     =      1,255
+Estimation method  = adf
+Discrepancy        =  1.3627524
+
+------------------------------------------------------------------------------------
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   7.136372   .2618058    27.26   0.000     6.623242    7.649502
+     mean(sexsat02)|    10.6374   .6060122    17.55   0.000     9.449636    11.82516
+     mean(sexsat03)|    3.95293    .081016    48.79   0.000     3.794142    4.111719
+ mean(couplebond01)|   13.27602   .7901097    16.80   0.000     11.72744    14.82461
+ mean(couplebond02)|   6.932182    .294943    23.50   0.000     6.354105     7.51026
+  mean(coupleint01)|   9.829227   .4846016    20.28   0.000     8.879426    10.77903
+     mean(sexnet01)|    1.72948   .0311158    55.58   0.000     1.668494    1.790466
+     mean(sexnet02)|   2.340764   .0469537    49.85   0.000     2.248736    2.432791
+      mean(sexquan)|   4.716839   .0909542    51.86   0.000     4.538572    4.895106
+mean(sexactBalance)|   2.931663   .0875678    33.48   0.000     2.760033    3.103292
+  mean(sexorgasm01)|   2.769535   .0612297    45.23   0.000     2.649526    2.889543
+     mean(sexfan02)|   2.845069     .05787    49.16   0.000     2.731646    2.958492
+   mean(sexpornB01)|   1.793982    .032369    55.42   0.000      1.73054    1.857424
+   mean(sexmastB01)|   2.595276   .0567712    45.71   0.000     2.484007    2.706546
+    mean(sexcomm01)|   2.416295   .0548389    44.06   0.000     2.308813    2.523778
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(105) =  1710.25, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+        chi2_ms(105) |   1710.254   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   1710.254   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.110   Root mean squared error of approximation
+ 90% CI, lower bound |      0.106
+         upper bound |      0.115
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      1.180   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //######## SEM final ADF standardisiert - CFI TLI standard Baseline ########
+. //Modell MIT Kontrollvariablen
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> (age)
+> (education)
+> (stress01)
+> (healthphys01)
+> (bigfiveO)
+> (coupleduration)
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(48 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  17.402132  
+Iteration 1:   discrepancy =  1.8996539  
+Iteration 2:   discrepancy =  1.8996539  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =  17.402132  
+Iteration 1:   discrepancy =  1.8996539  
+Iteration 2:   discrepancy =  1.8996539  
+
+Structural equation model                       Number of obs     =      1,246
+Estimation method  = adf
+Discrepancy        =  1.8996539
+
+-------------------------------------------------------------------------------------
+       Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------+----------------------------------------------------------------
+      mean(sexsat01)|   7.769007   .2967865    26.18   0.000     7.187316    8.350698
+      mean(sexsat02)|   10.95621   .6116226    17.91   0.000     9.757448    12.15496
+      mean(sexsat03)|   4.100804    .081174    50.52   0.000     3.941706    4.259903
+  mean(couplebond01)|    13.3972   .7398344    18.11   0.000     11.94715    14.84724
+  mean(couplebond02)|   8.143682   .3913587    20.81   0.000     7.376633    8.910731
+   mean(coupleint01)|   10.63188   .5349263    19.88   0.000     9.583445    11.68032
+      mean(sexnet01)|   1.755125   .0303864    57.76   0.000     1.695568    1.814681
+      mean(sexnet02)|   2.343413   .0441214    53.11   0.000     2.256937    2.429889
+       mean(sexquan)|   4.788953   .0871058    54.98   0.000     4.618229    4.959677
+ mean(sexactBalance)|   2.895811   .0789973    36.66   0.000     2.740979    3.050643
+   mean(sexorgasm01)|   2.797214   .0578658    48.34   0.000     2.683799    2.910629
+      mean(sexfan02)|   2.894038   .0574914    50.34   0.000     2.781357    3.006719
+    mean(sexpornB01)|    1.79689   .0317291    56.63   0.000     1.734702    1.859078
+    mean(sexmastB01)|   2.615588   .0557945    46.88   0.000     2.506233    2.724943
+     mean(sexcomm01)|   2.420237   .0524874    46.11   0.000     2.317363     2.52311
+           mean(age)|    5.02136   .1659873    30.25   0.000     4.696031     5.34669
+     mean(education)|   4.771977   .0904035    52.79   0.000     4.594789    4.949164
+      mean(stress01)|   3.313021   .0804088    41.20   0.000     3.155423    3.470619
+  mean(healthphys01)|   3.104983   .0762059    40.74   0.000     2.955622    3.254344
+      mean(bigfiveO)|   6.867011   .2402822    28.58   0.000     6.396066    7.337955
+mean(coupleduration)|   2.049399   .2952887     6.94   0.000     1.470644    2.628154
+--------------------+----------------------------------------------------------------
+       var(sexsat01)|          1          .                             .           .
+       var(sexsat02)|          1          .                             .           .
+       var(sexsat03)|          1          .                             .           .
+   var(couplebond01)|          1          .                             .           .
+   var(couplebond02)|          1          .                             .           .
+    var(coupleint01)|          1          .                             .           .
+       var(sexnet01)|          1          .                             .           .
+       var(sexnet02)|          1          .                             .           .
+        var(sexquan)|          1          .                             .           .
+  var(sexactBalance)|          1          .                             .           .
+    var(sexorgasm01)|          1          .                             .           .
+       var(sexfan02)|          1          .                             .           .
+     var(sexpornB01)|          1          .                             .           .
+     var(sexmastB01)|          1          .                             .           .
+      var(sexcomm01)|          1          .                             .           .
+            var(age)|          1          .                             .           .
+      var(education)|          1          .                             .           .
+       var(stress01)|          1          .                             .           .
+   var(healthphys01)|          1          .                             .           .
+       var(bigfiveO)|          1          .                             .           .
+ var(coupleduration)|          1          .                             .           .
+-------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(210) =  2366.97, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+        chi2_ms(210) |   2366.969   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(210) |   2366.969   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.091   Root mean squared error of approximation
+ 90% CI, lower bound |      0.088
+         upper bound |      0.094
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.950   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. 
+. //######## SEM Kernmodell ADF standardisiert - CFI TLI standard Baseline ########
+. //Kernmodell
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(17 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 sexquan sexactBalance sexorgasm01
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =   5.132261  
+Iteration 1:   discrepancy =  .57884734  
+Iteration 2:   discrepancy =  .57884734  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =   5.132261  
+Iteration 1:   discrepancy =  .57884734  
+Iteration 2:   discrepancy =  .57884734  
+
+Structural equation model                       Number of obs     =      1,277
+Estimation method  = adf
+Discrepancy        =  .57884734
+
+------------------------------------------------------------------------------------
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   6.177621   .2133497    28.96   0.000     5.759463    6.595778
+     mean(sexsat02)|   8.586412    .392238    21.89   0.000      7.81764    9.355184
+     mean(sexsat03)|   3.627601   .0710253    51.07   0.000     3.488394    3.766808
+      mean(sexquan)|   4.514308   .0835425    54.04   0.000     4.350568    4.678049
+mean(sexactBalance)|     2.6847   .0801031    33.52   0.000     2.527701    2.841699
+  mean(sexorgasm01)|     2.6242   .0596009    44.03   0.000     2.507384    2.741016
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(15)  =   739.19, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+         chi2_ms(15) |    739.188   model vs. saturated
+            p > chi2 |      0.000
+         chi2_bs(15) |    739.188   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.194   Root mean squared error of approximation
+ 90% CI, lower bound |      0.183
+         upper bound |      0.207
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      1.313   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. //######## SEM final ML SB standardisiert - CFI TLI standard Baseline ########
+. //Modell ohne Kontrollvariablen
+. //ML SB
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)
+> vce(sbentler)  
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(39 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -36390.393  
+Iteration 1:   log pseudolikelihood = -36390.393  
+
+Structural equation model                       Number of obs     =      1,255
+Estimation method  = ml
+Log pseudolikelihood= -36390.393
+
+------------------------------------------------------------------------------------
+                   |           Satorra-Bentler
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   3.030537   .0440016    68.87   0.000     2.944296    3.116779
+     mean(sexsat02)|   3.077666   .0400714    76.80   0.000     2.999127    3.156204
+     mean(sexsat03)|   2.364933   .0370211    63.88   0.000     2.292373    2.437494
+ mean(couplebond01)|   5.177258    .073708    70.24   0.000     5.032793    5.321723
+ mean(couplebond02)|    3.98686   .0836081    47.69   0.000     3.822991    4.150729
+  mean(coupleint01)|   4.592119    .082939    55.37   0.000     4.429562    4.754676
+     mean(sexnet01)|   1.641614   .0309529    53.04   0.000     1.580947     1.70228
+     mean(sexnet02)|   2.050425   .0388304    52.80   0.000     1.974319    2.126531
+      mean(sexquan)|   3.446982   .0486416    70.86   0.000     3.351647    3.542318
+mean(sexactBalance)|   2.188776   .0567943    38.54   0.000     2.077462    2.300091
+  mean(sexorgasm01)|   2.293654   .0495652    46.28   0.000     2.196508      2.3908
+     mean(sexfan02)|   2.359014     .04096    57.59   0.000     2.278734    2.439294
+   mean(sexpornB01)|   1.636643    .028847    56.74   0.000     1.580104    1.693182
+   mean(sexmastB01)|   2.170683   .0432427    50.20   0.000     2.085929    2.255437
+    mean(sexcomm01)|   2.284644   .0555298    41.14   0.000     2.175807     2.39348
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(105) =   6310.30, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(105) =   5807.96, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(105) |   6310.301   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   6310.301   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(105) |   5807.963   
+            p > chi2 |      0.000
+      chi2sb_bs(105) |  2.380e+19   
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.217   Root mean squared error of approximation
+ 90% CI, lower bound |      0.212
+         upper bound |      0.222
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.208   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  72840.786   Akaike's information criterion
+                 BIC |  72994.833   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      1.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.224   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //######## SEM final ML OHNE SB standardisiert - CFI TLI standard Baseline ########
+. //Modell ohne Kontrollvariablen
+. //ML
+. 
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> , 
+> 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(39 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting target model:
+
+Iteration 0:   log likelihood = -36390.393  
+Iteration 1:   log likelihood = -36390.393  
+
+Structural equation model                       Number of obs     =      1,255
+Estimation method  = ml
+Log likelihood     = -36390.393
+
+------------------------------------------------------------------------------------
+                   |                 OIM
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   3.030537   .0667521    45.40   0.000     2.899706    3.161369
+     mean(sexsat02)|   3.077666   .0676057    45.52   0.000     2.945161    3.210171
+     mean(sexsat03)|   2.364933   .0550006    43.00   0.000     2.257134    2.472733
+ mean(couplebond01)|   5.177258   .1071247    48.33   0.000     4.967298    5.387219
+ mean(couplebond02)|    3.98686   .0844364    47.22   0.000     3.821368    4.152352
+  mean(coupleint01)|   4.592119   .0959074    47.88   0.000     4.404144    4.780094
+     mean(sexnet01)|   1.641614    .043249    37.96   0.000     1.556847     1.72638
+     mean(sexnet02)|   2.050425   .0497173    41.24   0.000     1.952981    2.147869
+      mean(sexquan)|   3.446982   .0743677    46.35   0.000     3.301224     3.59274
+mean(sexactBalance)|   2.188776   .0520142    42.08   0.000     2.086831    2.290722
+  mean(sexorgasm01)|   2.293654   .0537845    42.65   0.000     2.188239     2.39907
+     mean(sexfan02)|   2.359014   .0548992    42.97   0.000     2.251414    2.466614
+   mean(sexpornB01)|   1.636643   .0431739    37.91   0.000     1.552024    1.721263
+   mean(sexmastB01)|   2.170683   .0517112    41.98   0.000     2.069331    2.272035
+    mean(sexcomm01)|   2.284644   .0536315    42.60   0.000     2.179528     2.38976
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(105) =   6310.30, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(105) |   6310.301   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   6310.301   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.217   Root mean squared error of approximation
+ 90% CI, lower bound |      0.212
+         upper bound |      0.222
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  72840.786   Akaike's information criterion
+                 BIC |  72994.833   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.224   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. //######## SEM Modell Alternative mit Mittelwerten - CFI TLI standard Baseline ADF ########
+. //Modell ohne Kontrollvariablen
+. //Mean statt Lat
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsatMean)
+> (coupleMean)
+> (distractMean)                          
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(adf)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(16 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsatMean coupleMean distractMean sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01 sexmastB01 sexcomm01
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  2.8869545  
+Iteration 1:   discrepancy =  .80370563  
+Iteration 2:   discrepancy =  .80370563  (backed up)
+
+Fitting target model:
+
+Iteration 0:   discrepancy =  2.8869545  
+Iteration 1:   discrepancy =  .80370563  
+Iteration 2:   discrepancy =  .80370563  (backed up)
+
+Structural equation model                       Number of obs     =      1,278
+Estimation method  = adf
+Discrepancy        =  .80370563
+
+------------------------------------------------------------------------------------
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+   mean(sexsatMean)|   6.221357   .2071742    30.03   0.000     5.815302    6.627411
+   mean(coupleMean)|   6.649996   .2840615    23.41   0.000     6.093246    7.206747
+ mean(distractMean)|   2.302997   .0422638    54.49   0.000     2.220162    2.385833
+      mean(sexquan)|   4.583222   .0940961    48.71   0.000     4.398797    4.767647
+mean(sexactBalance)|   2.694331   .0805601    33.44   0.000     2.536436    2.852226
+  mean(sexorgasm01)|   2.607064   .0593383    43.94   0.000     2.490763    2.723365
+     mean(sexfan02)|   2.757896   .0537623    51.30   0.000     2.652524    2.863268
+   mean(sexpornB01)|   1.811115   .0327518    55.30   0.000     1.746922    1.875307
+   mean(sexmastB01)|   2.547112   .0555903    45.82   0.000     2.438157    2.656067
+    mean(sexcomm01)|   2.373664    .054642    43.44   0.000     2.266567     2.48076
+-------------------+----------------------------------------------------------------
+    var(sexsatMean)|          1          .                             .           .
+    var(coupleMean)|          1          .                             .           .
+  var(distractMean)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(45)  =  1027.14, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+         chi2_ms(45) |   1027.136   model vs. saturated
+            p > chi2 |      0.000
+         chi2_bs(45) |   1027.136   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.131   Root mean squared error of approximation
+ 90% CI, lower bound |      0.124
+         upper bound |      0.138
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.495   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //######## SEM final ML SB standardisiert Gruppenvergleich - CFI TLI standard Baseline ########
+. //Modell MIT Kontrollvariablen
+. //Gruppe 2
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> (age)
+> (education)
+> (stress01)
+> (healthphys01)
+> (bigfiveO)
+> (coupleduration)
+> 
+> if coupledurationCat == 1
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(16 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -16116.443  
+Iteration 1:   log pseudolikelihood = -16116.443  
+
+Structural equation model                       Number of obs     =        415
+Estimation method  = ml
+Log pseudolikelihood= -16116.443
+
+-------------------------------------------------------------------------------------
+                    |           Satorra-Bentler
+       Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------+----------------------------------------------------------------
+      mean(sexsat01)|   3.917473   .0940697    41.64   0.000     3.733099    4.101846
+      mean(sexsat02)|   4.142945   .0953942    43.43   0.000     3.955976    4.329915
+      mean(sexsat03)|   2.903349   .0827592    35.08   0.000     2.741144    3.065554
+  mean(couplebond01)|   5.301713   .1237915    42.83   0.000     5.059086     5.54434
+  mean(couplebond02)|   3.514952   .1167825    30.10   0.000     3.286063    3.743842
+   mean(coupleint01)|   4.744935   .1010025    46.98   0.000     4.546974    4.942897
+      mean(sexnet01)|   1.716188   .0560392    30.62   0.000     1.606353    1.826023
+      mean(sexnet02)|   2.160863   .0708044    30.52   0.000     2.022089    2.299637
+       mean(sexquan)|   4.322393   .1190433    36.31   0.000     4.089073    4.555714
+ mean(sexactBalance)|   2.571904   .1195999    21.50   0.000     2.337492    2.806315
+   mean(sexorgasm01)|   2.241103   .0787388    28.46   0.000     2.086777    2.395428
+      mean(sexfan02)|   2.530328   .0763101    33.16   0.000     2.380763    2.679893
+    mean(sexpornB01)|   1.554108   .0495563    31.36   0.000      1.45698    1.651237
+    mean(sexmastB01)|   2.179431   .0720333    30.26   0.000     2.038248    2.320614
+     mean(sexcomm01)|   2.378763   .1051661    22.62   0.000     2.172641    2.584885
+           mean(age)|   4.707299   .2335165    20.16   0.000     4.249615    5.164983
+     mean(education)|    4.78462   .1668689    28.67   0.000     4.457563    5.111677
+      mean(stress01)|   2.867035   .1117957    25.65   0.000     2.647919     3.08615
+  mean(healthphys01)|    2.49444   .1030317    24.21   0.000     2.292502    2.696379
+      mean(bigfiveO)|    5.76304   .2446482    23.56   0.000     5.283539    6.242542
+mean(coupleduration)|   1.727993   .0562256    30.73   0.000     1.617793    1.838193
+--------------------+----------------------------------------------------------------
+       var(sexsat01)|          1          .                             .           .
+       var(sexsat02)|          1          .                             .           .
+       var(sexsat03)|          1          .                             .           .
+   var(couplebond01)|          1          .                             .           .
+   var(couplebond02)|          1          .                             .           .
+    var(coupleint01)|          1          .                             .           .
+       var(sexnet01)|          1          .                             .           .
+       var(sexnet02)|          1          .                             .           .
+        var(sexquan)|          1          .                             .           .
+  var(sexactBalance)|          1          .                             .           .
+    var(sexorgasm01)|          1          .                             .           .
+       var(sexfan02)|          1          .                             .           .
+     var(sexpornB01)|          1          .                             .           .
+     var(sexmastB01)|          1          .                             .           .
+      var(sexcomm01)|          1          .                             .           .
+            var(age)|          1          .                             .           .
+      var(education)|          1          .                             .           .
+       var(stress01)|          1          .                             .           .
+   var(healthphys01)|          1          .                             .           .
+       var(bigfiveO)|          1          .                             .           .
+ var(coupleduration)|          1          .                             .           .
+-------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(210) =   2242.87, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(210) =   2165.77, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(210) |   2242.874   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(210) |   2242.874   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(210) |   2165.770   
+            p > chi2 |      0.000
+      chi2sb_bs(210) |  3.343e+19   
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.153   Root mean squared error of approximation
+ 90% CI, lower bound |      0.147
+         upper bound |      0.158
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.150   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  32316.886   Akaike's information criterion
+                 BIC |  32486.073   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |     -0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      1.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.169   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. //######## SEM final ML SB standardisiert Gruppenvergleich - CFI TLI standard Baseline ########
+. //Modell MIT Kontrollvariablen
+. //Gruppe 3
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> (age)
+> (education)
+> (stress01)
+> (healthphys01)
+> (bigfiveO)
+> (coupleduration)
+> 
+> if coupledurationCat == 2
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(15 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -16533.694  
+Iteration 1:   log pseudolikelihood = -16533.694  
+
+Structural equation model                       Number of obs     =        408
+Estimation method  = ml
+Log pseudolikelihood= -16533.694
+
+-------------------------------------------------------------------------------------
+                    |           Satorra-Bentler
+       Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------+----------------------------------------------------------------
+      mean(sexsat01)|   3.020755   .0796152    37.94   0.000     2.864712    3.176798
+      mean(sexsat02)|   2.931496   .0678759    43.19   0.000     2.798461     3.06453
+      mean(sexsat03)|   2.270548   .0585798    38.76   0.000     2.155734    2.385362
+  mean(couplebond01)|   5.330879   .1506764    35.38   0.000     5.035559    5.626199
+  mean(couplebond02)|   4.161988   .1554309    26.78   0.000     3.857349    4.466628
+   mean(coupleint01)|   4.567035    .182733    24.99   0.000     4.208885    4.925185
+      mean(sexnet01)|   1.585692   .0520869    30.44   0.000     1.483603     1.68778
+      mean(sexnet02)|   2.103732   .0679763    30.95   0.000     1.970501    2.236963
+       mean(sexquan)|   3.680819   .0935555    39.34   0.000     3.497453    3.864184
+ mean(sexactBalance)|   2.092313   .0920793    22.72   0.000     1.911841    2.272785
+   mean(sexorgasm01)|   2.177608   .0798896    27.26   0.000     2.021027    2.334189
+      mean(sexfan02)|   2.328168   .0699158    33.30   0.000     2.191135      2.4652
+    mean(sexpornB01)|   1.646667   .0506892    32.49   0.000     1.547317    1.746016
+    mean(sexmastB01)|    2.14859   .0758578    28.32   0.000     1.999911    2.297268
+     mean(sexcomm01)|   2.253194   .0917565    24.56   0.000     2.073354    2.433033
+           mean(age)|   4.296651   .2285343    18.80   0.000     3.848732     4.74457
+     mean(education)|   4.343879   .1330413    32.65   0.000     4.083123    4.604635
+      mean(stress01)|   2.898819   .1080638    26.83   0.000     2.687018     3.11062
+  mean(healthphys01)|   2.600302   .1028635    25.28   0.000     2.398694    2.801911
+      mean(bigfiveO)|   4.892466   .1946607    25.13   0.000     4.510938    5.273994
+mean(coupleduration)|   3.601405   .0900406    40.00   0.000     3.424929    3.777882
+--------------------+----------------------------------------------------------------
+       var(sexsat01)|          1          .                             .           .
+       var(sexsat02)|          1          .                             .           .
+       var(sexsat03)|          1          .                             .           .
+   var(couplebond01)|          1          .                             .           .
+   var(couplebond02)|          1          .                             .           .
+    var(coupleint01)|          1          .                             .           .
+       var(sexnet01)|          1          .                             .           .
+       var(sexnet02)|          1          .                             .           .
+        var(sexquan)|          1          .                             .           .
+  var(sexactBalance)|          1          .                             .           .
+    var(sexorgasm01)|          1          .                             .           .
+       var(sexfan02)|          1          .                             .           .
+     var(sexpornB01)|          1          .                             .           .
+     var(sexmastB01)|          1          .                             .           .
+      var(sexcomm01)|          1          .                             .           .
+            var(age)|          1          .                             .           .
+      var(education)|          1          .                             .           .
+       var(stress01)|          1          .                             .           .
+   var(healthphys01)|          1          .                             .           .
+       var(bigfiveO)|          1          .                             .           .
+ var(coupleduration)|          1          .                             .           .
+-------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(210) =   2333.10, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(210) =   2243.05, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(210) |   2333.104   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(210) |   2333.104   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(210) |   2243.050   
+            p > chi2 |      0.000
+      chi2sb_bs(210) | -7.192e+18   
+            p > chi2 |      1.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.157   Root mean squared error of approximation
+ 90% CI, lower bound |      0.152
+         upper bound |      0.163
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.154   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  33151.388   Akaike's information criterion
+                 BIC |  33319.861   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.183   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //######## SEM final ML SB standardisiert Gruppenvergleich - CFI TLI standard Baseline ########
+. //Modell MIT Kontrollvariablen
+. //Gruppe 3
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> (age)
+> (education)
+> (stress01)
+> (healthphys01)
+> (bigfiveO)
+> (coupleduration)
+> 
+> if coupledurationCat == 3
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(17 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -18283.122  
+Iteration 1:   log pseudolikelihood = -18283.122  
+
+Structural equation model                       Number of obs     =        423
+Estimation method  = ml
+Log pseudolikelihood= -18283.122
+
+-------------------------------------------------------------------------------------
+                    |           Satorra-Bentler
+       Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------+----------------------------------------------------------------
+      mean(sexsat01)|   2.591227   .0641698    40.38   0.000     2.465456    2.716997
+      mean(sexsat02)|   2.673926   .0614904    43.49   0.000     2.553407    2.794445
+      mean(sexsat03)|    2.11673   .0576483    36.72   0.000     2.003741    2.229719
+  mean(couplebond01)|   4.926252   .0991389    49.69   0.000     4.731944    5.120561
+  mean(couplebond02)|   4.584868   .1394337    32.88   0.000     4.311583    4.858153
+   mean(coupleint01)|   4.483849   .1087443    41.23   0.000     4.270714    4.696984
+      mean(sexnet01)|   1.631581   .0561365    29.06   0.000     1.521556    1.741607
+      mean(sexnet02)|    1.90898    .062244    30.67   0.000     1.786984    2.030976
+       mean(sexquan)|   3.122092   .0742059    42.07   0.000     2.976651    3.267532
+ mean(sexactBalance)|     1.9943   .0898295    22.20   0.000     1.818237    2.170362
+   mean(sexorgasm01)|   2.505931   .0964016    25.99   0.000     2.316988    2.694875
+      mean(sexfan02)|   2.250545   .0651413    34.55   0.000     2.122871     2.37822
+    mean(sexpornB01)|   1.717006   .0510636    33.62   0.000     1.616923    1.817089
+    mean(sexmastB01)|   2.189503   .0742359    29.49   0.000     2.044004    2.335003
+     mean(sexcomm01)|   2.242239   .0889708    25.20   0.000      2.06786    2.416619
+           mean(age)|   3.793873   .1270168    29.87   0.000     3.544924    4.042821
+     mean(education)|   3.586541   .0971577    36.91   0.000     3.396115    3.776966
+      mean(stress01)|   2.575633   .0942617    27.32   0.000     2.390884    2.760383
+  mean(healthphys01)|   2.598089   .0966253    26.89   0.000     2.408707    2.787471
+      mean(bigfiveO)|   4.698591   .1989202    23.62   0.000     4.308715    5.088467
+mean(coupleduration)|   1.645081   .0375959    43.76   0.000     1.571394    1.718767
+--------------------+----------------------------------------------------------------
+       var(sexsat01)|          1          .                             .           .
+       var(sexsat02)|          1          .                             .           .
+       var(sexsat03)|          1          .                             .           .
+   var(couplebond01)|          1          .                             .           .
+   var(couplebond02)|          1          .                             .           .
+    var(coupleint01)|          1          .                             .           .
+       var(sexnet01)|          1          .                             .           .
+       var(sexnet02)|          1          .                             .           .
+        var(sexquan)|          1          .                             .           .
+  var(sexactBalance)|          1          .                             .           .
+    var(sexorgasm01)|          1          .                             .           .
+       var(sexfan02)|          1          .                             .           .
+     var(sexpornB01)|          1          .                             .           .
+     var(sexmastB01)|          1          .                             .           .
+      var(sexcomm01)|          1          .                             .           .
+            var(age)|          1          .                             .           .
+      var(education)|          1          .                             .           .
+       var(stress01)|          1          .                             .           .
+   var(healthphys01)|          1          .                             .           .
+       var(bigfiveO)|          1          .                             .           .
+ var(coupleduration)|          1          .                             .           .
+-------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(210) =   2931.66, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(210) =   2686.57, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(210) |   2931.656   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(210) |   2931.656   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(210) |   2686.565   
+            p > chi2 |      0.000
+      chi2sb_bs(210) | -2.237e+18   
+            p > chi2 |      1.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.175   Root mean squared error of approximation
+ 90% CI, lower bound |      0.169
+         upper bound |      0.181
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.167   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  36650.244   Akaike's information criterion
+                 BIC |  36820.234   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.189   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //-----------------------------------------------------
+. 
+. //Pornomodelle
+. 
+. //######## SEM final Modell Alternative mit Porno auf Häufigkeit und Zufriedenheit ########
+. //######## SEM final Modell Alternative mit Porno auf Häufigkeit und Zufriedenheit  - rekursiv ########
+. //Modell OHNE Kontrollvariablen
+. //Baselinemodell entspricht normalem Baseline-Modell, da keine zusätzlichen variablen eingeführt werden und auch keine anderen Schätzer benutzt werden
+. 
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+(39 observations with missing values excluded)
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  11.216343  
+Iteration 1:   discrepancy =  1.3627524  
+Iteration 2:   discrepancy =  1.3627524  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =  11.216343  
+Iteration 1:   discrepancy =  1.3627524  
+Iteration 2:   discrepancy =  1.3627524  
+
+Structural equation model                       Number of obs     =      1,255
+Estimation method  = adf
+Discrepancy        =  1.3627524
+
+------------------------------------------------------------------------------------
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   7.136372   .2618058    27.26   0.000     6.623242    7.649502
+     mean(sexsat02)|    10.6374   .6060122    17.55   0.000     9.449636    11.82516
+     mean(sexsat03)|    3.95293    .081016    48.79   0.000     3.794142    4.111719
+ mean(couplebond01)|   13.27602   .7901097    16.80   0.000     11.72744    14.82461
+ mean(couplebond02)|   6.932182    .294943    23.50   0.000     6.354105     7.51026
+  mean(coupleint01)|   9.829227   .4846016    20.28   0.000     8.879426    10.77903
+     mean(sexnet01)|    1.72948   .0311158    55.58   0.000     1.668494    1.790466
+     mean(sexnet02)|   2.340764   .0469537    49.85   0.000     2.248736    2.432791
+      mean(sexquan)|   4.716839   .0909542    51.86   0.000     4.538572    4.895106
+mean(sexactBalance)|   2.931663   .0875678    33.48   0.000     2.760033    3.103292
+  mean(sexorgasm01)|   2.769535   .0612297    45.23   0.000     2.649526    2.889543
+     mean(sexfan02)|   2.845069     .05787    49.16   0.000     2.731646    2.958492
+   mean(sexpornB01)|   1.793982    .032369    55.42   0.000      1.73054    1.857424
+   mean(sexmastB01)|   2.595276   .0567712    45.71   0.000     2.484007    2.706546
+    mean(sexcomm01)|   2.416295   .0548389    44.06   0.000     2.308813    2.523778
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(105) =  1710.25, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+        chi2_ms(105) |   1710.254   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   1710.254   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.110   Root mean squared error of approximation
+ 90% CI, lower bound |      0.106
+         upper bound |      0.115
+              pclose |      0.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      1.180   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //-----------------------------------------------------
+. 
+. //Split Half
+. 
+. //######## SEM final Modell Split Half 1 ########
+. 
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> if splitHalf == 0
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> ;
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -18228.745  
+Iteration 1:   log pseudolikelihood = -18228.745  
+
+Structural equation model                       Number of obs     =        628
+Estimation method  = ml
+Log pseudolikelihood= -18228.745
+
+------------------------------------------------------------------------------------
+                   |           Satorra-Bentler
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   2.998897   .0583765    51.37   0.000     2.884481    3.113313
+     mean(sexsat02)|   2.983338   .0542275    55.02   0.000     2.877054    3.089622
+     mean(sexsat03)|   2.380476   .0503124    47.31   0.000     2.281866    2.479087
+ mean(couplebond01)|   5.066559   .0841449    60.21   0.000     4.901638     5.23148
+ mean(couplebond02)|   3.867345   .1170706    33.03   0.000     3.637891    4.096799
+  mean(coupleint01)|   4.534933   .1063503    42.64   0.000      4.32649    4.743375
+     mean(sexnet01)|   1.608009   .0428456    37.53   0.000     1.524034    1.691985
+     mean(sexnet02)|   2.005437   .0540659    37.09   0.000      1.89947    2.111405
+      mean(sexquan)|    3.33374   .0664235    50.19   0.000     3.203553    3.463928
+mean(sexactBalance)|   2.205375   .0799959    27.57   0.000     2.048586    2.362164
+  mean(sexorgasm01)|    2.37175   .0750177    31.62   0.000     2.224718    2.518782
+     mean(sexfan02)|   2.419321    .059474    40.68   0.000     2.302754    2.535887
+   mean(sexpornB01)|   1.615866   .0378829    42.65   0.000     1.541617    1.690115
+   mean(sexmastB01)|   2.137066   .0610577    35.00   0.000     2.017395    2.256737
+    mean(sexcomm01)|   2.344238   .0800775    29.27   0.000     2.187289    2.501187
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(105) =   3326.23, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(105) =   3104.85, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(105) |   3326.226   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   3326.226   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(105) |   3104.848   
+            p > chi2 |      0.000
+      chi2sb_bs(105) | -9.738e+18   
+            p > chi2 |      1.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.221   Root mean squared error of approximation
+ 90% CI, lower bound |      0.215
+         upper bound |      0.228
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.213   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  36517.489   Akaike's information criterion
+                 BIC |  36650.765   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.228   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. 
+. 
+. //######## SEM final Modell Split Half 2 ########
+. 
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> 
+> (sexsat01)
+> (sexsat02)
+> (sexsat03)
+> 
+> (couplebond01)
+> (couplebond02)
+> (coupleint01)
+> 
+> (sexnet01)                              
+> (sexnet02)      
+> 
+> (sexquan)
+> (sexactBalance)         
+> (sexorgasm01)
+> 
+> (sexfan02)
+> (sexpornB01)
+> (sexmastB01)
+> 
+> (sexcomm01)
+> 
+> if splitHalf == 1
+> 
+> , 
+> latent () 
+> standardized nocnsreport nocapslatent 
+> method(ml)  
+> vce(sbentler)
+> covstructure(_Ex, diagonal)                             //setzt alle Varianzen auf 1 und alle Kovarianzen auf 0
+> 
+> ;
+
+Exogenous variables
+
+Observed:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02 sexquan sexactBalance sexorgasm01 sexfan02 sexpornB01
+           sexmastB01 sexcomm01
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -18147.018  
+Iteration 1:   log pseudolikelihood = -18147.018  
+
+Structural equation model                       Number of obs     =        627
+Estimation method  = ml
+Log pseudolikelihood= -18147.018
+
+------------------------------------------------------------------------------------
+                   |           Satorra-Bentler
+      Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------------+----------------------------------------------------------------
+     mean(sexsat01)|   3.064766   .0629518    48.68   0.000     2.941383    3.188149
+     mean(sexsat02)|   3.180418   .0586287    54.25   0.000     3.065508    3.295329
+     mean(sexsat03)|   2.350263   .0541806    43.38   0.000     2.244071    2.456455
+ mean(couplebond01)|   5.295905   .1224598    43.25   0.000     5.055888    5.535922
+ mean(couplebond02)|    4.11742   .1159875    35.50   0.000     3.890089    4.344752
+  mean(coupleint01)|   4.651556    .123874    37.55   0.000     4.408767    4.894344
+     mean(sexnet01)|   1.676659   .0449017    37.34   0.000     1.588653    1.764665
+     mean(sexnet02)|   2.106602   .0560669    37.57   0.000     1.996713    2.216491
+      mean(sexquan)|   3.571463   .0709882    50.31   0.000     3.432329    3.710597
+mean(sexactBalance)|   2.173127    .078307    27.75   0.000     2.019648    2.326606
+  mean(sexorgasm01)|   2.222249   .0656641    33.84   0.000      2.09355    2.350948
+     mean(sexfan02)|    2.30402   .0565846    40.72   0.000     2.193116    2.414924
+   mean(sexpornB01)|   1.660764   .0435883    38.10   0.000     1.575332    1.746195
+   mean(sexmastB01)|   2.205866    .060759    36.31   0.000      2.08678    2.324951
+    mean(sexcomm01)|   2.228634   .0755465    29.50   0.000     2.080566    2.376703
+-------------------+----------------------------------------------------------------
+      var(sexsat01)|          1          .                             .           .
+      var(sexsat02)|          1          .                             .           .
+      var(sexsat03)|          1          .                             .           .
+  var(couplebond01)|          1          .                             .           .
+  var(couplebond02)|          1          .                             .           .
+   var(coupleint01)|          1          .                             .           .
+      var(sexnet01)|          1          .                             .           .
+      var(sexnet02)|          1          .                             .           .
+       var(sexquan)|          1          .                             .           .
+ var(sexactBalance)|          1          .                             .           .
+   var(sexorgasm01)|          1          .                             .           .
+      var(sexfan02)|          1          .                             .           .
+    var(sexpornB01)|          1          .                             .           .
+    var(sexmastB01)|          1          .                             .           .
+     var(sexcomm01)|          1          .                             .           .
+------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(105) =   3106.39, Prob > chi2 = 0.0000
+Satorra-Bentler scaled test:    chi2(105) =   2846.88, Prob > chi2 = 0.0000
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(105) |   3106.391   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(105) |   3106.391   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(105) |   2846.879   
+            p > chi2 |      0.000
+      chi2sb_bs(105) | -1.109e+19   
+            p > chi2 |      1.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.214   Root mean squared error of approximation
+ 90% CI, lower bound |      0.207
+         upper bound |      0.220
+              pclose |      0.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.204   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  36354.035   Akaike's information criterion
+                 BIC |  36487.264   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.000   Comparative fit index
+                 TLI |      0.000   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.000   Comparative fit index
+              TLI_SB |      1.000   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.222   Standardized root mean squared residual
+----------------------------------------------------------------------------
+Note: CD is not reported because there are no endogenous variables.
+
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\13_Baseline_CFI-TLI.log
+  log type:  text
+ closed on:  15 May 2022, 18:21:37
+------------------------------------------------------------------------------------------------------------------------------------------------------------

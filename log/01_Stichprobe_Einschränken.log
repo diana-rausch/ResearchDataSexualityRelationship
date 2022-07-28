@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\01_Stichprobe_Einschränken.log
+  log type:  text
+ opened on:  25 May 2022, 15:36:30
+
+. 
+. /********** STICHPROBE EINSCHRAENKEN ************
+> Eingrenzen des Datensatzes auf relevante Stichprobe
+> */
+. 
+. 
+. drop if dispcode ==22                                                                           //entfernt Befragte, die nicht vollständig ausgefüllt haben
+(1,715 observations deleted)
+
+. 
+. drop if gender == 2                                                                                     //entfernt Männer
+(827 observations deleted)
+
+. drop if gender == 3                                                                                     //entfernt "andere"
+(21 observations deleted)
+
+. 
+. drop if coupletype == 1                                                                         //entfernt "ohne Beziehung"
+(469 observations deleted)
+
+. 
+. drop if sexorient > 3                                                                           //entfernt alle homosexuellen und "lehne ab" (Was passiert mit .n?, das ist danach nicht mehr da - auch ent
+> fernt?)
+(152 observations deleted)
+
+. 
+. drop if sexact_time == .m                                                                       //entfernt alle, die keine sexuellen Erfahrungen angegeben haben
+(0 observations deleted)
+
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\01_Stichprobe_Einschränken.log
+  log type:  text
+ closed on:  25 May 2022, 15:36:30
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

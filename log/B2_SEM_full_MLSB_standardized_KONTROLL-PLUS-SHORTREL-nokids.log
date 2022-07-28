@@ -1,0 +1,121 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\B2_SEM_full_MLSB_standardized_KONTROLL-PLUS-SHORT
+> REL-nokids.log
+  log type:  text
+ opened on:   1 Jun 2015, 00:13:02
+
+. 
+. //------------------------------------------------------------
+. //######## SEM final ADF standardisiert ########
+. //mit Kontrollvariablen
+. //alle Kovarianzen frei
+. //kurze Bezdau
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> ${gesamtModellPfade}
+> ${kontrollVariablenPfade}
+> ${kontrollVariablenPfadePlus}
+> if coupledurationCat == 1 & kids == 0
+> , 
+> latent (sexsatlat distract couple) 
+> standardized nocnsreport nocapslatent 
+> method(ml)
+> vce(sbentler)  
+> cov(
+> ${kontrollVariablenKovarianzen}
+> ${kontrollVariablenKovarianzenPlus}
+> )
+> ;
+(13 observations with missing values excluded)
+
+Endogenous variables
+
+Observed:     sexquan sexactBalance sexorgasm01 sexfan02
+Measurement:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02
+Latent:       sexsatlat distract
+
+Exogenous variables
+
+Observed:     sexpornB01 sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration healthment kids religious nonmonogamy
+Latent:       couple
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -17289.646  (not concave)
+Iteration 1:   log pseudolikelihood = -16961.413  (not concave)
+Iteration 2:   log pseudolikelihood = -15189.267  (not concave)
+Iteration 3:   log pseudolikelihood = -14570.965  (not concave)
+Iteration 4:   log pseudolikelihood =  -13918.43  (not concave)
+Iteration 5:   log pseudolikelihood = -13578.483  (not concave)
+Iteration 6:   log pseudolikelihood = -12887.602  (not concave)
+Iteration 7:   log pseudolikelihood = -12709.248  (not concave)
+Iteration 8:   log pseudolikelihood = -12500.572  (not concave)
+Iteration 9:   log pseudolikelihood = -12205.103  (not concave)
+Iteration 10:  log pseudolikelihood = -12041.516  (not concave)
+Iteration 11:  log pseudolikelihood = -11842.502  (not concave)
+Iteration 12:  log pseudolikelihood = -11545.419  (not concave)
+Iteration 13:  log pseudolikelihood = -11374.276  (not concave)
+Iteration 14:  log pseudolikelihood = -11149.933  (not concave)
+Iteration 15:  log pseudolikelihood = -10691.845  (not concave)
+Iteration 16:  log pseudolikelihood = -10221.734  (not concave)
+Iteration 17:  log pseudolikelihood = -9673.8274  (not concave)
+Iteration 18:  log pseudolikelihood = -9525.3218  (not concave)
+Iteration 19:  log pseudolikelihood = -9345.0371  (not concave)
+Iteration 20:  log pseudolikelihood = -9086.1132  (not concave)
+Iteration 21:  log pseudolikelihood = -8943.0691  (not concave)
+Iteration 22:  log pseudolikelihood =  -8772.409  (not concave)
+Iteration 23:  log pseudolikelihood = -8539.0445  (not concave)
+Iteration 24:  log pseudolikelihood = -7832.2656  (not concave)
+Iteration 25:  log pseudolikelihood = -7611.7817  (not concave)
+Iteration 26:  log pseudolikelihood = -7133.8549  (not concave)
+Iteration 27:  log pseudolikelihood = -6485.3387  (not concave)
+Iteration 28:  log pseudolikelihood = -6298.5848  (not concave)
+Iteration 29:  log pseudolikelihood = -6015.2705  (not concave)
+Iteration 30:  log pseudolikelihood = -5852.9424  (not concave)
+Iteration 31:  log pseudolikelihood = -5640.4827  (not concave)
+Iteration 32:  log pseudolikelihood =  -5233.507  (not concave)
+Iteration 33:  log pseudolikelihood = -4916.9602  (not concave)
+Iteration 34:  log pseudolikelihood = -4725.8751  (not concave)
+Iteration 35:  log pseudolikelihood =   -4430.18  (not concave)
+Iteration 36:  log pseudolikelihood = -4260.3906  (not concave)
+Iteration 37:  log pseudolikelihood = -4032.0971  (not concave)
+Iteration 38:  log pseudolikelihood =  -3915.376  (not concave)
+Iteration 39:  log pseudolikelihood =  -3790.406  (not concave)
+Iteration 40:  log pseudolikelihood = -3652.8837  (not concave)
+Iteration 41:  log pseudolikelihood = -3639.1299  (not concave)
+Iteration 42:  log pseudolikelihood = -3633.5659  (not concave)
+Iteration 43:  log pseudolikelihood = -3631.3303  (not concave)
+Iteration 44:  log pseudolikelihood = -3631.2744  (not concave)
+Iteration 45:  log pseudolikelihood = -3631.2716  (not concave)
+Iteration 46:  log pseudolikelihood = -3631.2705  (not concave)
+Iteration 47:  log pseudolikelihood =   -3631.27  (not concave)
+Iteration 48:  log pseudolikelihood = -3631.2697  (not concave)
+Iteration 49:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 50:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 51:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 52:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 53:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 54:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 55:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 56:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 57:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 58:  log pseudolikelihood = -3631.2696  (not concave)
+Iteration 59:  log pseudolikelihood = -3631.2696  (not concave)
+--Break--
+r(1);
+
+end of do-file
+
+--Break--
+r(1);
+
+. log close
+      name:  <unnamed>
+       log:  \log\B2_SEM_full_MLSB_standardized_KONTROLL-PLUS-SHORT
+> REL-nokids.log
+  log type:  text
+ closed on:   1 Jun 2015, 00:14:04
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

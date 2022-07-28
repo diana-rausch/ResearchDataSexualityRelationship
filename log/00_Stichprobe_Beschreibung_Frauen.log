@@ -1,0 +1,266 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\00_Stichprobe_Beschreibun
+> g_Frauen.log
+  log type:  text
+ opened on:  15 May 2022, 18:21:37
+
+. 
+. //####### Beschreibung der eingeschränkten Stichprobe (nur Frauen in Bez.) ######
+. 
+. tab ageCat, missing
+
+     ageCat |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          8        0.62        0.62
+          2 |        483       37.33       37.94
+          3 |        408       31.53       69.47
+          4 |        181       13.99       83.46
+          5 |        104        8.04       91.50
+          6 |         51        3.94       95.44
+          7 |         26        2.01       97.45
+          8 |         28        2.16       99.61
+         .m |          5        0.39      100.00
+------------+-----------------------------------
+      Total |      1,294      100.00
+
+. 
+. tab ageCat gender, missing
+
+           | Geschlecht
+    ageCat |  Weiblich |     Total
+-----------+-----------+----------
+         1 |         8 |         8 
+         2 |       483 |       483 
+         3 |       408 |       408 
+         4 |       181 |       181 
+         5 |       104 |       104 
+         6 |        51 |        51 
+         7 |        26 |        26 
+         8 |        28 |        28 
+        .m |         5 |         5 
+-----------+-----------+----------
+     Total |     1,294 |     1,294 
+
+
+. 
+. tab education, missing
+
+                                Bildung |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                    Kein Schulabschluss |          2        0.15        0.15
+                    Hauptschulabschluss |         32        2.47        2.63
+            Realschule (Mittlere Reife) |        224       17.31       19.94
+                     Gymnasium (Abitur) |        564       43.59       63.52
+                  Hochschule (Bachelor) |        245       18.93       82.46
+Hochschule (Master, Magister, Diplom, S |        218       16.85       99.30
+                 Hochschule (Promotion) |          9        0.70      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      1,294      100.00
+
+. tab education gender, missing
+
+                      | Geschlecht
+              Bildung |  Weiblich |     Total
+----------------------+-----------+----------
+  Kein Schulabschluss |         2 |         2 
+  Hauptschulabschluss |        32 |        32 
+Realschule (Mittlere  |       224 |       224 
+   Gymnasium (Abitur) |       564 |       564 
+Hochschule (Bachelor) |       245 |       245 
+Hochschule (Master, M |       218 |       218 
+Hochschule (Promotion |         9 |         9 
+----------------------+-----------+----------
+                Total |     1,294 |     1,294 
+
+
+. 
+. tab hhincome, missing
+
+                       Einkommen |      Freq.     Percent        Cum.
+---------------------------------+-----------------------------------
+Weniger als 10.000 Euro pro Jahr |        288       22.26       22.26
+   10.000 - 20.000 Euro pro Jahr |        204       15.77       38.02
+   20.000 - 30.000 Euro pro Jahr |        161       12.44       50.46
+   30.000 - 40.000 Euro pro Jahr |        133       10.28       60.74
+   40.000 - 50.000 Euro pro Jahr |        106        8.19       68.93
+   50.000 - 60.000 Euro pro Jahr |         69        5.33       74.27
+   60.000 - 70.000 Euro pro Jahr |         61        4.71       78.98
+   70.000 - 80.000 Euro pro Jahr |         29        2.24       81.22
+   80.000 - 90.000 Euro pro Jahr |         20        1.55       82.77
+   Mehr als 90.000 Euro pro Jahr |         30        2.32       85.09
+                              .m |        193       14.91      100.00
+---------------------------------+-----------------------------------
+                           Total |      1,294      100.00
+
+. tab hhincome gender, missing
+
+                      | Geschlecht
+            Einkommen |  Weiblich |     Total
+----------------------+-----------+----------
+Weniger als 10.000 Eu |       288 |       288 
+10.000 - 20.000 Euro  |       204 |       204 
+20.000 - 30.000 Euro  |       161 |       161 
+30.000 - 40.000 Euro  |       133 |       133 
+40.000 - 50.000 Euro  |       106 |       106 
+50.000 - 60.000 Euro  |        69 |        69 
+60.000 - 70.000 Euro  |        61 |        61 
+70.000 - 80.000 Euro  |        29 |        29 
+80.000 - 90.000 Euro  |        20 |        20 
+Mehr als 90.000 Euro  |        30 |        30 
+                   .m |       193 |       193 
+----------------------+-----------+----------
+                Total |     1,294 |     1,294 
+
+
+. 
+. tab religion, missing
+
+    Religion |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+       Keine |        623       48.15       48.15
+  Katholisch |        240       18.55       66.69
+ Evangelisch |        344       26.58       93.28
+  Muslimisch |         11        0.85       94.13
+Buddhistisch |         20        1.55       95.67
+Hinduistisch |          1        0.08       95.75
+     J�disch |          3        0.23       95.98
+      Andere |         52        4.02      100.00
+-------------+-----------------------------------
+       Total |      1,294      100.00
+
+. tab religion gender, missing
+
+             | Geschlecht
+    Religion |  Weiblich |     Total
+-------------+-----------+----------
+       Keine |       623 |       623 
+  Katholisch |       240 |       240 
+ Evangelisch |       344 |       344 
+  Muslimisch |        11 |        11 
+Buddhistisch |        20 |        20 
+Hinduistisch |         1 |         1 
+     J�disch |         3 |         3 
+      Andere |        52 |        52 
+-------------+-----------+----------
+       Total |     1,294 |     1,294 
+
+
+. 
+. tab polatt, missing
+
+ Politische |
+Einstellung |      Freq.     Percent        Cum.
+------------+-----------------------------------
+      links |         71        5.49        5.49
+            |        115        8.89       14.37
+            |        260       20.09       34.47
+            |        214       16.54       51.00
+            |        168       12.98       63.99
+            |        295       22.80       86.79
+            |         85        6.57       93.35
+            |         47        3.63       96.99
+            |         22        1.70       98.69
+            |          5        0.39       99.07
+     rechts |          2        0.15       99.23
+         .m |         10        0.77      100.00
+------------+-----------------------------------
+      Total |      1,294      100.00
+
+. tab polatt gender, missing
+
+Politische |
+Einstellun | Geschlecht
+         g |  Weiblich |     Total
+-----------+-----------+----------
+     links |        71 |        71 
+           |       115 |       115 
+           |       260 |       260 
+           |       214 |       214 
+           |       168 |       168 
+           |       295 |       295 
+           |        85 |        85 
+           |        47 |        47 
+           |        22 |        22 
+           |         5 |         5 
+    rechts |         2 |         2 
+        .m |        10 |        10 
+-----------+-----------+----------
+     Total |     1,294 |     1,294 
+
+
+. sum polatt
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      polatt |      1,284    4.507788    1.918227          1         11
+
+. sum polatt if gender == 1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      polatt |      1,284    4.507788    1.918227          1         11
+
+. sum polatt if gender == 2
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      polatt |          0
+
+. 
+. tab coupletype, missing
+
+                          Beziehungstyp |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+Monogame Beziehung mit einem festen Par |      1,178       91.04       91.04
+Offene Beziehung mit einem festen Partn |         84        6.49       97.53
+Beziehung mit mehreren Partnern, die si |          7        0.54       98.07
+Beziehungen mit mehreren Partnern, die  |         25        1.93      100.00
+----------------------------------------+-----------------------------------
+                                  Total |      1,294      100.00
+
+. tab coupletype gender, missing
+
+                      | Geschlecht
+        Beziehungstyp |  Weiblich |     Total
+----------------------+-----------+----------
+Monogame Beziehung mi |     1,178 |     1,178 
+Offene Beziehung mit  |        84 |        84 
+Beziehung mit mehrere |         7 |         7 
+Beziehungen mit mehre |        25 |        25 
+----------------------+-----------+----------
+                Total |     1,294 |     1,294 
+
+
+. 
+. tab sexorient, missing
+
+              sexuelle Orientierung |      Freq.     Percent        Cum.
+------------------------------------+-----------------------------------
+       Ausschlie�lich heterosexuell |        645       49.85       49.85
+           Vorwiegend heterosexuell |        548       42.35       92.19
+                          Bisexuell |        101        7.81      100.00
+------------------------------------+-----------------------------------
+                              Total |      1,294      100.00
+
+. tab sexorient gender, missing
+
+                      | Geschlecht
+sexuelle Orientierung |  Weiblich |     Total
+----------------------+-----------+----------
+Ausschlie�lich hetero |       645 |       645 
+Vorwiegend heterosexu |       548 |       548 
+            Bisexuell |       101 |       101 
+----------------------+-----------+----------
+                Total |     1,294 |     1,294 
+
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\00_Stichprobe_Beschreibun
+> g_Frauen.log
+  log type:  text
+ closed on:  15 May 2022, 18:21:37
+------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,473 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\04_SEM_full_ADF_standardized.log
+  log type:  text
+ opened on:  25 May 2022, 10:09:45
+
+. 
+. 
+. //######## SEM global Variable für Gesamtmodellpfade #######
+. 
+. #delimit ;
+delimiter now ;
+. global gesamtModellPfade = "
+> 
+> (sexsatlat -> sexsat01)
+> (sexsatlat -> sexsat02)
+> (sexsatlat -> sexsat03)
+> 
+> (couple -> couplebond01)
+> (couple -> couplebond02)
+> (couple -> coupleint01)
+> 
+> (distract -> sexnet01)                          
+> (distract -> sexnet02)  
+> 
+> (sexquan -> sexsatlat)
+> (sexactBalance -> sexsatlat)            
+> (sexactBalance -> sexorgasm01)
+> (sexorgasm01 -> sexsatlat)
+> (sexactBalance -> sexquan)              
+> 
+> (sexfan02 -> sexactBalance)
+> (sexfan02 -> sexquan)                           
+> (sexpornB01 -> sexactBalance)
+> (sexpornB01 -> sexfan02)
+> (sexmastB01 -> sexfan02)
+> 
+> (sexcomm01 -> sexactBalance)
+> (sexcomm01 -> distract)
+> (sexcomm01 -> sexsatlat)        
+> 
+> (distract -> sexorgasm01)
+> (distract -> sexactBalance)
+> (sexpornB01 -> distract)
+> (distract -> sexsatlat)
+> 
+> (couple -> sexsatlat)
+> (couple -> distract)
+> (couple -> sexquan)
+> 
+> ";
+
+. global gesamtModellKovarianzen = "
+> 
+> sexmastB01*sexpornB01 
+> sexmastB01*couple@0 
+> sexmastB01*sexcomm01@0 
+> sexpornB01*couple@0 
+> sexpornB01*sexcomm01@0 
+> sexcomm01*couple
+> 
+> ";
+
+. #delimit cr
+delimiter now cr
+. 
+. 
+. 
+. //######## SEM final ADF standardisiert ########
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> ${gesamtModellPfade}
+> , 
+> latent (sexsatlat distract couple) 
+> standardized nocnsreport nocapslatent 
+> method(adf)  
+> cov(
+> ${gesamtModellKovarianzen}
+> )
+> ;
+(39 observations with missing values excluded)
+
+Endogenous variables
+
+Observed:     sexquan sexactBalance sexorgasm01 sexfan02
+Measurement:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02
+Latent:       sexsatlat distract
+
+Exogenous variables
+
+Observed:     sexpornB01 sexmastB01 sexcomm01
+Latent:       couple
+
+Fitting baseline model:
+
+Iteration 0:   discrepancy =  10.928739  
+Iteration 1:   discrepancy =   1.231131  
+Iteration 2:   discrepancy =   1.231131  
+
+Fitting target model:
+
+Iteration 0:   discrepancy =   22.29727  (not concave)
+Iteration 1:   discrepancy =  5.5584104  (not concave)
+Iteration 2:   discrepancy =  2.3665616  (not concave)
+Iteration 3:   discrepancy =  .51129855  (not concave)
+Iteration 4:   discrepancy =  .28773389  (not concave)
+Iteration 5:   discrepancy =  .16001044  
+Iteration 6:   discrepancy =  .13511478  
+Iteration 7:   discrepancy =  .12784551  
+Iteration 8:   discrepancy =  .12783935  
+Iteration 9:   discrepancy =  .12783935  
+
+Structural equation model                       Number of obs     =      1,255
+Estimation method  = adf
+Discrepancy        =  .12783935
+
+-------------------------------------------------------------------------------------------
+             Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------+----------------------------------------------------------------
+Structural                |
+  sexquan <-              |
+            sexactBalance |   .2360456   .0297063     7.95   0.000     .1778224    .2942688
+                 sexfan02 |   .0893586   .0291249     3.07   0.002     .0322747    .1464424
+                   couple |   .1251316   .0284504     4.40   0.000     .0693698    .1808935
+                    _cons |   2.829517   .1092064    25.91   0.000     2.615476    3.043557
+  ------------------------+----------------------------------------------------------------
+  sexactBalance <-        |
+                 sexfan02 |   .2241319   .0278617     8.04   0.000     .1695241    .2787397
+                 distract |  -.2047608    .034466    -5.94   0.000    -.2723129   -.1372087
+               sexpornB01 |    .165424   .0301282     5.49   0.000     .1063739    .2244741
+                sexcomm01 |   .0746904     .02706     2.76   0.006     .0216538     .127727
+                    _cons |   1.234577   .1094126    11.28   0.000     1.020133    1.449022
+  ------------------------+----------------------------------------------------------------
+  sexorgasm01 <-          |
+            sexactBalance |   .1583811    .027238     5.81   0.000     .1049956    .2117666
+                 distract |   -.250506   .0337082    -7.43   0.000    -.3165729   -.1844391
+                    _cons |   1.928725   .0840327    22.95   0.000     1.764024    2.093426
+  ------------------------+----------------------------------------------------------------
+  sexfan02 <-             |
+               sexpornB01 |   .2498315   .0281319     8.88   0.000      .194694    .3049689
+               sexmastB01 |   .2385174   .0293573     8.12   0.000     .1809782    .2960566
+                    _cons |   1.447082   .0746292    19.39   0.000     1.300811    1.593353
+  ------------------------+----------------------------------------------------------------
+  sexsatlat <-            |
+                  sexquan |   .4697441   .0221696    21.19   0.000     .4262924    .5131958
+            sexactBalance |   .1264242   .0269642     4.69   0.000     .0735753    .1792731
+              sexorgasm01 |   .2178104   .0242414     8.99   0.000      .170298    .2653227
+                 distract |  -.1571201   .0349544    -4.49   0.000    -.2256295   -.0886107
+                sexcomm01 |   .0892433    .021687     4.12   0.000     .0467375    .1317491
+                   couple |   .2547204    .025852     9.85   0.000     .2040513    .3053895
+  ------------------------+----------------------------------------------------------------
+  distract <-             |
+               sexpornB01 |   .0745555   .0358916     2.08   0.038     .0042092    .1449017
+                sexcomm01 |  -.1678964   .0349821    -4.80   0.000    -.2364599   -.0993328
+                   couple |  -.1984984   .0371662    -5.34   0.000    -.2713427   -.1256541
+--------------------------+----------------------------------------------------------------
+Measurement               |
+  sexsat01 <-             |
+                sexsatlat |   .8517529   .0124728    68.29   0.000     .8273067    .8761991
+                    _cons |   .8462703   .1223618     6.92   0.000     .6064456    1.086095
+  ------------------------+----------------------------------------------------------------
+  sexsat02 <-             |
+                sexsatlat |   .9335693   .0084356   110.67   0.000     .9170358    .9501027
+                    _cons |   .7596841   .1239945     6.13   0.000     .5166594    1.002709
+  ------------------------+----------------------------------------------------------------
+  sexsat03 <-             |
+                sexsatlat |   .7874566   .0148751    52.94   0.000      .758302    .8166113
+                    _cons |   .3054386   .0991465     3.08   0.002      .111115    .4997622
+  ------------------------+----------------------------------------------------------------
+  couplebond01 <-         |
+                   couple |   .8761739   .0162656    53.87   0.000     .8442938    .9080539
+                    _cons |    5.49817   .1938584    28.36   0.000     5.118215    5.878126
+  ------------------------+----------------------------------------------------------------
+  couplebond02 <-         |
+                   couple |   .7298107   .0240182    30.39   0.000      .682736    .7768855
+                    _cons |   4.186695   .1437948    29.12   0.000     3.904862    4.468528
+  ------------------------+----------------------------------------------------------------
+  coupleint01 <-          |
+                   couple |   .8569407   .0184634    46.41   0.000      .820753    .8931284
+                    _cons |     4.8703   .1581962    30.79   0.000     4.560241    5.180359
+  ------------------------+----------------------------------------------------------------
+  sexnet01 <-             |
+                 distract |   .6960289   .0370711    18.78   0.000     .6233708     .768687
+                    _cons |   1.816196   .0753596    24.10   0.000     1.668494    1.963898
+  ------------------------+----------------------------------------------------------------
+  sexnet02 <-             |
+                 distract |   .6542733   .0371734    17.60   0.000     .5814148    .7271317
+                    _cons |   2.237679   .0759485    29.46   0.000     2.088823    2.386535
+--------------------------+----------------------------------------------------------------
+          mean(sexpornB01)|   1.643034   .0248386    66.15   0.000     1.594351    1.691716
+          mean(sexmastB01)|   2.185472   .0448356    48.74   0.000     2.097596    2.273349
+           mean(sexcomm01)|   2.290979   .0516974    44.32   0.000     2.189654    2.392304
+--------------------------+----------------------------------------------------------------
+           var(e.sexsat01)|    .274517   .0212474                      .2358777    .3194859
+           var(e.sexsat02)|   .1284485   .0157504                      .1010076    .1633442
+           var(e.sexsat03)|    .379912    .023427                      .3366622    .4287181
+       var(e.couplebond01)|   .2323194    .028503                      .1826637    .2954734
+       var(e.couplebond02)|   .4673763   .0350574                      .4034771    .5413952
+        var(e.coupleint01)|   .2656527   .0316442                      .2103392     .335512
+           var(e.sexnet01)|   .5155438   .0516052                       .423703    .6272918
+           var(e.sexnet02)|   .5719265   .0486431                      .4841104    .6756721
+            var(e.sexquan)|   .9058363   .0171708                      .8727997    .9401235
+      var(e.sexactBalance)|   .8497522   .0198593                      .8117068    .8895808
+        var(e.sexorgasm01)|   .8962614   .0189682                      .8598449    .9342202
+           var(e.sexfan02)|   .8240402   .0200236                      .7857146    .8642353
+          var(e.sexsatlat)|   .4463966    .022326                      .4047148    .4923712
+           var(e.distract)|   .9201639   .0194709                      .8827821    .9591287
+           var(sexpornB01)|          1          .                             .           .
+           var(sexmastB01)|          1          .                             .           .
+            var(sexcomm01)|          1          .                             .           .
+               var(couple)|          1          .                             .           .
+--------------------------+----------------------------------------------------------------
+cov(sexpornB01,sexmastB01)|   .4753669    .020922    22.72   0.000     .4343605    .5163734
+     cov(sexcomm01,couple)|   .1003201   .0304108     3.30   0.001     .0407159    .1599242
+-------------------------------------------------------------------------------------------
+Discr. test of model vs. saturated: chi2(75)  =   160.44, Prob > chi2 = 0.0000
+
+.                                                                                                                                                                                                            
+>                                                                                                                                                                      #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Discrepancy          |
+         chi2_ms(75) |    160.438   model vs. saturated
+            p > chi2 |      0.000
+        chi2_bs(102) |   1545.069   baseline vs. saturated
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.030   Root mean squared error of approximation
+ 90% CI, lower bound |      0.024
+         upper bound |      0.037
+              pclose |      1.000   Probability RMSEA <= 0.05
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.941   Comparative fit index
+                 TLI |      0.919   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.062   Standardized root mean squared residual
+                  CD |      0.910   Coefficient of determination
+----------------------------------------------------------------------------
+
+. 
+. //-----Berechnung der Signifikanz bestimmter indirekter Effekte-----
+. nlcom _b[sexsatlat:sexquan]*_b[sexquan:sexactBalance]
+
+       _nl_1:  _b[sexsatlat:sexquan]*_b[sexquan:sexactBalance]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0939071   .0136041     6.90   0.000     .0672435    .1205707
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexorgasm01]*_b[sexorgasm01:sexactBalance]
+
+       _nl_1:  _b[sexsatlat:sexorgasm01]*_b[sexorgasm01:sexactBalance]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0292162   .0062722     4.66   0.000     .0169229    .0415095
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:distract]*_b[distract:couple]
+
+       _nl_1:  _b[sexsatlat:distract]*_b[distract:couple]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0437867   .0130256     3.36   0.001     .0182569    .0693165
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexquan]*_b[sexquan:couple]
+
+       _nl_1:  _b[sexsatlat:sexquan]*_b[sexquan:couple]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0825244   .0193365     4.27   0.000     .0446255    .1204232
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexactBalance]*_b[sexactBalance:distract]
+
+       _nl_1:  _b[sexsatlat:sexactBalance]*_b[sexactBalance:distract]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |  -.0250239   .0064324    -3.89   0.000    -.0376312   -.0124167
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexorgasm01]*_b[sexorgasm01:distract]
+
+       _nl_1:  _b[sexsatlat:sexorgasm01]*_b[sexorgasm01:distract]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |  -.0527443   .0092285    -5.72   0.000    -.0708319   -.0346567
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:distract]*_b[distract:sexcomm01]
+
+       _nl_1:  _b[sexsatlat:distract]*_b[distract:sexcomm01]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |    .017313   .0052125     3.32   0.001     .0070967    .0275293
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexactBalance]*_b[sexactBalance:sexcomm01]
+
+       _nl_1:  _b[sexsatlat:sexactBalance]*_b[sexactBalance:sexcomm01]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0061972   .0025995     2.38   0.017     .0011022    .0112921
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexactBalance]*_b[sexactBalance:sexfan02]
+
+       _nl_1:  _b[sexsatlat:sexactBalance]*_b[sexactBalance:sexfan02]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0240383   .0061881     3.88   0.000     .0119099    .0361667
+------------------------------------------------------------------------------
+
+. nlcom _b[sexsatlat:sexquan]*_b[sexquan:sexfan02]
+
+       _nl_1:  _b[sexsatlat:sexquan]*_b[sexquan:sexfan02]
+
+------------------------------------------------------------------------------
+             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _nl_1 |   .0356096   .0116491     3.06   0.002     .0127777    .0584415
+------------------------------------------------------------------------------
+
+. 
+. //######## Schätzen der Ausprägung der latenten Variablen anhand des Modells //########
+. 
+. predict sexsatlatModelpred, xblatent(sexsatlat)
+(39 observations containing extended missing values excluded)
+(39 missing values generated)
+
+. sum sexsatlatModelpred, detail
+
+                Linear prediction (sexsatlat)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     1.025576        .223551
+ 5%     1.791224        .411676
+10%     2.288904       .5132741       Obs               1,255
+25%     3.043333       .6062281       Sum of Wgt.       1,255
+
+50%     3.875934                      Mean           3.764857
+                        Largest       Std. Dev.      1.092562
+75%     4.550152        6.07169
+90%     5.134922       6.073181       Variance       1.193691
+95%     5.379884       6.081714       Skewness      -.4096949
+99%     5.862403       6.124503       Kurtosis       2.780383
+
+. 
+. predict distractModelpred, xblatent(distract)
+(39 observations containing extended missing values excluded)
+(39 missing values generated)
+
+. sum distractModelpred, detail
+
+                Linear prediction (distract)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%    -.9601381      -.9689376
+ 5%    -.9216374       -.967755
+10%    -.8461736      -.9671761       Obs               1,255
+25%      -.70632      -.9640106       Sum of Wgt.       1,255
+
+50%    -.4147155                      Mean          -.3677147
+                        Largest       Std. Dev.      .4068248
+75%    -.1120127         .85751
+90%     .1900121       .9368736       Variance       .1655064
+95%     .3880523       .9943069       Skewness       .6797844
+99%     .7478436       1.343026       Kurtosis       3.070072
+
+. 
+. predict sexsatlatMeasurementPred, latent(sexsatlat)
+(39 observations containing extended missing values excluded)
+(39 missing values generated)
+
+. sum sexsatlatMeasurementPred, detail
+
+                  Factor score (sexsatlat)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     .1738455      -.0826257
+ 5%     .9290603       -.033828
+10%     1.646322       .0080389       Obs               1,255
+25%     2.830431       .0173093       Sum of Wgt.       1,255
+
+50%     4.054558                      Mean           3.742511
+                        Largest       Std. Dev.      1.404094
+75%     4.849085       5.738256
+90%     5.384043       5.738506       Variance       1.971481
+95%     5.508969       5.739944       Skewness      -.7105409
+99%     5.656929        5.74715       Kurtosis       2.687504
+
+. 
+. predict coupleMeasurementPred, latent(couple)
+(39 observations containing extended missing values excluded)
+(39 missing values generated)
+
+. sum coupleMeasurementPred, detail
+
+                    Factor score (couple)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%     -3.52012      -4.343796
+ 5%    -2.188761      -4.317365
+10%    -1.427692      -4.273115       Obs               1,255
+25%    -.4333717      -4.222266       Sum of Wgt.       1,255
+
+50%     .3353621                      Mean          -.0461176
+                        Largest       Std. Dev.       .986004
+75%     .6945469       .7897714
+90%     .7340714       .7899424       Variance       .9722039
+95%     .7474368       .7907689       Skewness      -1.672962
+99%      .777078       .7950863       Kurtosis       5.673737
+
+. 
+. predict distractMeasurementPred, latent(distract)
+(39 observations containing extended missing values excluded)
+(39 missing values generated)
+
+. sum distractMeasurementPred, detail
+
+                   Factor score (distract)
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%    -2.408431      -2.607276
+ 5%     -2.15954      -2.582772
+10%     -1.92005      -2.566809       Obs               1,255
+25%    -1.314743      -2.503715       Sum of Wgt.       1,255
+
+50%    -.4267568                      Mean           -.361573
+                        Largest       Std. Dev.      1.174981
+75%     .5235053       2.366704
+90%     1.245193       2.381752       Variance       1.380581
+95%      1.62841       2.418157       Skewness       .2072349
+99%     2.232061       2.422212       Kurtosis       2.179707
+
+. 
+. 
+.         
+. log close
+      name:  <unnamed>
+       log:  \log\04_SEM_full_ADF_standardized.log
+  log type:  text
+ closed on:  25 May 2022, 10:09:48
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,478 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  \log\B2_SEM_full_MLSB_standard
+> ized_healthment-no.log
+  log type:  text
+ opened on:  15 May 2022, 18:22:21
+
+. 
+. //######## SEM final MLSB standardisiert Pornos ########
+. 
+. #delimit ;
+delimiter now ;
+. sem
+> ${gesamtModellPfade}
+> ${kontrollVariablenPfade}
+> if
+> healthment < 4
+> ,
+> latent (sexsatlat distract couple) 
+> standardized nocnsreport nocapslatent 
+> method(ml)
+> vce(sbentler)   
+> cov(
+> ${gesamtModellKovarianzen}
+> ${kontrollVariablenKovarianzen}
+> )
+> ;
+(20 observations with missing values excluded)
+
+Endogenous variables
+
+Observed:     sexquan sexactBalance sexorgasm01 sexfan02
+Measurement:  sexsat01 sexsat02 sexsat03 couplebond01 couplebond02 coupleint01 sexnet01 sexnet02
+Latent:       sexsatlat distract
+
+Exogenous variables
+
+Observed:     sexpornB01 sexmastB01 sexcomm01 age education stress01 healthphys01 bigfiveO coupleduration
+Latent:       couple
+
+Fitting target model:
+
+Iteration 0:   log pseudolikelihood = -21646.535  (not concave)
+Iteration 1:   log pseudolikelihood = -20811.545  (not concave)
+Iteration 2:   log pseudolikelihood =   -19298.7  (not concave)
+Iteration 3:   log pseudolikelihood = -18510.194  (not concave)
+Iteration 4:   log pseudolikelihood = -18450.994  (not concave)
+Iteration 5:   log pseudolikelihood = -18345.617  (not concave)
+Iteration 6:   log pseudolikelihood =  -18319.91  (not concave)
+Iteration 7:   log pseudolikelihood = -18311.601  (not concave)
+Iteration 8:   log pseudolikelihood = -18307.428  (not concave)
+Iteration 9:   log pseudolikelihood = -18303.033  (not concave)
+Iteration 10:  log pseudolikelihood =  -18302.01  (not concave)
+Iteration 11:  log pseudolikelihood = -18300.735  (not concave)
+Iteration 12:  log pseudolikelihood = -18299.385  (not concave)
+Iteration 13:  log pseudolikelihood = -18298.783  (not concave)
+Iteration 14:  log pseudolikelihood = -18298.267  (not concave)
+Iteration 15:  log pseudolikelihood = -18297.759  (not concave)
+Iteration 16:  log pseudolikelihood = -18297.297  (not concave)
+Iteration 17:  log pseudolikelihood = -18296.853  (not concave)
+Iteration 18:  log pseudolikelihood = -18296.415  (not concave)
+Iteration 19:  log pseudolikelihood = -18295.991  (not concave)
+Iteration 20:  log pseudolikelihood =  -18295.58  (not concave)
+Iteration 21:  log pseudolikelihood = -18295.176  (not concave)
+Iteration 22:  log pseudolikelihood =  -18294.78  (not concave)
+Iteration 23:  log pseudolikelihood = -18294.392  (not concave)
+Iteration 24:  log pseudolikelihood =  -18294.01  (not concave)
+Iteration 25:  log pseudolikelihood = -18293.634  (not concave)
+Iteration 26:  log pseudolikelihood = -18293.263  (not concave)
+Iteration 27:  log pseudolikelihood = -18292.896  (not concave)
+Iteration 28:  log pseudolikelihood = -18292.534  (not concave)
+Iteration 29:  log pseudolikelihood = -18292.176  (not concave)
+Iteration 30:  log pseudolikelihood = -18291.822  (not concave)
+Iteration 31:  log pseudolikelihood = -18291.471  (not concave)
+Iteration 32:  log pseudolikelihood = -18291.123  (not concave)
+Iteration 33:  log pseudolikelihood = -18290.778  (not concave)
+Iteration 34:  log pseudolikelihood = -18290.436  (not concave)
+Iteration 35:  log pseudolikelihood = -18290.096  (not concave)
+Iteration 36:  log pseudolikelihood = -18289.758  (not concave)
+Iteration 37:  log pseudolikelihood = -18289.423  (not concave)
+Iteration 38:  log pseudolikelihood =  -18289.09  (not concave)
+Iteration 39:  log pseudolikelihood = -18288.758  (not concave)
+Iteration 40:  log pseudolikelihood = -18288.428  (not concave)
+Iteration 41:  log pseudolikelihood = -18288.099  (not concave)
+Iteration 42:  log pseudolikelihood = -18287.772  (not concave)
+Iteration 43:  log pseudolikelihood = -18287.445  (not concave)
+Iteration 44:  log pseudolikelihood =  -18287.12  (not concave)
+Iteration 45:  log pseudolikelihood = -18286.795  (not concave)
+Iteration 46:  log pseudolikelihood = -18286.471  (not concave)
+Iteration 47:  log pseudolikelihood = -18286.147  (not concave)
+Iteration 48:  log pseudolikelihood = -18285.823  (not concave)
+Iteration 49:  log pseudolikelihood =   -18285.5  (not concave)
+Iteration 50:  log pseudolikelihood = -18285.176  (not concave)
+Iteration 51:  log pseudolikelihood = -18284.852  (not concave)
+Iteration 52:  log pseudolikelihood = -18284.528  (not concave)
+Iteration 53:  log pseudolikelihood = -18284.203  (not concave)
+Iteration 54:  log pseudolikelihood = -18283.877  (not concave)
+Iteration 55:  log pseudolikelihood =  -18283.55  (not concave)
+Iteration 56:  log pseudolikelihood = -18283.222  (not concave)
+Iteration 57:  log pseudolikelihood = -18282.893  (not concave)
+Iteration 58:  log pseudolikelihood = -18282.562  (not concave)
+Iteration 59:  log pseudolikelihood = -18282.229  (not concave)
+Iteration 60:  log pseudolikelihood = -18281.894  (not concave)
+Iteration 61:  log pseudolikelihood = -18281.558  (not concave)
+Iteration 62:  log pseudolikelihood = -18281.218  (not concave)
+Iteration 63:  log pseudolikelihood = -18280.877  (not concave)
+Iteration 64:  log pseudolikelihood = -18280.532  (not concave)
+Iteration 65:  log pseudolikelihood = -18280.184  (not concave)
+Iteration 66:  log pseudolikelihood = -18279.834  (not concave)
+Iteration 67:  log pseudolikelihood =  -18279.48  (not concave)
+Iteration 68:  log pseudolikelihood = -18279.122  (not concave)
+Iteration 69:  log pseudolikelihood =  -18278.76  (not concave)
+Iteration 70:  log pseudolikelihood = -18278.395  (not concave)
+Iteration 71:  log pseudolikelihood = -18278.026  (not concave)
+Iteration 72:  log pseudolikelihood = -18277.652  (not concave)
+Iteration 73:  log pseudolikelihood = -18277.274  (not concave)
+Iteration 74:  log pseudolikelihood = -18276.891  (not concave)
+Iteration 75:  log pseudolikelihood = -18276.504  (not concave)
+Iteration 76:  log pseudolikelihood = -18276.113  (not concave)
+Iteration 77:  log pseudolikelihood = -18275.716  (not concave)
+Iteration 78:  log pseudolikelihood = -18275.316  (not concave)
+Iteration 79:  log pseudolikelihood =  -18274.91  (not concave)
+Iteration 80:  log pseudolikelihood =   -18274.5  (not concave)
+Iteration 81:  log pseudolikelihood = -18274.086  (not concave)
+Iteration 82:  log pseudolikelihood = -18273.668  (not concave)
+Iteration 83:  log pseudolikelihood = -18273.246  (not concave)
+Iteration 84:  log pseudolikelihood = -18272.821  (not concave)
+Iteration 85:  log pseudolikelihood = -18272.392  (not concave)
+Iteration 86:  log pseudolikelihood =  -18271.96  (not concave)
+Iteration 87:  log pseudolikelihood = -18271.527  (not concave)
+Iteration 88:  log pseudolikelihood = -18271.091  (not concave)
+Iteration 89:  log pseudolikelihood = -18270.654  (not concave)
+Iteration 90:  log pseudolikelihood = -18270.216  (not concave)
+Iteration 91:  log pseudolikelihood = -18269.778  (not concave)
+Iteration 92:  log pseudolikelihood = -18269.341  (not concave)
+Iteration 93:  log pseudolikelihood = -18268.905  (not concave)
+Iteration 94:  log pseudolikelihood =  -18268.47  (not concave)
+Iteration 95:  log pseudolikelihood = -18268.037  (not concave)
+Iteration 96:  log pseudolikelihood = -18267.607  (not concave)
+Iteration 97:  log pseudolikelihood = -18267.181  (not concave)
+Iteration 98:  log pseudolikelihood = -18266.759  (not concave)
+Iteration 99:  log pseudolikelihood =  -18266.34  (not concave)
+Iteration 100: log pseudolikelihood = -18265.927  (not concave)
+Iteration 101: log pseudolikelihood = -18265.518  (not concave)
+Iteration 102: log pseudolikelihood = -18265.114  (not concave)
+Iteration 103: log pseudolikelihood = -18264.717  (not concave)
+Iteration 104: log pseudolikelihood = -18264.324  (not concave)
+Iteration 105: log pseudolikelihood = -18263.938  (not concave)
+Iteration 106: log pseudolikelihood = -18263.558  (not concave)
+Iteration 107: log pseudolikelihood = -18263.183  (not concave)
+Iteration 108: log pseudolikelihood = -18262.814  (not concave)
+Iteration 109: log pseudolikelihood = -18262.451  (not concave)
+Iteration 110: log pseudolikelihood = -18262.094  (not concave)
+Iteration 111: log pseudolikelihood = -18261.743  (not concave)
+Iteration 112: log pseudolikelihood = -18261.396  (not concave)
+Iteration 113: log pseudolikelihood = -18261.055  (not concave)
+Iteration 114: log pseudolikelihood = -18260.719  (not concave)
+Iteration 115: log pseudolikelihood = -18260.388  (not concave)
+Iteration 116: log pseudolikelihood = -18260.062  (not concave)
+Iteration 117: log pseudolikelihood =  -18259.74  (not concave)
+Iteration 118: log pseudolikelihood = -18259.422  (not concave)
+Iteration 119: log pseudolikelihood = -18259.108  (not concave)
+Iteration 120: log pseudolikelihood = -18258.798  (not concave)
+Iteration 121: log pseudolikelihood = -18258.492  (not concave)
+Iteration 122: log pseudolikelihood = -18258.188  (not concave)
+Iteration 123: log pseudolikelihood = -18257.888  (not concave)
+Iteration 124: log pseudolikelihood =  -18257.59  (not concave)
+Iteration 125: log pseudolikelihood = -18257.295  (not concave)
+Iteration 126: log pseudolikelihood = -18257.003  (not concave)
+Iteration 127: log pseudolikelihood = -18256.712  (not concave)
+Iteration 128: log pseudolikelihood = -18256.424  (not concave)
+Iteration 129: log pseudolikelihood = -18256.137  (not concave)
+Iteration 130: log pseudolikelihood = -18255.852  (not concave)
+Iteration 131: log pseudolikelihood = -18255.568  (not concave)
+Iteration 132: log pseudolikelihood = -18255.285  (not concave)
+Iteration 133: log pseudolikelihood = -18255.004  (not concave)
+Iteration 134: log pseudolikelihood = -18254.723  (not concave)
+Iteration 135: log pseudolikelihood = -18254.443  (not concave)
+Iteration 136: log pseudolikelihood = -18254.164  (not concave)
+Iteration 137: log pseudolikelihood = -18253.884  (not concave)
+Iteration 138: log pseudolikelihood = -18253.605  (not concave)
+Iteration 139: log pseudolikelihood = -18253.327  (not concave)
+Iteration 140: log pseudolikelihood = -18253.048  (not concave)
+Iteration 141: log pseudolikelihood = -18252.769  (not concave)
+Iteration 142: log pseudolikelihood =  -18252.49  (not concave)
+Iteration 143: log pseudolikelihood =  -18252.21  (not concave)
+Iteration 144: log pseudolikelihood =  -18251.93  (not concave)
+Iteration 145: log pseudolikelihood =  -18251.65  (not concave)
+Iteration 146: log pseudolikelihood = -18251.368  (not concave)
+Iteration 147: log pseudolikelihood = -18251.087  (not concave)
+Iteration 148: log pseudolikelihood = -18250.804  (not concave)
+Iteration 149: log pseudolikelihood = -18250.521  (not concave)
+Iteration 150: log pseudolikelihood = -18250.238  (not concave)
+Iteration 151: log pseudolikelihood = -18249.954  (not concave)
+Iteration 152: log pseudolikelihood = -18249.669  (not concave)
+Iteration 153: log pseudolikelihood = -18249.383  (not concave)
+Iteration 154: log pseudolikelihood = -18249.097  (not concave)
+Iteration 155: log pseudolikelihood = -18248.811  (not concave)
+Iteration 156: log pseudolikelihood = -18248.525  (not concave)
+Iteration 157: log pseudolikelihood = -18248.238  (not concave)
+Iteration 158: log pseudolikelihood = -18247.952  (not concave)
+Iteration 159: log pseudolikelihood = -18247.667  (not concave)
+Iteration 160: log pseudolikelihood = -18247.382  (not concave)
+Iteration 161: log pseudolikelihood = -18247.098  (not concave)
+Iteration 162: log pseudolikelihood = -18246.816  (not concave)
+Iteration 163: log pseudolikelihood = -18246.536  (not concave)
+Iteration 164: log pseudolikelihood = -18246.257  (not concave)
+Iteration 165: log pseudolikelihood = -18245.982  (not concave)
+Iteration 166: log pseudolikelihood =  -18245.71  (not concave)
+Iteration 167: log pseudolikelihood = -18245.441  (not concave)
+Iteration 168: log pseudolikelihood = -18245.177  (not concave)
+Iteration 169: log pseudolikelihood = -18244.917  (not concave)
+Iteration 170: log pseudolikelihood = -18244.662  (not concave)
+Iteration 171: log pseudolikelihood = -18244.413  (not concave)
+Iteration 172: log pseudolikelihood =  -18244.17  
+Iteration 173: log pseudolikelihood = -18242.443  (not concave)
+Iteration 174: log pseudolikelihood = -18241.363  
+Iteration 175: log pseudolikelihood = -18237.574  (not concave)
+Iteration 176: log pseudolikelihood = -18236.828  
+Iteration 177: log pseudolikelihood =  -18236.71  
+Iteration 178: log pseudolikelihood = -18236.703  
+Iteration 179: log pseudolikelihood = -18236.703  
+
+Structural equation model                       Number of obs     =        460
+Estimation method  = ml
+Log pseudolikelihood= -18236.703
+
+-------------------------------------------------------------------------------------------------
+                                |           Satorra-Bentler
+                   Standardized |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+--------------------------------+----------------------------------------------------------------
+Structural                      |
+  sexquan <-                    |
+                  sexactBalance |   .1857367   .0502562     3.70   0.000     .0872363    .2842371
+                       sexfan02 |   .1036134   .0463374     2.24   0.025     .0127936    .1944331
+                            age |  -.0137453   .0506962    -0.27   0.786    -.1131081    .0856175
+                      education |  -.0680165   .0448655    -1.52   0.130    -.1559513    .0199183
+                       stress01 |   -.058914   .0440359    -1.34   0.181    -.1452228    .0273947
+                   healthphys01 |    .040447   .0465491     0.87   0.385    -.0507876    .1316817
+                       bigfiveO |   .0501197   .0458939     1.09   0.275    -.0398307    .1400702
+                 coupleduration |  -.2671947   .0524973    -5.09   0.000    -.3700876   -.1643018
+                         couple |   .0969042   .0469574     2.06   0.039     .0048693    .1889391
+                          _cons |   3.146542   .4515955     6.97   0.000     2.261431    4.031653
+  ------------------------------+----------------------------------------------------------------
+  sexactBalance <-              |
+                       sexfan02 |   .1843675   .0436149     4.23   0.000     .0988838    .2698511
+                       distract |  -.1198067   .0639272    -1.87   0.061    -.2451018    .0054884
+                     sexpornB01 |   .1040063   .0479001     2.17   0.030     .0101239    .1978887
+                      sexcomm01 |   .0739433   .0404356     1.83   0.067     -.005309    .1531956
+                            age |   .0408809   .0556586     0.73   0.463     -.068208    .1499698
+                      education |   .0166866   .0479134     0.35   0.728     -.077222    .1105952
+                       stress01 |  -.0638345   .0432591    -1.48   0.140    -.1486208    .0209518
+                   healthphys01 |   .0425251   .0439266     0.97   0.333    -.0435696    .1286197
+                       bigfiveO |   .1999948   .0488821     4.09   0.000     .1041877    .2958019
+                 coupleduration |  -.0387761   .0500513    -0.77   0.439    -.1368749    .0593227
+                          _cons |  -.0647256   .4569323    -0.14   0.887    -.9602964    .8308453
+  ------------------------------+----------------------------------------------------------------
+  sexorgasm01 <-                |
+                  sexactBalance |   .1849864   .0424508     4.36   0.000     .1017844    .2681884
+                       distract |  -.2941352    .059652    -4.93   0.000     -.411051   -.1772193
+                            age |  -.0743436   .0491286    -1.51   0.130    -.1706339    .0219467
+                      education |   .0533698   .0451876     1.18   0.238    -.0351964    .1419359
+                       stress01 |   .0434433    .048973     0.89   0.375     -.052542    .1394286
+                   healthphys01 |  -.0387918   .0461262    -0.84   0.400    -.1291975    .0516139
+                       bigfiveO |   .0493829    .048863     1.01   0.312    -.0463868    .1451525
+                 coupleduration |   .1823582   .0468357     3.89   0.000     .0905618    .2741546
+                          _cons |   .6093992   .4405038     1.38   0.167    -.2539723    1.472771
+  ------------------------------+----------------------------------------------------------------
+  sexfan02 <-                   |
+                     sexpornB01 |   .1450049   .0471575     3.07   0.002     .0525779    .2374319
+                     sexmastB01 |   .2416966   .0463451     5.22   0.000     .1508619    .3325314
+                            age |   .0240425   .0489377     0.49   0.623    -.0718736    .1199586
+                      education |  -.0817908   .0417655    -1.96   0.050    -.1636496     .000068
+                       stress01 |    .135301   .0414694     3.26   0.001     .0540225    .2165794
+                   healthphys01 |   .0039959   .0439819     0.09   0.928     -.082207    .0901988
+                       bigfiveO |   .1822967   .0388215     4.70   0.000      .106208    .2583854
+                 coupleduration |  -.0349309   .0482078    -0.72   0.469    -.1294163    .0595546
+                          _cons |   .2938214   .3810453     0.77   0.441    -.4530138    1.040656
+  ------------------------------+----------------------------------------------------------------
+  sexsatlat <-                  |
+                        sexquan |   .4443735   .0394374    11.27   0.000     .3670777    .5216694
+                  sexactBalance |   .1986701   .0434181     4.58   0.000     .1135723     .283768
+                    sexorgasm01 |   .2145148    .040775     5.26   0.000     .1345973    .2944323
+                       distract |  -.0651668   .0602983    -1.08   0.280    -.1833494    .0530158
+                      sexcomm01 |   .1063785   .0372219     2.86   0.004     .0334249    .1793321
+                            age |  -.0421425   .0466306    -0.90   0.366    -.1335367    .0492518
+                      education |   .0654612   .0380416     1.72   0.085     -.009099    .1400213
+                       stress01 |  -.0252089   .0370137    -0.68   0.496    -.0977544    .0473366
+                   healthphys01 |   .0297897   .0369057     0.81   0.420    -.0425441    .1021236
+                       bigfiveO |   .0248031   .0388668     0.64   0.523    -.0513744    .1009806
+                 coupleduration |  -.0858895   .0466769    -1.84   0.066    -.1773744    .0055955
+                         couple |   .2162164   .0394853     5.48   0.000     .1388267    .2936061
+  ------------------------------+----------------------------------------------------------------
+  distract <-                   |
+                     sexpornB01 |   .0230031   .0603151     0.38   0.703    -.0952123    .1412184
+                      sexcomm01 |  -.1748223    .061941    -2.82   0.005    -.2962245   -.0534201
+                            age |  -.1475348   .0781068    -1.89   0.059    -.3006212    .0055517
+                      education |  -.1058919   .0618857    -1.71   0.087    -.2271856    .0154018
+                       stress01 |   .0049907   .0611308     0.08   0.935    -.1148236    .1248049
+                   healthphys01 |  -.0346696   .0672492    -0.52   0.606    -.1664757    .0971364
+                       bigfiveO |  -.1688785   .0613426    -2.75   0.006    -.2891077   -.0486492
+                 coupleduration |   .1042954   .0725966     1.44   0.151    -.0379913     .246582
+                         couple |   .0030131   .0661855     0.05   0.964    -.1267081    .1327343
+--------------------------------+----------------------------------------------------------------
+Measurement                     |
+  sexsat01 <-                   |
+                      sexsatlat |   .8074132   .0218476    36.96   0.000     .7645926    .8502337
+                          _cons |   .3368635   .3094226     1.09   0.276    -.2695936    .9433207
+  ------------------------------+----------------------------------------------------------------
+  sexsat02 <-                   |
+                      sexsatlat |   .9099835   .0160033    56.86   0.000     .8786176    .9413494
+                          _cons |   .2283975   .3442322     0.66   0.507    -.4462853    .9030803
+  ------------------------------+----------------------------------------------------------------
+  sexsat03 <-                   |
+                      sexsatlat |   .7543342   .0273894    27.54   0.000      .700652    .8080164
+                          _cons |  -.0369685   .2944799    -0.13   0.900    -.6141385    .5402014
+  ------------------------------+----------------------------------------------------------------
+  couplebond01 <-               |
+                         couple |    .875374   .0223202    39.22   0.000     .8316273    .9191208
+                          _cons |   4.622072   .2387757    19.36   0.000      4.15408    5.090064
+  ------------------------------+----------------------------------------------------------------
+  couplebond02 <-               |
+                         couple |   .7190475   .0361003    19.92   0.000     .6482923    .7898028
+                          _cons |   3.649749   .1814574    20.11   0.000     3.294099    4.005399
+  ------------------------------+----------------------------------------------------------------
+  coupleint01 <-                |
+                         couple |   .8550596   .0319257    26.78   0.000     .7924864    .9176329
+                          _cons |   3.997682   .1978245    20.21   0.000     3.609953    4.385411
+  ------------------------------+----------------------------------------------------------------
+  sexnet01 <-                   |
+                       distract |   .7019045   .0779791     9.00   0.000     .5490682    .8547408
+                          _cons |   3.538507   .4260426     8.31   0.000     2.703479    4.373535
+  ------------------------------+----------------------------------------------------------------
+  sexnet02 <-                   |
+                       distract |   .4870136   .0661207     7.37   0.000     .3574194    .6166077
+                          _cons |   3.567427    .333692    10.69   0.000     2.913402    4.221451
+--------------------------------+----------------------------------------------------------------
+                mean(sexpornB01)|   1.775647    .051158    34.71   0.000     1.675379    1.875915
+                mean(sexmastB01)|   2.485255   .0901572    27.57   0.000      2.30855     2.66196
+                 mean(sexcomm01)|   2.214372   .0810846    27.31   0.000      2.05545    2.373295
+                       mean(age)|   4.153494   .2225273    18.67   0.000     3.717348    4.589639
+                 mean(education)|   4.022754    .122251    32.91   0.000     3.783147    4.262362
+                  mean(stress01)|   4.472797     .23569    18.98   0.000     4.010853    4.934741
+              mean(healthphys01)|   1.975783   .0633531    31.19   0.000     1.851613    2.099953
+                  mean(bigfiveO)|   5.349212   .2493235    21.45   0.000     4.860547    5.837877
+            mean(coupleduration)|   .8314797   .0615653    13.51   0.000      .710814    .9521455
+--------------------------------+----------------------------------------------------------------
+                 var(e.sexsat01)|    .348084   .0352801                      .2853713    .4245783
+                 var(e.sexsat02)|     .17193   .0291255                      .1233546    .2396338
+                 var(e.sexsat03)|     .43098   .0413215                      .3571458    .5200781
+             var(e.couplebond01)|   .2337203    .039077                      .1684144    .3243497
+             var(e.couplebond02)|   .4829707   .0519156                      .3912219    .5962363
+              var(e.coupleint01)|   .2688731   .0545968                      .1805943    .4003045
+                 var(e.sexnet01)|   .5073301   .1094678                      .3323724    .7743839
+                 var(e.sexnet02)|   .7628178   .0644033                      .6464804    .9000906
+                  var(e.sexquan)|   .8269558   .0341885                      .7625904    .8967537
+            var(e.sexactBalance)|    .842158   .0335124                      .7789711    .9104705
+              var(e.sexorgasm01)|   .8294707   .0373054                      .7594833    .9059074
+                 var(e.sexfan02)|   .7954289   .0340444                      .7314251    .8650333
+                var(e.sexsatlat)|   .4486808   .0362101                      .3830387    .5255722
+                 var(e.distract)|   .9064465   .0368315                      .8370578    .9815872
+                 var(sexpornB01)|          1          .                             .           .
+                 var(sexmastB01)|          1          .                             .           .
+                  var(sexcomm01)|          1          .                             .           .
+                        var(age)|          1          .                             .           .
+                  var(education)|          1          .                             .           .
+                   var(stress01)|          1          .                             .           .
+               var(healthphys01)|          1          .                             .           .
+                   var(bigfiveO)|          1          .                             .           .
+             var(coupleduration)|          1          .                             .           .
+                     var(couple)|          1          .                             .           .
+--------------------------------+----------------------------------------------------------------
+      cov(sexpornB01,sexmastB01)|   .4369279   .0352369    12.40   0.000     .3678648    .5059911
+       cov(sexpornB01,sexcomm01)|   .0382255   .0457072     0.84   0.403     -.051359    .1278101
+             cov(sexpornB01,age)|     .02577   .0446669     0.58   0.564    -.0617755    .1133155
+       cov(sexpornB01,education)|  -.2009669   .0442072    -4.55   0.000    -.2876115   -.1143224
+        cov(sexpornB01,stress01)|   .0453478   .0438708     1.03   0.301    -.0406374    .1313329
+    cov(sexpornB01,healthphys01)|   -.043065   .0465739    -0.92   0.355    -.1343482    .0482182
+        cov(sexpornB01,bigfiveO)|   .1003957   .0450162     2.23   0.026     .0121656    .1886257
+  cov(sexpornB01,coupleduration)|   .0590605   .0436239     1.35   0.176    -.0264407    .1445618
+          cov(sexpornB01,couple)|  -.0438069   .0510435    -0.86   0.391    -.1438503    .0562365
+       cov(sexmastB01,sexcomm01)|   .0025372   .0464652     0.05   0.956    -.0885329    .0936073
+             cov(sexmastB01,age)|   .0996282   .0427624     2.33   0.020     .0158156    .1834409
+       cov(sexmastB01,education)|  -.0146301   .0440861    -0.33   0.740    -.1010372    .0717771
+        cov(sexmastB01,stress01)|   .0799726   .0436801     1.83   0.067    -.0056388     .165584
+    cov(sexmastB01,healthphys01)|    .029439    .046899     0.63   0.530    -.0624814    .1213595
+        cov(sexmastB01,bigfiveO)|    .143568   .0471362     3.05   0.002     .0511828    .2359532
+  cov(sexmastB01,coupleduration)|    .027215   .0407529     0.67   0.504    -.0526591    .1070891
+          cov(sexmastB01,couple)|   -.017483   .0508042    -0.34   0.731    -.1170574    .0820914
+              cov(sexcomm01,age)|  -.0886585   .0493335    -1.80   0.072    -.1853504    .0080334
+        cov(sexcomm01,education)|  -.0742636   .0462716    -1.60   0.109    -.1649544    .0164271
+         cov(sexcomm01,stress01)|   .0056195   .0448577     0.13   0.900    -.0822999    .0935389
+     cov(sexcomm01,healthphys01)|   -.050397   .0474513    -1.06   0.288    -.1433999     .042606
+         cov(sexcomm01,bigfiveO)|   .1087113   .0460965     2.36   0.018     .0183638    .1990587
+   cov(sexcomm01,coupleduration)|  -.0768628   .0546945    -1.41   0.160    -.1840621    .0303365
+           cov(sexcomm01,couple)|   .0370124   .0492835     0.75   0.453    -.0595815    .1336063
+              cov(age,education)|   .1148152   .0520002     2.21   0.027     .0128968    .2167336
+               cov(age,stress01)|   .0111706   .0471395     0.24   0.813    -.0812211    .1035623
+           cov(age,healthphys01)|  -.1051321   .0422449    -2.49   0.013    -.1879305   -.0223337
+               cov(age,bigfiveO)|  -.0167483    .047582    -0.35   0.725    -.1100074    .0765108
+         cov(age,coupleduration)|   .5557519   .0646061     8.60   0.000     .4291262    .6823776
+                 cov(age,couple)|  -.1346761   .0516656    -2.61   0.009    -.2359388   -.0334134
+         cov(education,stress01)|  -.0603279   .0407403    -1.48   0.139    -.1401774    .0195216
+     cov(education,healthphys01)|   .1213813    .044934     2.70   0.007     .0333122    .2094503
+         cov(education,bigfiveO)|  -.0186846   .0518945    -0.36   0.719     -.120396    .0830269
+   cov(education,coupleduration)|  -.0184983   .0592696    -0.31   0.755    -.1346645    .0976679
+           cov(education,couple)|    .141065   .0489571     2.88   0.004     .0451107    .2370192
+      cov(stress01,healthphys01)|  -.2371578   .0406218    -5.84   0.000    -.3167751   -.1575405
+          cov(stress01,bigfiveO)|   .0537718    .043595     1.23   0.217    -.0316728    .1392165
+    cov(stress01,coupleduration)|  -.0480228   .0493689    -0.97   0.331    -.1447841    .0487385
+            cov(stress01,couple)|  -.0900324   .0433707    -2.08   0.038    -.1750375   -.0050273
+      cov(healthphys01,bigfiveO)|  -.0087364   .0463119    -0.19   0.850    -.0995061    .0820334
+cov(healthphys01,coupleduration)|  -.0698269   .0403389    -1.73   0.083    -.1488897    .0092359
+        cov(healthphys01,couple)|   .1219592   .0516431     2.36   0.018     .0207405    .2231779
+    cov(bigfiveO,coupleduration)|  -.0607019   .0524362    -1.16   0.247     -.163475    .0420712
+            cov(bigfiveO,couple)|   .1656139   .0519808     3.19   0.001     .0637333    .2674944
+      cov(coupleduration,couple)|  -.0518984   .0507059    -1.02   0.306    -.1512802    .0474834
+-------------------------------------------------------------------------------------------------
+LR test of model vs. saturated: chi2(101) =    140.39, Prob > chi2 = 0.0058
+Satorra-Bentler scaled test:    chi2(101) =    132.56, Prob > chi2 = 0.0192
+
+.                                                                                                                                                           
+>                                                                                                                                                           
+>                                                             #delimit cr
+delimiter now cr
+. 
+. //-----Testen der Modellgüte-----
+. estat gof, stats(all)
+
+----------------------------------------------------------------------------
+Fit statistic        |      Value   Description
+---------------------+------------------------------------------------------
+Likelihood ratio     |
+        chi2_ms(101) |    140.388   model vs. saturated
+            p > chi2 |      0.006
+        chi2_bs(174) |   2257.486   baseline vs. saturated
+            p > chi2 |      0.000
+                     |
+  Satorra-Bentler    |
+      chi2sb_ms(101) |    132.561   
+            p > chi2 |      0.019
+      chi2sb_bs(174) |   2163.733   
+            p > chi2 |      0.000
+---------------------+------------------------------------------------------
+Population error     |
+               RMSEA |      0.029   Root mean squared error of approximation
+ 90% CI, lower bound |      0.016
+         upper bound |      0.040
+              pclose |      1.000   Probability RMSEA <= 0.05
+                     |
+  Satorra-Bentler    |
+            RMSEA_SB |      0.026   Root mean squared error of approximation
+---------------------+------------------------------------------------------
+Information criteria |
+                 AIC |  36775.406   Akaike's information criterion
+                 BIC |  37399.221   Bayesian information criterion
+---------------------+------------------------------------------------------
+Baseline comparison  |
+                 CFI |      0.981   Comparative fit index
+                 TLI |      0.967   Tucker-Lewis index
+                     |
+  Satorra-Bentler    |
+              CFI_SB |      0.984   Comparative fit index
+              TLI_SB |      0.973   Tucker-Lewis index
+---------------------+------------------------------------------------------
+Size of residuals    |
+                SRMR |      0.034   Standardized root mean squared residual
+                  CD |      0.933   Coefficient of determination
+----------------------------------------------------------------------------
+
+. 
+. log close
+      name:  <unnamed>
+       log:  \log\B2_SEM_full_MLSB_standard
+> ized_healthment-no.log
+  log type:  text
+ closed on:  15 May 2022, 18:22:39
+------------------------------------------------------------------------------------------------------------------------------------------------------------
