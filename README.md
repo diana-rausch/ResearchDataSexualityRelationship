@@ -1,10 +1,12 @@
 # README!
 
-Die hier bereitgestellten Datensatz- und Syntax-Dateien können genutzt werden, um die von Diana Rausch im Rahmen ihrer Dissertation "Einflussfaktoren auf die sexuelle Zufriedenheit von Frauen in fester Partnerschaft" im Jahr 2022 veröffentlichten Forschungsergebnisse nachzuvollziehen. 
+Die hier bereitgestellten Datensatz- und Syntax-Dateien können genutzt werden, um die von Diana Rausch im Rahmen ihrer Dissertation "Einflussfaktoren auf die sexuelle Zufriedenheit von Frauen in fester Partnerschaft" im Jahr 2023 veröffentlichten Forschungsergebnisse nachzuvollziehen. 
 
 Mithilfe eines umfassenden Fragebogens wurden zahlreiche Einstellungen und Verhaltensweisen erhoben, die in Zusammenhang mit Sexualität und Partnerschaft stehen. Daher stellen die Daten auch eine gute Grundlage für zukünftige Forschungsprojekte zum Thema Sexualität und Partnerschaft dar.
 
-Die Daten wurden durch eine Umfrage vom 22.04.2015 bis zum 17.07.2015 über die Online-Plattform Unipark erhoben. Die Verbreitung erfolgte durch Social Media Posts auf Facebook und Twitter mit Bitte um weiteres Teilen des Umfragelinks, durch den Versand an Mailinglisten verschiedener Fachschaften und durch Aushänge an der Johannes Gutenberg-Universität Mainz. Insgesamt wurde die Umfrage 4 483 Mal aufgerufen und von 2 768 Teilnehmenden vollständig bearbeitet.
+Die Daten wurden durch eine Umfrage vom 22.04.2015 bis zum 17.07.2015 über die Online-Plattform Unipark erhoben. Die Verbreitung erfolgte durch Social Media Posts auf Facebook, Twitter und Foren mit Bitte um weiteres Teilen des Umfragelinks, durch den Versand an Mailinglisten verschiedener Fachschaften und durch Aushänge an der Johannes Gutenberg-Universität Mainz (die vollständige Liste der genutzten Distributionswege befindet sich in der Datei Distribution_Umfrage.pdf). Die Befragten wurden zu Beginn des Fragebogens über die Zielsetzung der Studie und die damit einhergehende Verwendung der von Ihnen angegebenen Daten aufgeklärt. Die Daten wurden vollständig anonymisiert erhoben und gespeichert, weshalb kein Rückschluss auf Individuen möglich ist. Die Zustimmung zur Verwendung der Daten war notwendig, um mit der Befragung zu beginnen. Für Rückfragen zum Fragebogen und Forschungsvorhaben stand eine Kontaktadresse zur Verfügung. 
+
+Insgesamt wurde die Umfrage 4 483 Mal aufgerufen und von 2 768 Teilnehmenden vollständig bearbeitet (Frauen: n = 1 867, 71 %; Männer: n = 758, 29 %).
 
 Als erster Zugang zum Datensatz eignet sich die Datei mit dem vollständigen Fragebogen (Fragebogen zu Sexualität und Partnerschaft.pdf), in der hinter jedem Item des Fragebogens die zugehörige Variable im aufbereiteten Datensatz vermerkt ist.
 
@@ -36,7 +38,9 @@ The provided dataset and syntax files can be used to replicate the research resu
 
 Numerous attitudes and behavioral characteristics related to sexuality and relationship were measured with a comprehensive questionnaire. Therefore, the data are a great foundation for future research projects about sexuality and relationship topics.
 
-The data were collected in 2015 with an online survey administered via the platform Unipark (April 4th - July 15th, 2015). The survey was distributed through social media posts, emails to different faculties and public postings on campus at the Johannes Gutenberg-University Mainz. Of the 4 483 people, who started the survey, 2 768 completed the entire questionnaire.
+The data were collected in 2015 with an online survey administered via the platform Unipark (April 4th - July 15th, 2015). The survey was distributed through social media and forum posts, emails to different faculties and public postings on campus at the Johannes Gutenberg-University Mainz (the full list of distribution channels is available in Distribution_Umfrage.pdf). All respondents were informed about the goal of the study and about the intended use of their data. They were reassured that their responses would be fully anonymized and no tracing of their individual identity would be possible afterwards. The agreement to the use of their data was prerequisite to start the survey. Contact details were provided in case of questions or concerns about the questionnaire and the research project.
+
+Of the 4 483 people, who started the survey, 2 768 completed the entire questionnaire (female: n = 1 867, 71 %; male: n = 758, 29 %).
 
 As a starting point to work with the data the file describing the complete questionnaire can be useful (Fragebogen zu Sexualität und Partnerschaft.pdf). It contains the name of each dataset variable adjacent to the respect questionnaire item.
 
